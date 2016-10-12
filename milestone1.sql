@@ -20,7 +20,7 @@ CREATE TABLE TutorInfo
 CREATE TABLE TutorAvailable
 (tutor_id VARCHAR(256) NOT NULL,
 	-- 0 as Sunday, 1 as Monday, etc.
- day INTEGER NOT NULL CHECK (day >= 0 AND day <= 7),
+ day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
  start_time TIMESTAMP NOT NULL,
  end_time TIMESTAMP NOT NULL,
  PRIMARY KEY (tutor_id, day, start_time)
@@ -29,7 +29,7 @@ CREATE TABLE TutorAvailable
 CREATE TABLE Request
 (request_id INTEGER NOT NULL,
 	-- 0 as Sunday, 1 as Monday, etc.
- day INTEGER NOT NULL CHECK (day >= 0 AND day <= 7),
+ day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
  start_time TIMESTAMP NOT NULL,
  end_time TIMESTAMP NOT NULL,
  teacher_id INTEGER NOT NULL,
@@ -50,3 +50,12 @@ CREATE TABLE Matches
  FOREIGN KEY (tutor_id) REFERENCES TutorInfo(tutor_id),
  FOREIGN KEY (request_id) REFERENCES Request(request_id)
 );
+
+INSERT INTO Teacher VALUES(123, 'Mr. Bergkamp');
+
+INSERT INTO Site VALUES(123, 'Crest Street', 'Car');
+
+INSERT INTO TutorInfo VALUES('bew21', 'Bailey Wall');
+
+-- time is tricky
+--INSERT INTO TutorAvailable VALUES('bew21', 1, 12:00, 1:00);
