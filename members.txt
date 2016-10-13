@@ -1,0 +1,6 @@
+Justin Bergkamp - SQL queries, edits to tables, assumptions
+Cosi Goldstein - E/R diagram, list of tables, description of web interface
+Sophie Polson - Application description, plan for data population, Time edits to tables and queries
+Bailey Wall - SQL to create and populate all tables, edits to queries, compilation adjustments, git setup
+
+All members participated in a meeting with a Partners for Success representative several weeks ago. All members participated in discussions on the overall structure of the database. 
