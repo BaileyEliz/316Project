@@ -6,4 +6,4 @@ Justin was here on his vm! Spooky
 
 Sophie was also here
 
-HALP
+Bailey is still here!
