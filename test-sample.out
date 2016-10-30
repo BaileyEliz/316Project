@@ -1,0 +1,73 @@
+-- SQL Queries
+-- Returns all potential matches: where request times match tutor availability 
+SELECT tutor_id, request_id, teacher_id, Request.day, Request.start_time, Request.end_time 
+FROM Request, TutorAvailable 
+WHERE TutorAvailable.day = Request.day and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time 
+ORDER BY Request.day, Request.start_time;
+ tutor_id | request_id | teacher_id | day | start_time | end_time 
+----------+------------+------------+-----+------------+----------
+ bew21    |          4 |        124 |   1 | 00:00:00   | 01:00:00
+ cg1      |          5 |        125 |   2 | 09:00:00   | 10:00:00
+ sep45    |          1 |        123 |   4 | 14:15:00   | 15:15:00
+ sep45    |          2 |        124 |   4 | 15:00:00   | 16:00:00
+(4 rows)
+
+-- Returns Information about a tutor given their unique tutorID
+SELECT name,day, start_time, end_time 
+FROM TutorAvailable, TutorInfo
+WHERE TutorAvailable.tutor_id = 'sep45' and TutorAvailable.tutor_id = TutorInfo.tutor_id;
+     name      | day | start_time | end_time 
+---------------+-----+------------+----------
+ Sophie Polson |   4 | 14:00:00   | 16:00:00
+ Sophie Polson |   5 | 10:00:00   | 13:00:00
+(2 rows)
+
+-- Returns a list of teachers at sites 
+SELECT Site.site_id, Teacher.name
+FROM Site, Teacher
+WHERE Site.site_id = Teacher.site_id
+ORDER BY Site.site_id; 
+ site_id |     name      
+---------+---------------
+       1 | Mr. Bergkamp
+       2 | Ms. Wall
+       3 | Ms. Goldstein
+       4 | Ms. Polson
+(4 rows)
+
+-- Returns requests that fit the schedule/requirements for a single tutor identified by their tutor_id
+SELECT tutor_id, request_id, teacher_id, Request.day, Request.start_time, Request.end_time 
+FROM Request, TutorAvailable 
+WHERE TutorAvailable.day = Request.day and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and tutor_id = 'sep45' and Request.subject = 'Writing' and Request.esl = 'TRUE'
+ORDER BY Request.day, Request.start_time;
+ tutor_id | request_id | teacher_id | day | start_time | end_time 
+----------+------------+------------+-----+------------+----------
+ sep45    |          2 |        124 |   4 | 15:00:00   | 16:00:00
+(1 row)
+
+-- Returns the site and name and request number of all teachers with requests
+SELECT SITE.name, Request.request_id, Teacher.name
+FROM Site, Request, Teacher
+WHERE Request.teacher_id  = Teacher.teacher_id and Teacher.site_id = Site.site_id;
+     name     | request_id |     name      
+--------------+------------+---------------
+ Crest Street |          1 | Mr. Bergkamp
+ Address2     |          2 | Ms. Wall
+ Address3     |          3 | Ms. Goldstein
+ Address2     |          4 | Ms. Wall
+ Address3     |          5 | Ms. Goldstein
+ Address4     |          6 | Ms. Polson
+ Address3     |          7 | Ms. Goldstein
+(7 rows)
+
+-- Returns Tutors without a match
+SELECT tutor_id 
+FROM TutorInfo
+WHERE tutor_id NOT IN (
+	SELECT tutor_id
+	FROM Matches);
+ tutor_id 
+----------
+ jtb43
+(1 row)
+
