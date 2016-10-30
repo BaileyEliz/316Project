@@ -1,0 +1,3 @@
+[submodule "shib-installer"]
+	path = shib-installer
+	url = http://gitlab.oit.duke.edu/colab/shib-installer.git
