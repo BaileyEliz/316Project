@@ -42,5 +42,12 @@ Select a teacher below to view more information:<br/>
     die();
   }
 ?> 
+
+<form enctype="multipart/form-data" action="somepage.php" method="POST">
+  <input type="file" name="userfile" size="100000" maxlength="200000"> <br>
+  <input type = "submit" name="upload" value="Upload">
+</form>
+
 </body>
+
 </html>
