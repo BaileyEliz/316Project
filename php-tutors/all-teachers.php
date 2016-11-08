@@ -19,7 +19,7 @@
     if (($myrow = $st->fetch())) {
 ?>
 
-<form method="post" action="teacher-info.php">
+<form method="post" action="pick-a-teacher.php">
 Select a teacher below to view more information:<br/>
 <?php
       do {
