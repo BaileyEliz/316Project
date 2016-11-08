@@ -1,7 +1,7 @@
 <html>
 
 <head>
-<title>Beer Drinker's Database Demo</title>
+<title>PFS Database Demo</title>
 </head>
 
 <body>
@@ -11,6 +11,12 @@
 <p>
 <a href="all-teachers.php">List all drinkers</a>
 </p>
+
+
+<p>
+<a href="loginscreen.php">Login Page</a>
+</p>
+
 
 <p>
 The following shows many useful information about your PHP configuration.
