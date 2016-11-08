@@ -1,0 +1,9 @@
+We decided on using PHP and HTML. We are using a LAMP stack.
+
+Our decision to use PHP stemmed from the fact that nobody in our group was familiar with PHP at the start of the project.
+We wanted to take this opportunity to learn a new language and improve our skills. 
+
+The example code given from course instructors was extremely helpful in setting up our initial web application.
+While our existing web application is quite simple, we have everything functioning correctly.
+
+Professor Yang also suggested that we use PHP based on the nature of our project.
