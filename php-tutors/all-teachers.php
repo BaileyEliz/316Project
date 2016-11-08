@@ -23,7 +23,7 @@
 Select a teacher below to view more information:<br/>
 <?php
       do {
-        echo "<input type='checkbox' name='teacher' value='" . $myrow['name'] . "'/>";
+        echo "<input type='radio' name='teacher' value='" . $myrow['name'] . "'/>";
         echo $myrow['name'] . "<br/>";
       } while ($myrow = $st->fetch());
       

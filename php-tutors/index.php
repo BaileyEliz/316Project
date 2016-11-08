@@ -17,9 +17,6 @@
 <a href="loginscreen.php">Login Page</a>
 </p>
 
-<p>
-<a href="filtering.php">Filtering Page</a>
-</p>
 
 <p>
 The following shows many useful information about your PHP configuration.
