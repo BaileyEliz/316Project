@@ -6,7 +6,9 @@
 
 <body>
 
-<center><h1>Beer Drinker's Database Demo</h1></center>
+<center><h1>PFS Database Demo</h1></center>
+
+<div class="topcorner"><a href="teacher-requests.php">Teacher Requests</a></div>
 
 <p>
 <a href="all-teachers.php">List all drinkers</a>
@@ -24,4 +26,13 @@ The following shows many useful information about your PHP configuration.
 <? phpinfo(); ?>
 
 </body>
+
+<style type="text/css">
+ .topcorner{
+   position:absolute;
+   top:5;
+   right:5;
+  }
+</style>
+
 </html>
