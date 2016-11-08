@@ -11,7 +11,7 @@
 <div class="topcorner"><a href="teacher-requests.php">Teacher Requests</a></div>
 
 <p>
-<a href="all-teachers.php">List all drinkers</a>
+<a href="all-teachers.php">List all teachers</a>
 </p>
 
 
