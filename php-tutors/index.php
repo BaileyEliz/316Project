@@ -19,6 +19,10 @@
 <a href="loginscreen.php">Login Page</a>
 </p>
 
+<p>
+	<a href="admin-upload.php">Administrator Upload</a>
+</p>
+
 
 <p>
 The following shows many useful information about your PHP configuration.
