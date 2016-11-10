@@ -4,3 +4,11 @@ Sophie Polson - Application description, plan for data population, Time edits to
 Bailey Wall - SQL to create and populate all tables, edits to queries, compilation adjustments, git setup
 
 All members participated in a meeting with a Partners for Success representative several weeks ago. All members participated in discussions on the overall structure of the database. 
+
+MILESTONE 2:
+Justin Bergkamp - Updated SQL queries to conform to new table specifications, beginning login functionality
+Cosi Goldstein - Updates to E/R diagram and list of tables, production dataset explanation
+Sophie Polson - Admin interface functionality: cvs upload, add one request, view all requests (backend functionality), platform description
+Bailey Wall - test functionality to display teacher information, front end display of requests in calendar view
+
+All group members participated in occasional meetings to decide upon overall functionality of the web application.
