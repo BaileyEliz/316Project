@@ -34,3 +34,30 @@ WHERE Request.teacher_email  = Teacher.email and Teacher.site_name = Site.name;
 SELECT * 
 FROM Request, Teacher 
 WHERE teacher_email = email;
+
+--Return start times, endtimes, teachers of all sites in walking distance
+
+SELECT Teacher.name, Teacher.email, Request.start_time, Request.end_time, Site.name
+FROM Request, Teacher, Site
+WHERE Request.teacher_email = Teacher.email and Teacher.site_name = Site.name and Site.transportation != 'Car';
+
+
+--Returns teachers teaching classes at a certain age level
+Select Distinct Teacher.name
+From Teacher, Request
+Where Teacher.email = Request.teacher_email and Request.grade_level = '4';
+
+--Returns number of timeslots per teacher
+Select Teacher.name, Count(Teacher.name)
+From Request, Teacher
+Where Request.teacher_email = Teacher.email
+Group By Teacher.name;
+
+
+--Returns Site with the max number of teachers
+
+Select Teacher.site_name, Count(Teacher.name) as Number_of_teachers
+From Teacher
+Group By Teacher.site_name
+Order By Number_of_teachers DESC
+Limit 1;
