@@ -1,28 +1,28 @@
-CREATE TABLE Data
-(name VARCHAR(256),
- email VARCHAR(256),
- school VARCHAR(256),
- grade VARCHAR(256),
- monday_1 VARCHAR(256),
- monday_2 VARCHAR(256),
- monday_3 VARCHAR(256),
- tuesday_1 VARCHAR(256),
- tuesday_2 VARCHAR(256),
- tuesday_3 VARCHAR(256),
- wednesday_1 VARCHAR(256),
- wednesday_2 VARCHAR(256),
- wednesday_3 VARCHAR(256),
- thursday_1 VARCHAR(256),
- thursday_2 VARCHAR(256),
- thursday_3 VARCHAR(256),
- friday_1 VARCHAR(256),
- friday_2 VARCHAR(256),
- friday_3 VARCHAR(256),
- max_tutors VARCHAR(256),
- total_tutors VARCHAR(256),
- language VARCHAR(256),
- description VARCHAR(256)
-);
+-- CREATE TABLE Data
+-- (name VARCHAR(256),
+--  email VARCHAR(256),
+--  school VARCHAR(256),
+--  grade VARCHAR(256),
+--  monday_1 VARCHAR(256),
+--  monday_2 VARCHAR(256),
+--  monday_3 VARCHAR(256),
+--  tuesday_1 VARCHAR(256),
+--  tuesday_2 VARCHAR(256),
+--  tuesday_3 VARCHAR(256),
+--  wednesday_1 VARCHAR(256),
+--  wednesday_2 VARCHAR(256),
+--  wednesday_3 VARCHAR(256),
+--  thursday_1 VARCHAR(256),
+--  thursday_2 VARCHAR(256),
+--  thursday_3 VARCHAR(256),
+--  friday_1 VARCHAR(256),
+--  friday_2 VARCHAR(256),
+--  friday_3 VARCHAR(256),
+--  max_tutors VARCHAR(256),
+--  total_tutors VARCHAR(256),
+--  language VARCHAR(256),
+--  description VARCHAR(256)
+-- );
 
 CREATE TABLE Site
 (--site_id INTEGER NOT NULL,
@@ -73,8 +73,9 @@ CREATE TABLE Request
  --is_one_on_one BOOLEAN NOT NULL,
  num_tutors INTEGER NOT NULL,
  language VARCHAR(256) NOT NULL,
+ request_id SERIAL,
  --PRIMARY KEY (request_id),
- PRIMARY KEY (teacher_email, day, start_time),
+ PRIMARY KEY (teacher_email, day, start_time, end_time),
  --FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id)
  FOREIGN KEY (teacher_email) REFERENCES Teacher(email)
 );
@@ -136,6 +137,10 @@ INSERT INTO Request VALUES(5, '4', '9:00 AM', '10:00 AM', 'goldstein@fakeemail.c
 INSERT INTO Request VALUES(1, '7th', '2:15 PM', '3:15 PM', 'polson@fakeemail.com', 1, 'Arabic');
 INSERT INTO Request VALUES(2, 'Kindergarten', '12:15 PM', '3:15 PM', 'goldstein@fakeemail.com', 1, 'Japanese');
 
+
+SELECT * FROM Request;
+INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None');
+SELECT * FROM Request;
 -- INSERT INTO Matches VALUES('bew21', 2);
 -- INSERT INTO Matches VALUES('cg1', 5);
 -- INSERT INTO Matches VALUES('sep45', 1);

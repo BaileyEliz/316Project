@@ -27,40 +27,50 @@ $timeslots = array('Monday Block 1', 'Monday Block 2', 'Monday Block 3', 'Tuesda
 $handle = fopen($file, "r");
 $header = array_flip(fgetcsv($handle, $length, $separator));
 
-$statement = $dbh->prepare("DELETE FROM Request");
+// $statement = $dbh->prepare("DELETE FROM Request");
 
-try{
-  $statement->execute();
-}
-catch (PDOException $e) {
-  echo $e->getMessage() . "<br/>";
-}
+// try{
+//   $statement->execute();
+// }
+// catch (PDOException $e) {
+//   echo $e->getMessage() . "<br/>";
+// }
 
-$statement = $dbh->prepare("DELETE FROM Data");
+// $alterStatement = $dbh->prepare("ALTER SEQUENCE request_request_id_seq RESTART WITH 1");
 
-try{
-  $statement->execute();
-}
-catch (PDOException $e) {
-  echo $e->getMessage() . "<br/>";
-}
+// try{
+//   $alterStatement->execute();
+// }
+// catch(PDOException $e){
+//   echo $e->getMessage() . "<br/>";
+// }
 
-$statement = $dbh->prepare("DELETE FROM Teacher");
-try{
-  $statement->execute();
-}
-catch (PDOException $e) {
-  echo $e->getMessage() . "<br/>";
-}
 
-$statement = $dbh->prepare("DELETE FROM Site");
+// $statement = $dbh->prepare("DELETE FROM Data");
 
-try{
-  $statement->execute();
-}
-catch (PDOException $e) {
-  echo $e->getMessage() . "<br/>";
-}
+// try{
+//   $statement->execute();
+// }
+// catch (PDOException $e) {
+//   echo $e->getMessage() . "<br/>";
+// }
+
+// $statement = $dbh->prepare("DELETE FROM Teacher");
+// try{
+//   $statement->execute();
+// }
+// catch (PDOException $e) {
+//   echo $e->getMessage() . "<br/>";
+// }
+
+// $statement = $dbh->prepare("DELETE FROM Site");
+
+// try{
+//   $statement->execute();
+// }
+// catch (PDOException $e) {
+//   echo $e->getMessage() . "<br/>";
+// }
 
 //$statement = $dbh->prepare("INSERT INTO Data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
