@@ -14,6 +14,9 @@
 <a href="all-teachers.php">List all teachers</a>
 </p>
 
+<p>
+<a href="all-students.php">List all students</a>
+</p>
 
 <p>
 <a href="loginscreen.php">Login Page</a>
