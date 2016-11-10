@@ -1,0 +1,59 @@
+td[name="monday_one"] {
+	background-color: red;
+}
+
+td[name="tuesday_one"] {
+	background-color: orange;
+}
+
+td[name="wednesday_one"] {
+	background-color: yellow;
+}
+
+td[name="thursday_one"] {
+	background-color: green;
+}
+
+td[name="friday_one"] {
+	background-color: blue;
+}
+
+td[name="monday_two"] {
+	background-color: red;
+}
+
+td[name="tuesday_two"] {
+	background-color: orange;
+}
+
+td[name="wednesday_two"] {
+	background-color: yellow;
+}
+
+td[name="thursday_two"] {
+	background-color: green;
+}
+
+td[name="friday_two"] {
+	background-color: blue;
+}
+
+td[name="monday_three"] {
+	background-color: red;
+}
+
+td[name="tuesday_three"] {
+	background-color: orange;
+}
+
+td[name="wednesday_three"] {
+	background-color: yellow;
+}
+
+td[name="thursday_three"] {
+	background-color: green;
+}
+
+td[name="friday_three"] {
+	background-color: blue;
+}
