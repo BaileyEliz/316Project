@@ -1,7 +1,6 @@
 <html>
 <head><title>Request</title></head>
 <body>
-<h1>Request Success!</h1>
 
 <a href="admin-interface.php">Back to Admin Homepage</a>
 
@@ -29,19 +28,19 @@
 	$email = $_POST["email"];
 	$school = $_POST["school"];
 	$day = $_POST["day_of_week"];
-	if($day == 'monday'){
+	if($day == 'Monday'){
 		$day = 1;
 	}
-	if($day == 'tuesday'){
+	if($day == 'Tuesday'){
 		$day = 2;
 	}
-	if($day == 'wednesday'){
+	if($day == 'Wednesday'){
 		$day = 3;
 	}
-	if($day == 'thursday'){
+	if($day == 'Thursday'){
 		$day = 4;
 	}
-	if($day == 'friday'){
+	if($day == 'Friday'){
 		$day = 5;
 	}
 	$start = $_POST["start_time"];
