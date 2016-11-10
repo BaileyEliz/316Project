@@ -3,6 +3,8 @@
 <body>
 <h1>Add a Request</h1>
 
+<div class="topcorner"><a href="admin-interface.php">Back to Admin Homepage</a></div>
+
 <form action="request-success.php" method="post">
 	Name: <input type="text" name="name" required><br>
 	Email: <input type="email" name="email" required><br>
@@ -46,6 +48,14 @@
 	<br>
 	<input type="submit" value="Submit Request">
 </form>
+
+<style type="text/css">
+ .topcorner{
+   position:absolute;
+   top:5;
+   right:5;
+  }
+</style>
 
 </body>
 </html>
