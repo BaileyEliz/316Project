@@ -8,7 +8,7 @@
 
 <center><h1>PFS Database Demo</h1></center>
 
-<div class="topcorner"><a href="teacher-requests.php">Teacher Requests</a></div>
+<div class="topcorner"><a href="admin-interface.php">Administrators</a></div>
 
 <p>
 <a href="all-teachers.php">List all teachers</a>
@@ -17,6 +17,10 @@
 
 <p>
 <a href="loginscreen.php">Login Page</a>
+</p>
+
+<p>
+	<a href="admin-upload.php">Administrator Upload</a>
 </p>
 
 
