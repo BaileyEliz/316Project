@@ -5,6 +5,10 @@
 
 <div class="topcorner"><a href="index.php">Back to Homepage</a></div>
 
+<a href="view-requests.php">View All Requests</a>
+
+<br><br>
+
 <a href="admin-upload.php">Upload a Qualtrics CSV</a>
 
 <br><br>
