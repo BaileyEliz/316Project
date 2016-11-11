@@ -1,0 +1,124 @@
+-- SQL Queries
+-- Returns all potential matches: where request times match tutor availability 
+SELECT tutor_id, teacher_email, Request.day, Request.start_time, Request.end_time 
+FROM Request, TutorAvailable 
+WHERE TutorAvailable.day = Request.day and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time;
+ tutor_id |      teacher_email      | day | start_time | end_time 
+----------+-------------------------+-----+------------+----------
+ bew21    | bergkamp@fakeemail.com  |   1 | 02:15:00   | 03:15:00
+ cg1      | goldstein@fakeemail.com |   5 | 09:00:00   | 10:10:00
+ cg1      | goldstein@fakeemail.com |   5 | 09:10:00   | 10:00:00
+ cg1      | goldstein@fakeemail.com |   5 | 09:00:00   | 10:00:00
+(4 rows)
+
+SELECT name,day, start_time, end_time 
+FROM TutorAvailable, TutorInfo
+WHERE TutorAvailable.tutor_id = 'sep45' and TutorAvailable.tutor_id = TutorInfo.tutor_id;
+     name      | day | start_time | end_time 
+---------------+-----+------------+----------
+ Sophie Polson |   4 | 14:00:00   | 16:00:00
+ Sophie Polson |   5 | 10:00:00   | 13:00:00
+(2 rows)
+
+-- Returns a list of teachers at sites 
+SELECT Site.name, Teacher.name
+FROM Site, Teacher
+WHERE Site.name = Teacher.site_name
+ORDER BY Site.name; 
+     name     |     name      
+--------------+---------------
+ Address2     | Ms. Wall
+ Address3     | Ms. Polson
+ Address4     | Ms. Smith
+ Crest Street | Ms. Goldstein
+ Crest Street | Mr. Bergkamp
+(5 rows)
+
+-- Returns requests that fit the schedule/requirements for a single tutor identified by their tutor_id
+SELECT tutor_id, teacher_email, Request.day, Request.start_time, Request.end_time
+FROM Request, TutorAvailable 
+WHERE TutorAvailable.day = Request.day and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and tutor_id = 'sep45'; 
+ tutor_id | teacher_email | day | start_time | end_time 
+----------+---------------+-----+------------+----------
+(0 rows)
+
+-- Returns the site and name and request number of all teachers with requests
+SELECT SITE.name, Teacher.name
+FROM Site, Request, Teacher
+WHERE Request.teacher_email  = Teacher.email and Teacher.site_name = Site.name;
+     name     |     name      
+--------------+---------------
+ Crest Street | Ms. Goldstein
+ Crest Street | Ms. Goldstein
+ Crest Street | Ms. Goldstein
+ Crest Street | Ms. Goldstein
+ Crest Street | Ms. Goldstein
+ Crest Street | Mr. Bergkamp
+ Crest Street | Mr. Bergkamp
+ Address2     | Ms. Wall
+ Address2     | Ms. Wall
+ Address3     | Ms. Polson
+(10 rows)
+
+-- Joins the request with the teacher requesting it
+SELECT * 
+FROM Request, Teacher 
+WHERE teacher_email = email;
+ day | grade_level  | start_time | end_time |      teacher_email      | num_tutors | language | request_id |  site_name   |     name      |          email          
+-----+--------------+------------+----------+-------------------------+------------+----------+------------+--------------+---------------+-------------------------
+   1 | 4-6          | 14:15:00   | 15:15:00 | bergkamp@fakeemail.com  |          1 | Spanish  |          1 | Crest Street | Mr. Bergkamp  | bergkamp@fakeemail.com
+   1 | 4-6          | 02:15:00   | 03:15:00 | bergkamp@fakeemail.com  |          1 | Spanish  |          2 | Crest Street | Mr. Bergkamp  | bergkamp@fakeemail.com
+   2 | 3rd          | 15:00:00   | 16:00:00 | wall@fakeemail.com      |          1 | None     |          3 | Address2     | Ms. Wall      | wall@fakeemail.com
+   3 | PreK and K   | 15:00:00   | 16:30:00 | goldstein@fakeemail.com |          1 | French   |          4 | Crest Street | Ms. Goldstein | goldstein@fakeemail.com
+   4 | 12           | 00:00:00   | 01:00:00 | wall@fakeemail.com      |          1 | None     |          5 | Address2     | Ms. Wall      | wall@fakeemail.com
+   5 | 4            | 09:00:00   | 10:00:00 | goldstein@fakeemail.com |          1 | None     |          6 | Crest Street | Ms. Goldstein | goldstein@fakeemail.com
+   1 | 7th          | 14:15:00   | 15:15:00 | polson@fakeemail.com    |          1 | Arabic   |          7 | Address3     | Ms. Polson    | polson@fakeemail.com
+   2 | Kindergarten | 12:15:00   | 15:15:00 | goldstein@fakeemail.com |          1 | Japanese |          8 | Crest Street | Ms. Goldstein | goldstein@fakeemail.com
+   5 | 4            | 09:10:00   | 10:00:00 | goldstein@fakeemail.com |          1 | None     |          9 | Crest Street | Ms. Goldstein | goldstein@fakeemail.com
+   5 | 4            | 09:00:00   | 10:10:00 | goldstein@fakeemail.com |          1 | None     |         10 | Crest Street | Ms. Goldstein | goldstein@fakeemail.com
+(10 rows)
+
+--Return start times, endtimes, teachers of all sites in walking distance
+SELECT Teacher.name, Teacher.email, Request.start_time, Request.end_time, Site.name
+FROM Request, Teacher, Site
+WHERE Request.teacher_email = Teacher.email and Teacher.site_name = Site.name and Site.transportation != 'Car';
+    name    |        email         | start_time | end_time |   name   
+------------+----------------------+------------+----------+----------
+ Ms. Wall   | wall@fakeemail.com   | 00:00:00   | 01:00:00 | Address2
+ Ms. Wall   | wall@fakeemail.com   | 15:00:00   | 16:00:00 | Address2
+ Ms. Polson | polson@fakeemail.com | 14:15:00   | 15:15:00 | Address3
+(3 rows)
+
+--Returns teachers teaching classes at a certain age level
+Select Distinct Teacher.name
+From Teacher, Request
+Where Teacher.email = Request.teacher_email and Request.grade_level = '4';
+     name      
+---------------
+ Ms. Goldstein
+(1 row)
+
+--Returns number of timeslots per teacher
+Select Teacher.name, Count(Teacher.name)
+From Request, Teacher
+Where Request.teacher_email = Teacher.email
+Group By Teacher.name;
+     name      | count 
+---------------+-------
+ Ms. Goldstein |     5
+ Mr. Bergkamp  |     2
+ Ms. Wall      |     2
+ Ms. Polson    |     1
+(4 rows)
+
+--Returns Site with the max number of teachers
+Select Teacher.site_name, Count(Teacher.name) as Number_of_teachers
+From Teacher
+Group By Teacher.site_name
+Order By Number_of_teachers DESC
+Limit 1;
+  site_name   | number_of_teachers 
+--------------+--------------------
+ Crest Street |                  2
+(1 row)
+
