@@ -132,19 +132,19 @@ while(($csvData = fgetcsv($handle, $length, $separator)) !== false){
         $statement2values[] = 1;
       }
       if(substr($timeslot, 0, 7) == "Tuesday"){
-        $statement2values[] = 1;
+        $statement2values[] = 2;
         echo "tuesday!" . "<br/>";;
       }
       if(substr($timeslot, 0, 9) == "Wednesday"){
-        $statement2values[] = 1;
+        $statement2values[] = 3;
         echo "wednesday!" . "<br/>";
       }
       if(substr($timeslot, 0, 8) == "Thursday"){
-        $statement2values[] = 1;
+        $statement2values[] = 4;
         echo "thursday!" . "<br/>";
       }
       if(substr($timeslot, 0, 6) == "Friday"){
-        $statement2values[] = 1;
+        $statement2values[] = 5;
         echo "friday!" . "<br/>";
       }
         $statement2values[] = $grade;
