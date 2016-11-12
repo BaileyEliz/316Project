@@ -36,7 +36,7 @@
          	
             $msg = '';
             
-            if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password'])) {
+            if (isset($_POST['login']) && !empty($_POST['username']) ) {
 				$input_name = $_POST['username'];
 				//echo $input_name;
 				
@@ -57,9 +57,13 @@
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = $input_name;
                   
+                  header("Location: index.php"); 
+				  exit;
+                  
                   $msg =  'In the System';
                }else {
-                  $msg = 'Not in the system';
+                  $msg =  'Wrong NetID';
+				  
                }
             }
          ?>
@@ -74,13 +78,11 @@
             <input type = "text" class = "form-control" 
                name = "username" placeholder = "username = open" 
                required autofocus></br>
-            <input type = "password" class = "form-control"
-               name = "password" placeholder = "password = please" required>
             <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
                name = "login">Login</button>
          </form>
 			
-         Click here to clean <a href = "logout.php" tite = "Logout">Session.
+         New to the site? Create a profile <a href = "tutor-info-input.php" tite = "Create_profile"> here!
          
       </div> 
       
