@@ -18,6 +18,9 @@
 
 <h1>Student Information: <?=$student ?></h1>
 
+
+
+
 <?php
 
 try {
@@ -86,6 +89,8 @@ try {
     <th>Friday</th>
   </tr>
 
+<form method = "post" action = "book-slot.php"> 
+
   <?php 
 
     function special_print($array) {
@@ -100,20 +105,23 @@ try {
       $build .= "</form>";
       return $build;
     }
+    
 
     $biggest = max(count($monday), count($tuesday), count($wednesday), count($thursday), count($friday));
 
     for($x = 0; $x < $biggest; $x++){
       echo "<tr>";
-      echo "<td id = \"monday\">" . special_print($monday[$x]) . "</td>";
-      echo "<td id = \"tuesday\">" . special_print($tuesday[$x]) . "</td>";
-      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]) . "</td>";
-      echo "<td id = \"thursday\">" . special_print($thursday[$x]) . "</td>";
-      echo "<td id = \"friday\">" . special_print($friday[$x]) . "</td>";
+      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $monday[$x] . "'/>" .  "</td>";
+      echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tuesday[$x] . "'/>". "</td>";
+      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wednesday[$x] . "'/>" . "</td>";
+      echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thursday[$x] . "'/>". "</td>";
+      echo "<td id = \"friday\">" . special_print($friday[$x])      .  "<input type='checkbox' name='req' value='" . $friday[$x] . "'/>". "</td>";
       echo "</tr>";
     }
 
   ?>
+<input type="submit" value="book"/> 
+</form>
 </table>
 
 Go <a href='all-students.php'>back</a>.

@@ -88,6 +88,10 @@ CREATE TABLE Request
  FOREIGN KEY (request_id) REFERENCES Request(request_id)
 );*/
 
+-- Not the real Matches table, I just needed to test. 
+
+
+
 -- INSERT INTO Site VALUES(1, 'Crest Street', 'Car');
 -- INSERT INTO Site VALUES(2, 'Address2', 'Bus');
 -- INSERT INTO Site VALUES(3, 'Address3', 'Walk');
