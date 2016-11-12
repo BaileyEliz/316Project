@@ -115,7 +115,15 @@ INSERT INTO TutorInfo VALUES('cg1', 'Cosi Goldstein');
 INSERT INTO TutorInfo VALUES('jtb43', 'Justin Bergkamp');
 INSERT INTO TutorInfo VALUES('sep45', 'Sophie Polson');
 
-INSERT INTO TutorAvailable VALUES('bew21', 1, '12:00AM', '01:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 1, '01:00PM', '09:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 2, '11:30AM', '01:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 2, '6:00PM', '06:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 3, '01:00PM', '03:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 3, '04:30PM', '09:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 4, '03:00PM', '09:00PM');
+INSERT INTO TutorAvailable VALUES('bew21', 5, '09:00AM', '11:30AM');
+INSERT INTO TutorAvailable VALUES('bew21', 5, '01:00PM', '03:00PM');
+
 INSERT INTO TutorAvailable VALUES('cg1', 2, '08:00AM', '12:00PM');
 INSERT INTO TutorAvailable VALUES('jtb43', 3, '01:00PM', '03:00PM');
 INSERT INTO TutorAvailable VALUES('sep45', 4, '02:00PM', '04:00PM');

@@ -4,21 +4,29 @@ td {
 }
 
 td[id="monday"] {
-	background-color: purple;
+	background-color: lavender;
 }
 
 td[id="tuesday"] {
-	background-color: orange;
+	background-color: lightsteelblue;
 }
 
 td[id="wednesday"] {
-	background-color: yellow;
+	background-color: mediumturquoise;
 }
 
 td[id="thursday"] {
-	background-color: green;
+	background-color: mediumseagreen;
 }
 
 td[id="friday"] {
 	background-color: aquamarine;
+}
+
+input[id="link_button"] { 
+     background: none;
+     border: none;
+     color: #0066ff;
+     text-decoration: underline;
+     cursor: pointer; 
 }
