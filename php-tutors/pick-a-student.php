@@ -106,7 +106,7 @@ try {
 
     for($x = 0; $x < $biggest; $x++){
       echo "<tr>";
-      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $monday[$x] . "'/>" .  "</td>";
+      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $monday[$x] . "'/>". "</td>";
       echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tuesday[$x] . "'/>". "</td>";
       echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wednesday[$x] . "'/>" . "</td>";
       echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thursday[$x] . "'/>". "</td>";

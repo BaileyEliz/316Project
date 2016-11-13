@@ -46,12 +46,16 @@
 				
 				//echo "here is result         ";
 				//echo $numresults;
-				
+				if($input_name == 'admin'){
+               			header("Location: admin_login.php");
+               			exit;
+               		}
+			
                if ($numresults > 0) {
+            
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = $input_name;
-                  
                   header("Location: index.php"); 
 				  exit;
                   
