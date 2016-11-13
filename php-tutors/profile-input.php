@@ -19,7 +19,10 @@
   	$name = $_POST["name"];
 	$netid = $_POST["netid"];
 	try{
-		$statement->execute($name, $netid);
+		echo gettype($name); 
+		echo gettype($netid); 
+		$statement->execute(array($netid, $name));
+		echo "here";
 	} catch (PDOException $e){
         echo $e->getMessage() . "<br/>";
      }
