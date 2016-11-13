@@ -3,6 +3,7 @@
 <body>
 <h1>All Students</h1>
 
+
 <?php
   try {
     // Including connection info (including database password) from outside

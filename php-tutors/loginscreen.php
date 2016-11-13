@@ -1,19 +1,14 @@
 <?php
-   ob_start();
    session_start();
 ?>
 
-<?
-   // error_reporting(E_ALL);
-   // ini_set("display_errors", 1);
-?>
+
 
 <html lang = "en">
    
    <head>
       <title>PFS Login</title>
             
-      
    </head>
 	
    <body>
@@ -51,12 +46,16 @@
 				
 				//echo "here is result         ";
 				//echo $numresults;
-				
+				if($input_name == 'admin'){
+               			header("Location: admin_login.php");
+               			exit;
+               		}
+			
                if ($numresults > 0) {
+            
                   $_SESSION['valid'] = true;
                   $_SESSION['timeout'] = time();
                   $_SESSION['username'] = $input_name;
-                  
                   header("Location: index.php"); 
 				  exit;
                   
