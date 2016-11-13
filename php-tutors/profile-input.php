@@ -18,11 +18,8 @@
   	$statement = $dbh->prepare("INSERT INTO TutorInfo VALUES (?, ?)");
   	$name = $_POST["name"];
 	$netid = $_POST["netid"];
-	try{
-		echo gettype($name); 
-		echo gettype($netid); 
+	try{		
 		$statement->execute(array($netid, $name));
-		echo "here";
 	} catch (PDOException $e){
         echo $e->getMessage() . "<br/>";
      }
