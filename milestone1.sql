@@ -89,6 +89,13 @@ CREATE TABLE Request
 );*/
 
 -- Not the real Matches table, I just needed to test. 
+CREATE TABLE Matches
+(tutor_id VARCHAR(256) NOT NULL, 
+teacher_name VARCHAR(256) NOT NULL,
+day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
+start_time TIME(0) NOT NULL,
+end_time TIME(0) NOT NULL
+);
 
 
 

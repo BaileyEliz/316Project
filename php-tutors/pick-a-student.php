@@ -106,11 +106,16 @@ try {
 
     for($x = 0; $x < $biggest; $x++){
       echo "<tr>";
-      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $monday[$x] . "'/>". "</td>";
-      echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tuesday[$x] . "'/>". "</td>";
-      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wednesday[$x] . "'/>" . "</td>";
-      echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thursday[$x] . "'/>". "</td>";
-      echo "<td id = \"friday\">" . special_print($friday[$x])      .  "<input type='checkbox' name='req' value='" . $friday[$x] . "'/>". "</td>";
+      $mon_ser = serialize($monday[$x]);
+      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $mon_ser . "'/>". "</td>";
+      $tues_ser = serialize($tuesday[$x]);
+      echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tues_ser . "'/>". "</td>";
+      $wed_ser = serialize($wednesday[$x]);
+      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wed_ser . "'/>" . "</td>";
+      $thurs_ser = serialize($thursday[$x]);
+      echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thurs_ser . "'/>". "</td>";
+      $fri_ser = serialize($friday[$x]);
+      echo "<td id = \"friday\">" . special_print($friday[$x])      .  "<input type='checkbox' name='req' value='" . $fri_ser . "'/>". "</td>";
       echo "</tr>";
     }
 
