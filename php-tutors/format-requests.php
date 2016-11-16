@@ -22,8 +22,8 @@
 $file = $_FILES['userfile']['tmp_name'];
 $separator = ",";
 $length = 1000; 
-$fields = array('Name', 'Email', 'School', 'Grade Level', 'Monday Block 1', 'Monday Block 2', 'Monday Block 3', 'Tuesday Block 1', 'Tuesday Block 2', 'Tuesday Block 3', 'Wednesday Block 1', 'Wednesday Block 2', 'Wednesday Block 3', 'Thursday Block 1', 'Thursday Block 2', 'Thursday Block 3', 'Friday Block 1', 'Friday Block 2', 'Friday Block 3', 'Max Tutors Per Slot', 'Total Tutors', 'Language', 'Description'); 
-$timeslots = array('Monday Block 1', 'Monday Block 2', 'Monday Block 3', 'Tuesday Block 1', 'Tuesday Block 2', 'Tuesday Block 3', 'Wednesday Block 1', 'Wednesday Block 2', 'Wednesday Block 3', 'Thursday Block 1', 'Thursday Block 2', 'Thursday Block 3', 'Friday Block 1', 'Friday Block 2', 'Friday Block 3');
+$fields = array('Name', 'Email', 'School', 'Grade Level', 'Monday Block 1', 'Monday Block 2', 'Monday Block 3', 'Monday Block 4', 'Monday Block 5', 'Tuesday Block 1', 'Tuesday Block 2', 'Tuesday Block 3', 'Tuesday Block 4', 'Tuesday Block 5', 'Wednesday Block 1', 'Wednesday Block 2', 'Wednesday Block 3', 'Wednesday Block 4', 'Wednesday Block 5', 'Thursday Block 1', 'Thursday Block 2', 'Thursday Block 3', 'Thursday Block 4', 'Thursday Block 5', 'Friday Block 1', 'Friday Block 2', 'Friday Block 3', 'Friday Block 4', 'Friday Block 5', 'Max Tutors Per Slot', 'Total Tutors', 'Language', 'Description'); 
+$timeslots = array('Monday Block 1', 'Monday Block 2', 'Monday Block 3', 'Monday Block 4', 'Monday Block 5', 'Tuesday Block 1', 'Tuesday Block 2', 'Tuesday Block 3', 'Tuesday Block 4', 'Tuesday Block 5', 'Wednesday Block 1', 'Wednesday Block 2', 'Wednesday Block 3', 'Wednesday Block 4', 'Wednesday Block 5', 'Thursday Block 1', 'Thursday Block 2', 'Thursday Block 3', 'Thursday Block 4', 'Thursday Block 5', 'Friday Block 1', 'Friday Block 2', 'Friday Block 3', 'Friday Block 4', 'Friday Block 5');
 $handle = fopen($file, "r");
 $header = array_flip(fgetcsv($handle, $length, $separator));
 
