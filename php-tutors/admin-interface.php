@@ -17,6 +17,10 @@
 
 <br><br>
 
+<a href="download-table.php">Download tables</a>
+
+<br><br>
+
 <a href="edit-request.php">Edit a request</a>
 
 <br><br>
