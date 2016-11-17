@@ -5,7 +5,7 @@
 
 <div class="topcorner"><a href="admin-interface.php">Back to Admin Homepage</a></div>
 
-<form action="request-success.php" method="post">
+<form action="request-success.php" method="post" id="requestform">
 	Name: <input type="text" name="name" required><br>
 	Email: <input type="email" name="email" required><br>
 	School: <input type="text" name="school" required><br><br>
@@ -30,7 +30,7 @@
 		<option value="Spanish">Spanish</option>
 	</select><br>
 	Number of Tutors: <input type="number" name="num_tutors" min="1" max="10" step="1" value="1" required><br>
-	<br>
+	Description:<br><textarea rows="4" cols="30" name="description" form="requestform"></textarea><br>
 	<input type="submit" value="Submit Request">
 </form>
 

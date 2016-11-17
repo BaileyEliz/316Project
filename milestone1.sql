@@ -73,7 +73,9 @@ CREATE TABLE Request
  --is_one_on_one BOOLEAN NOT NULL,
  num_tutors INTEGER NOT NULL,
  language VARCHAR(256) NOT NULL,
+ description VARCHAR(1024),
  request_id SERIAL,
+
  --PRIMARY KEY (request_id),
  PRIMARY KEY (teacher_email, day, start_time, end_time),
  --FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id)

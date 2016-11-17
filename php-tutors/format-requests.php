@@ -76,7 +76,7 @@ $header = array_flip(fgetcsv($handle, $length, $separator));
 
 $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?)");
 $statement1 = $dbh->prepare("INSERT INTO Teacher VALUES(?, ?, ?)");
-$statement2 = $dbh->prepare("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?)");
+$statement2 = $dbh->prepare("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
 
 while(($csvData = fgetcsv($handle, $length, $separator)) !== false){
 
@@ -89,6 +89,7 @@ while(($csvData = fgetcsv($handle, $length, $separator)) !== false){
   $grade = $csvData[$header['Grade Level']];
   $num_tutors = $csvData[$header['Max Tutors Per Slot']];
   $language = $csvData[$header['Language']];
+  $description = $csvData[$header['Description']];
   echo $name . " " . $email . " " . $school . " " . $grade . "<br/>";
 
  //    foreach ($fields as $field){
@@ -153,6 +154,7 @@ while(($csvData = fgetcsv($handle, $length, $separator)) !== false){
         $statement2values[] = $email;
         $statement2values[] = intval($num_tutors);
         $statement2values[] = $language;
+        $statement2values[] = $description;
       try {
         $statement2->execute($statement2values);
       }

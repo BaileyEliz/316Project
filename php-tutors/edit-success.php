@@ -20,7 +20,7 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  $st = $dbh->prepare("UPDATE Request SET day = ?, grade_level = ?, start_time = ?, end_time = ?, teacher_email = ?, num_tutors = ?, language = ? WHERE request_id = ?");
+  $st = $dbh->prepare("UPDATE Request SET day = ?, grade_level = ?, start_time = ?, end_time = ?, teacher_email = ?, num_tutors = ?, language = ?, description = ? WHERE request_id = ?");
   $values = array();
   if($_POST["day_of_week"] == "Monday"){
     $day = 1;
@@ -45,7 +45,9 @@
   $values[] = $_SESSION["teacher_email"];
   $values[] = $_POST["num_tutors"];
   $values[] = $_POST["language"];
+  $values[] = $_POST["description"];
   $values[] = $_SESSION["request_id"];
+
   try{
   	$st->execute($values);
     echo "The request has been updated.";
