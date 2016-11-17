@@ -54,7 +54,7 @@
   			$selected = 5;
   		}
   		?>
-  		<form method="post" action="edit-success.php">
+  		<form method="post" action="edit-success.php" id="editform">
   			Day of the Week: <select name="day_of_week">
 			<option <?php if($selected == 1){echo ("selected");}?> value="Monday">Monday</option>
 			<option <?php if($selected == 2){echo ("selected");}?> value="Tuesday">Tuesday</option>
@@ -67,6 +67,8 @@
   		Grade Level: <input type="text" name="grade_level" value="<?php echo $myrow['grade_level']; ?>"><br>
   		Language: <input type="text" name="language" value="<?php echo $myrow['language']; ?>"/><br>
 		Number of Tutors: <input type="number" name="num_tutors" min="1" max="10" step="1" value="<?php echo $myrow['num_tutors']; ?>" required><br>
+    Description:<br>
+    <textarea rows="4" cols="30" name="description" form="editform"><?php echo $myrow['description']; ?></textarea><br>
 		<input type="submit" value="Update Request"><br><br>
   		<?php
     }

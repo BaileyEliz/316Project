@@ -18,7 +18,7 @@
 
   	$statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?)");
   	$statement1 = $dbh->prepare("INSERT INTO Teacher VALUES (?, ?, ?)");
-	$statement2 = $dbh->prepare("INSERT INTO Request VALUES (?, ?, ?, ?, ?, ?, ?)");
+	$statement2 = $dbh->prepare("INSERT INTO Request VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$values = array();
 	$values1 = array();
@@ -48,6 +48,7 @@
 	$grade = $_POST["grade_level"];
 	$language = $_POST["language"];
 	$num_tutors = $_POST["num_tutors"];
+	$description = $_POST["description"];
 
 	$values[] = $school;
 	$values[] = 'car';
@@ -63,6 +64,7 @@
 	$values2[] = $email;
 	$values2[] = $num_tutors;
 	$values2[] = $language;
+	$values2[] = $description;
 
 	try{
 		$statement->execute($values);

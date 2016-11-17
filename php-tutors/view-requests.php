@@ -41,7 +41,8 @@
          echo $myrow['start_time'] . " ";
          echo $myrow['end_time'] . " ";
          echo $myrow['num_tutors'] . " ";
-         echo $myrow['language'] . "<br/><br/>";
+         echo $myrow['language'] . " ";
+         echo $myrow['description'] . "<br><br>";
        } while ($myrow = $st->fetch());
      }
   }
