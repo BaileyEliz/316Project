@@ -1,5 +1,5 @@
 <html>
-<head><title>Requests</title></head>
+<head><title>All Info</title></head>
 <body>
 <h1>All Requests</h1>
 
@@ -50,7 +50,37 @@
     echo "Error: " . $e;
   }
 ?>
-
+<h1>All Teachers</h1>
+<?php 
+try{
+  $st = $dbh->query('SELECT Teacher.name AS teacher_name, Teacher.email AS teacher_email, Teacher.site_name AS site_name FROM Teacher, Site WHERE site_name = Site.name');
+  if(($myrow = $st->fetch())){
+    do{
+      echo $myrow['teacher_name'] . " ";
+      echo $myrow['teacher_email'] . " ";
+      echo $myrow['site_name'] . "<br><br>";
+    } while ($myrow = $st->fetch());
+  }
+}
+catch (PDOException $e){
+  echo "Error: " . $e;
+}
+?>
+<h1>All Sites</h1>
+<?php
+try{
+  $st = $dbh->query('SELECT * FROM Site');
+  if(($myrow = $st->fetch())){
+    do{
+      echo $myrow['name'] . " ";
+      echo $myrow['transportation'] . "<br><br>";
+    } while ($myrow = $st->fetch());
+  }
+}
+catch (PDOException $e){
+  echo "Error: " . $e;
+}
+?>
 </body>
 </html>
       
