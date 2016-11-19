@@ -5,7 +5,7 @@
 
 <div class="topcorner"><a href="index.php">Back to Homepage</a></div>
 
-<a href="view-requests.php">View All Requests</a>
+<a href="view-requests.php">View All Data</a>
 
 <br><br>
 
@@ -29,7 +29,7 @@
 
 <br><br>
 
-<a href="delete-all.php">Delete all requests</a>
+<a href="delete-all.php">Delete data</a>
 
 <br><br>
 
