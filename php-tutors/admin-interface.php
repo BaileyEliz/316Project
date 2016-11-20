@@ -1,3 +1,13 @@
+<!-- 
+<?php
+	session_start();
+	$user = $_SESSION['username'];
+	$a = 'admin';
+	if($user!=$a){
+		header("Location: loginscreen.php");
+	}
+?>
+ -->
 <html>
 <head><title>Administrators</title></head>
 <body>

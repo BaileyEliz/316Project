@@ -53,7 +53,7 @@ try {
     echo "<br/>\n";
 
     $weekdays = $dbh->prepare(
-      "SELECT TutorInfo.name, Teacher.name, Request.day, Request.start_time, Request.end_time 
+      "SELECT TutorInfo.name, Teacher.name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors 
       FROM Request, TutorAvailable, Teacher, TutorInfo
       WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
       ORDER BY Request.day, Request.start_time");
