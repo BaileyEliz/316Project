@@ -91,12 +91,13 @@ CREATE TABLE Request
 );*/
 
 -- Not the real Matches table, I just needed to test. 
-CREATE TABLE Matches
+CREATE TABLE Bookings
 (tutor_id VARCHAR(256) NOT NULL, 
-teacher_name VARCHAR(256) NOT NULL,
+teacher_email VARCHAR(256) NOT NULL,
 day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
 start_time TIME(0) NOT NULL,
-end_time TIME(0) NOT NULL
+end_time TIME(0) NOT NULL,
+PRIMARY KEY (tutor_id, teacher_email, day, start_time, end_time)
 );
 
 
@@ -129,7 +130,7 @@ INSERT INTO TutorInfo VALUES('jtb43', 'Justin Bergkamp');
 INSERT INTO TutorInfo VALUES('sep45', 'Sophie Polson');
 
 INSERT INTO TutorAvailable VALUES('bew21', 1, '12:00AM', '01:00PM');
-INSERT INTO TutorAvailable VALUES('cg1', 2, '08:00AM', '12:00PM');
+INSERT INTO TutorAvailable VALUES('cg1', 1, '12:00AM', '01:00PM');
 INSERT INTO TutorAvailable VALUES('jtb43', 3, '01:00PM', '03:00PM');
 INSERT INTO TutorAvailable VALUES('sep45', 4, '02:00PM', '04:00PM');
 INSERT INTO TutorAvailable VALUES ('sep45', 5, '10:00AM', '01:00PM');

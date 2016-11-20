@@ -34,14 +34,41 @@
     die();
   }
   
-  $statement = $dbh->prepare("INSERT INTO MATCHES VALUES (?, ?, ?, ?, ?)");
-  $teacher_name = $req[name];
+  $statement = $dbh->prepare("INSERT INTO BOOKINGS VALUES (?, ?, ?, ?, ?)");
+  $teacher_email = $req[teacher_email];
   $day = $req[day];
   $start = $req[start_time];
   $end = $req[end_time];
+  $num_tutors = $req[num_tutors];
   $tutor_id = $_SESSION['username'];
-	try{		
-		$statement->execute(array($tutor_id, $teacher_name, $day, $start, $end));
+  
+  $getNum = $dbh->prepare("SELECT * 
+  FROM BOOKINGS 
+  WHERE
+  		teacher_email = ? and
+  		day = ? and 
+  		start_time = ? and
+  		end_time = ?");
+  
+
+	try{
+		$getNum->execute(array($teacher_email, $day, $start, $end));
+		$count = $getNum->fetchAll(PDO::FETCH_ASSOC);
+		$num = count($count);
+		echo $num."<br/>";
+	} catch (PDOException $e){
+        echo $e->getMessage() . "<br/>";
+     }  
+  
+	try{
+		if($tutor_id != '' and $num<$num_tutors){		
+			$statement->execute(array($tutor_id, $teacher_email, $day, $start, $end));
+			
+		}else{
+		    echo "<br/>";
+			echo "Nah!";
+		}
+		
 	} catch (PDOException $e){
         echo $e->getMessage() . "<br/>";
      }
