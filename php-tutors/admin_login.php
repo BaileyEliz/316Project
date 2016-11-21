@@ -1,13 +1,17 @@
 <?php
-	if (isset($_POST['login']) && !empty($_POST['password']) ) {
+
+   session_start();
+	if(isset($_POST['login']) && !empty($_POST['password']) ) {
+		echo "<br/>".$_POST['password']."<br/>";
 		if($_POST['password']=='admin'){
+			$_SESSION['username'] = 'admin';
 			header("Location: admin-interface.php");
-            exit;
+			exit;
+            
 		}else{
 			echo "Incorrect Password";
 		}
 	}
-
 
 ?>
 
