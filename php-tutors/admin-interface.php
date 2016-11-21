@@ -1,3 +1,13 @@
+<!-- 
+<?php
+	session_start();
+	$user = $_SESSION['username'];
+	$a = 'admin';
+	if($user!=$a){
+		header("Location: loginscreen.php");
+	}
+?>
+ -->
 <html>
 <head><title>Administrators</title></head>
 <body>
@@ -5,7 +15,7 @@
 
 <div class="topcorner"><a href="index.php">Back to Homepage</a></div>
 
-<a href="view-requests.php">View All Requests</a>
+<a href="view-requests.php">View All Data</a>
 
 <br><br>
 
@@ -17,6 +27,10 @@
 
 <br><br>
 
+<a href="download-table.php">Download tables</a>
+
+<br><br>
+
 <a href="edit-request.php">Edit a request</a>
 
 <br><br>
@@ -25,7 +39,7 @@
 
 <br><br>
 
-<a href="delete-all.php">Delete all requests</a>
+<a href="delete-all.php">Delete data</a>
 
 <br><br>
 

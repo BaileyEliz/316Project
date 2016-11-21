@@ -53,7 +53,7 @@ try {
     echo "<br/>\n";
 
     $weekdays = $dbh->prepare(
-      "SELECT Teacher.name, Teacher.site_name, Request.start_time, Request.end_time, Request.request_id 
+      "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors 
       FROM Request, TutorAvailable, Teacher, TutorInfo
       WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
       ORDER BY Request.start_time");
@@ -111,11 +111,16 @@ try {
 
     for($x = 0; $x < $biggest; $x++){
       echo "<tr>";
-      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $monday[$x] . "'/>" .  "</td>";
-      echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tuesday[$x] . "'/>". "</td>";
-      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wednesday[$x] . "'/>" . "</td>";
-      echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thursday[$x] . "'/>". "</td>";
-      echo "<td id = \"friday\">" . special_print($friday[$x])      .  "<input type='checkbox' name='req' value='" . $friday[$x] . "'/>". "</td>";
+      $mon_ser = serialize($monday[$x]);
+      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $mon_ser . "'/>". "</td>";
+      $tues_ser = serialize($tuesday[$x]);
+      echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tues_ser . "'/>". "</td>";
+      $wed_ser = serialize($wednesday[$x]);
+      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wed_ser . "'/>" . "</td>";
+      $thurs_ser = serialize($thursday[$x]);
+      echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thurs_ser . "'/>". "</td>";
+      $fri_ser = serialize($friday[$x]);
+      echo "<td id = \"friday\">" . special_print($friday[$x])      .  "<input type='checkbox' name='req' value='" . $fri_ser . "'/>". "</td>";
       echo "</tr>";
     }
 
