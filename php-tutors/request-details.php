@@ -41,10 +41,29 @@ try {
       die('There are no matches for request id' . $request_id . ' in the database.');
     }
 
+    function print_day($number) {
+      if ($number == 1) {
+        return 'Monday';
+      }
+      else if ($number == 2) {
+        return 'Tuesday';
+      }
+      else if ($number == 3) {
+        return 'Wednesday';
+      }
+      else if ($number == 4) {
+        return 'Thursday';
+      }
+      else if ($number == 5) {
+        return 'Friday';
+      }
+    }
+
     foreach ($values as $details){
-    	foreach ($details as $detail) {
-    		echo $detail . "<br/>";
-    	}
+        echo "Day: " . print_day($details['day']) . "<br/>";
+        echo "Grade Level: " . $details['grade_level'] . "<br/>";
+        echo "Start Time: " . $details['start_time'] . "<br/>";
+        echo "End Time: " . $details['end_time'] . "<br/>";
     }
 
     } catch (PDOException $e) {
