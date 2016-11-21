@@ -1,4 +1,6 @@
-<!-- 
+ 
+
+
 <?php
 	session_start();
 	$user = $_SESSION['username'];
@@ -7,7 +9,9 @@
 		header("Location: loginscreen.php");
 	}
 ?>
- -->
+
+
+
 <html>
 <head><title>Administrators</title></head>
 <body>
