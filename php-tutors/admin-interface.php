@@ -19,7 +19,7 @@
 
 <div class="topcorner"><a href="index.php">Back to Homepage</a></div>
 
-<a href="view-requests.php">View All Data</a>
+<a href="view-requests.php">View all requests, teachers, and sites</a>
 
 <br><br>
 
@@ -36,10 +36,6 @@
 <br><br>
 
 <a href="edit-request.php">Edit a request</a>
-
-<br><br>
-
-<a href="submit-match.php">Submit a student match</a>
 
 <br><br>
 
