@@ -23,6 +23,19 @@ td[id="friday"] {
 	background-color: aquamarine;
 }
 
+td[id="top"] {
+	z-index: 1;
+}
+
+div[class="time"] {
+	height: 200px;
+}
+
+div[class="monday-contents"] {
+	height: 2000px;
+	background-color: orange;
+}
+
 input[id="link_button"] { 
      background: none;
      border: none;

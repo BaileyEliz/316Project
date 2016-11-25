@@ -1,32 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <?php
   if (!isset($_POST['student'])) {
     echo "You need to specify a student. Please <a href='all-students.php'>try again</a>.";
     die();
   }
   $student = $_POST['student'];
-  // In production code, you might want to "cleanse" the $drinker string
-  // to remove potential hacks before doing something with it (e.g.,
-  // passing it to the DBMS).  That said, using prepared statements
-  // (see below for details) can prevent SQL injection attack even if
-  // $drinker contains potentially malicious character sequences.
 ?>
 
-<html>
 <link rel="stylesheet" type="text/css" href="style.css">
-<head><title>Student Information: <?= $student ?></title></head>
+<title>Student Information: <?= $student ?></title></head>
 <body>
 
 <h1>Student Information: <?=$student ?></h1>
 
-
-
-
 <?php
 
 try {
-    // Including connection info (including database password) from outside
-    // the public HTML directory means it is not exposed by the web server,
-    // so it is safer than putting it directly in php code:
     include("pdo-tutors.php");
     $dbh = dbconnect();
   } catch (PDOException $e) {
@@ -35,10 +36,6 @@ try {
   }
 
   try {
-    // One could construct a parameterized query manually as follows,
-    // but it is prone to SQL injection attack:
-    // $st = $dbh->query("SELECT address FROM Drinker WHERE name='" . $drinker . "'");
-    // A much safer method is to use prepared statements:
     $st = $dbh->prepare(
       "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.request_id
       FROM Request, TutorAvailable, Teacher, TutorInfo
@@ -78,54 +75,86 @@ try {
 
 ?>
 
-<form method = "post" action = "book-slot.php"> 
-<input type="submit" value="book"/> 
-</form>
-
-<table id="calendar" style="width:100%">
-  <tr>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-  </tr>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2">O'Clock
+      <div class="row"><div class="col-md-12"><div class="time">8:00</div></div></div>
+      <div class="row"><div class="col-md-12"><div class="time">8:30</div></div></div>
+      <div class="row"><div class="col-md-12"><div class="time">9:00</div></div></div>
+      <div class="row"><div class="col-md-12"><div class="time">9:30</div></div></div>
+      <div class="row"><div class="col-md-12"><div class="time">10:00</div></div></div>
+      <div class="row"><div class="col-md-12"><div class="time">10:30</div></div></div>
+    </div>
+    <div class="col-md-2">Monday
+      <div class="row">
+        <div class="col-md-12">
+          <div class="monday-contents">Here's monday</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-2">Tuesday
+      <div class="row">
+        <div class="col-md-12">Here's monday</div>
+      </div>
+    </div>
+    <div class="col-md-2">Wednesday
+      <div class="row">
+        <div class="col-md-12">Here's monday</div>
+      </div>
+    </div>
+    <div class="col-md-2">Thursday
+      <div class="row">
+        <div class="col-md-12">Here's monday</div>
+      </div>
+    </div>
+    <div class="col-md-2">Friday
+      <div class="row">
+        <div class="col-md-12">Here's monday</div>
+      </div>
+    </div>
+  </div>
+</div>
 
   <?php 
 
-    function special_print($array) {
+    function html_print($index, $array) {
       if (count($array) == 0) {
-        return "";
+        return "there's nothing here!";
       }
       $request_id = $array['request_id'];
-      $build .= $request_id . "</br>" . $request_id . "</br>" . $array['name'] . "</br>" . $array['site_name'] . "</br>" . $array['start_time'] . "</br>" . $array['end_time'] . "</br>";
+      $build = "<div id ='option_" . $index . "'>";
+      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>" . $array['start_time'] . "</br>" . $array['end_time'] . "</br>";
       $build .= "<form method=\"post\" action=\"request-details.php\">";
       $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
       $build .= "<input type=\"submit\" value=\"details\" id=\"link_button\">";
       $build .= "</form>";
+      $build .= "</div>";
       return $build;
     }
-    
 
-    $biggest = max(count($monday), count($tuesday), count($wednesday), count($thursday), count($friday));
+    function css_print($index, $array) {
 
-    for($x = 0; $x < $biggest; $x++){
-      echo "<tr>";
-      $mon_ser = serialize($monday[$x]);
-      echo "<td id = \"monday\">" . special_print($monday[$x])      .  "<input type='checkbox' name='req' value='" . $mon_ser . "'/>". "</td>";
-      $tues_ser = serialize($tuesday[$x]);
-      echo "<td id = \"tuesday\">" . special_print($tuesday[$x])    .  "<input type='checkbox' name='req' value='" . $tues_ser . "'/>". "</td>";
-      $wed_ser = serialize($wednesday[$x]);
-      echo "<td id = \"wednesday\">" . special_print($wednesday[$x]).  "<input type='checkbox' name='req' value='" . $wed_ser . "'/>" . "</td>";
-      $thurs_ser = serialize($thursday[$x]);
-      echo "<td id = \"thursday\">" . special_print($thursday[$x])  .  "<input type='checkbox' name='req' value='" . $thurs_ser . "'/>". "</td>";
-      $fri_ser = serialize($friday[$x]);
-      echo "<td id = \"friday\">" . special_print($friday[$x])      .  "<input type='checkbox' name='req' value='" . $fri_ser . "'/>". "</td>";
-      echo "</tr>";
+      $h = intval(substr($array['start_time'], 0, 2));
+      $m = intval(substr($array['start_time'], 3, 5));
+      $d = $array['day'];
+
+      $build = "<script type='text/javascript'>";
+      $build .= "var styles = {'background-color': 'red', 'position': 'relative', 'bottom':'" . 0 . "px', 'left':'" . 0 . "px'};";
+      $build .= "$('#option_" . $index . "').css(styles);";
+      $build .= "</script>";
+      return $build;
+    }
+
+    for ($i = 0; $i < count($values); $i++){
+      echo html_print($i, $values[$i]);
+      echo css_print($i, $values[$i]);
     }
 
   ?>
-</table>
+
+<script>
+  $(".monday-contents").append($("#option_0"));
+</script>
 
 Go <a href='all-students.php'>back</a>.
 </body>

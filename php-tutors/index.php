@@ -38,7 +38,11 @@ echo "Username: ". $_SESSION['username'] . ".<br>" . " Logged in!";
 </p>
 
 <p>
-	<a href="admin-upload.php">Administrator Upload</a>
+<a href="admin-upload.php">Administrator Upload</a>
+</p>
+
+<p>
+<a href="bootstrap-test.php">Bootstrap Page</a>
 </p>
 
 
