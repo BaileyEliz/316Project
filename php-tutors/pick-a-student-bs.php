@@ -225,18 +225,19 @@
       return $build;
     }
 
-    function css_print($times_array, $index, $array, $day) {
+    function css_print($number_of_overlaps, $times_array, $index, $array, $day) {
       
       $d = $array['day'];
+      $overlapping = max_overlap($times_array, $array['start_time'], $array['end_time']);
 
       $build = "<script type='text/javascript'>";
       $build .= "var styles = {
         'background-color': 'red', 
         'position': 'absolute', 
         'top':'" . (6 * top_margin($array['start_time'])) . "px', 
-        'float':'left',
+        'left':'" .  . "',
         'height':'" . (6 * minutes_different($array['start_time'], $array['end_time'])) ."px',
-        'width':'" . ((1 / max_overlap($times_array, $array['start_time'], $array['end_time'])) * 100) . "%'};";
+        'width':'" . ((1 / $overlapping) * 100) . "%'};";
       $build .= "$('#option_" . $index . "').css(styles);";
       $build .= "$('." . $day . "-contents').append($('#option_" . $index . "'));";
       $build .= "</script>";
@@ -258,21 +259,44 @@
       }
       $temp_minute = 0;
     }
-  }
-
-    $weekdaze = array($monday, $tuesday, $wednesday, $thursday, $friday);
-    $weekdaze_names = array("monday", "tuesday", "wednesday", "thursday", "friday");
-    //global $monday_times;
-
-    for ($x = 0; $x < count($weekdaze); $x++) {
-      $day_array = $weekdaze[$x];
-      $day_name = $weekdaze_names[$x];
-      for ($i = 0; $i < count($day_array); $i++){
-        global $monday_times;
-        echo html_print((($x * 100) + $i), $day_array[$i]);
-        echo css_print($monday_times, (($x * 100) + $i), $day_array[$i], $day_name);
-      }
     }
+
+  $weekdaze = array($monday, $tuesday, $wednesday, $thursday, $friday);
+  $weekdaze_names = array("monday", "tuesday", "wednesday", "thursday", "friday");
+  //global $monday_times;
+
+  $monday_maximum = 0;
+
+  //for ($i = 0; $i < count($monday); $i++){
+  //  $overlap = max_overlap($monday_times, $monday[$i]['start_time'], $monday[$i]['end_time']);
+  //  if ($overlap > $monday_maximum) {
+  //   $monday_maximum = $overlap;
+  //  }
+  //}
+
+  //echo "<script> alert('" . $monday_maximum . "');</script>";
+
+  //$monday_times_layout = array();
+
+  //for ($x = 8; $x < 22; $x++) {
+  // for ($m = 0; $m < 60; $m += 5) {
+  //    for ($y = 0; $y < $monday_maximum; $y++) {
+  //      $monday_times_layout[$x][$m][] = false;
+  //   }
+  //  }
+  //}
+
+  //var_dump($monday_times_layout);
+
+  for ($x = 0; $x < count($weekdaze); $x++) {
+    $day_array = $weekdaze[$x];
+    $day_name = $weekdaze_names[$x];
+    for ($i = 0; $i < count($day_array); $i++){
+      global $monday_times;
+      echo html_print((($x * 100) + $i), $day_array[$i]);
+      echo css_print($monday_maximum, $monday_times, (($x * 100) + $i), $day_array[$i], $day_name);
+    }
+  }
 
   ?>
 
