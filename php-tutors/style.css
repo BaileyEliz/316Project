@@ -28,12 +28,7 @@ td[id="top"] {
 }
 
 div[class="time"] {
-	height: 200px;
-}
-
-div[class="monday-contents"] {
-	height: 2000px;
-	background-color: orange;
+	height: 180px;
 }
 
 input[id="link_button"] { 

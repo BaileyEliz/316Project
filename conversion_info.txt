@@ -1,0 +1,11 @@
+
+180 px = .5 hr
+
+360 px = 1 hr
+
+5 minutes = 20 px
+
+1 minute = 4 px
+
+end - start
+
