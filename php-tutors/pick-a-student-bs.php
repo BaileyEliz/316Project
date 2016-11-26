@@ -62,37 +62,59 @@
       <div class="row"><div class="col-md-12"><div class="time">9:30</div></div></div>
     </div>
     <div class="col-md-2">
-      <p>
-        <a href="one-day-bs.php">Monday</a>
-      </p>
+      <form id="monday-form" action="one-day-bs.php" method="post">
+        <input name="day" type="hidden" value=1 />
+        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+        <a href="#" onclick="document.getElementById('monday-form').submit();">Monday</a>
+      </form>
       <div class="row">
         <div class="col-md-12">
           <div class="monday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">Tuesday
+    <div class="col-md-2">
+      <form id="tuesday-form" action="one-day-bs.php" method="post">
+        <input name="day" type="hidden" value=2 />
+        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+        <a href="#" onclick="document.getElementById('tuesday-form').submit();">Tuesday</a>
+      </form>
       <div class="row">
         <div class="col-md-12">
           <div class="tuesday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">Wednesday
+    <div class="col-md-2">
+      <form id="wednesday-form" action="one-day-bs.php" method="post">
+        <input name="day" type="hidden" value=3 />
+        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+        <a href="#" onclick="document.getElementById('wednesday-form').submit();">Wednesday</a>
+      </form>
       <div class="row">
         <div class="col-md-12">
           <div class="wednesday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">Thursday
+    <div class="col-md-2">
+      <form id="thursday-form" action="one-day-bs.php" method="post">
+        <input name="day" type="hidden" value=4 />
+        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+        <a href="#" onclick="document.getElementById('thursday-form').submit();">Thursday</a>
+      </form>
       <div class="row">
         <div class="col-md-12">
           <div class="thursday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">Friday
+    <div class="col-md-2">
+      <form id="friday-form" action="one-day-bs.php" method="post">
+        <input name="day" type="hidden" value=5 />
+        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+        <a href="#" onclick="document.getElementById('friday-form').submit();">Friday</a>
+      </form>
       <div class="row">
         <div class="col-md-12">
           <div class="friday-contents"></div>

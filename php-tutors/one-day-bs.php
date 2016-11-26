@@ -19,21 +19,26 @@
 <body>
 
 <?php
-  //if (!isset($_POST['day'])) {
-    //echo "You need to specify a day. Please <a href='bootstrap-test.php'>try again</a>.";
-    //die();
-  //}
-  //$day = $_POST['day'];
+  if (!isset($_POST['day'])) {
+    echo "You need to specify a day. Please <a href='bootstrap-test.php'>try again</a>.";
+    die();
+  }
+  if (!isset($_POST['student'])) {
+    echo "You need to specify a student. Please <a href='bootstrap-test.php'>try again</a>.";
+    die();
+  }
+  $day = $_POST['day'];
+  $student = $_POST['student'];
 
 	include 'php-functions.php';
 ?>
 
 <?php 
-	$day = 1; 
-	$student = "Bailey Wall";
+	//$day = 1; 
+	//$student = "Bailey Wall";
 ?>
 
-<h1>Student Information: <?= $day ?></h1>
+<h1>Student Information: <?= $student ?></h1>
 
 <!-- Bootstrap Framework -->
 
@@ -70,9 +75,22 @@
       <div class="row"><div class="col-md-12"><div class="time">9:30</div></div></div>
     </div>
     <div class="col-md-10">
-      <p>
-        <a href="one-day-bs.php">Monday</a>
-      </p>
+    	<?php
+    		if ($day == 1) {
+    			echo "Monday";
+    		} else if ($day == 2) {
+    			echo "Tuesday";
+    		} else if ($day == 3) {
+    			echo "Wednesday";
+    		} else if ($day == 4) {
+    			echo "Thursday";
+    		} else if ($day == 5) {
+    			echo "Friday";
+    		} else {
+    			echo "Not a valid day. Please try again.";
+    			die();
+    		}
+    	?>
       <div class="row">
         <div class="col-md-12">
           <div class="monday-contents"></div>
