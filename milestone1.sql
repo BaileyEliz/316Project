@@ -169,6 +169,9 @@ INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.
 SELECT * FROM Request;
 INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None');
 SELECT * FROM Request;
+
+INSERT INTO Bookings VALUES('bew21', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM');
+
 -- INSERT INTO Matches VALUES('bew21', 2);
 -- INSERT INTO Matches VALUES('cg1', 5);
 -- INSERT INTO Matches VALUES('sep45', 1);

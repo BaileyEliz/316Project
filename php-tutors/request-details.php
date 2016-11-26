@@ -41,10 +41,50 @@ try {
       die('There are no matches for request id' . $request_id . ' in the database.');
     }
 
+    function print_day($number) {
+      if ($number == 1) {
+        return 'Monday';
+      }
+      else if ($number == 2) {
+        return 'Tuesday';
+      }
+      else if ($number == 3) {
+        return 'Wednesday';
+      }
+      else if ($number == 4) {
+        return 'Thursday';
+      }
+      else if ($number == 5) {
+        return 'Friday';
+      }
+    }
+
     foreach ($values as $details){
-    	foreach ($details as $detail) {
-    		echo $detail . "<br/>";
-    	}
+        $teacher_email = $details['teacher_email'];
+        $day = $details['day'];
+        $start_time = $details['start_time'];
+        $end_time = $details['end_time'];
+
+        $existingTutorsStatement = $dbh->prepare(
+        "SELECT TutorInfo.tutor_id, TutorInfo.name 
+        FROM Bookings, TutorInfo
+        WHERE teacher_email = ? and day = ? and start_time = ? and end_time = ? and Bookings.tutor_id = TutorInfo.tutor_id");
+        $existingTutorsStatement->execute(array($teacher_email, $day, $start_time, $end_time));
+        $existingTutors = $existingTutorsStatement->fetchAll(PDO::FETCH_ASSOC);
+
+        echo "Day: " . print_day($day) . "<br/>";
+        echo "Grade Level: " . $details['grade_level'] . "<br/>";
+        echo "Start Time: " . $start_time . "<br/>";
+        echo "End Time: " . $end_time . "<br/>";
+        echo "Number of Tutors: " . $details['num_tutors'] . "<br/>";
+        echo "Language: " . $details['language'] . "<br/>";
+        echo "Description: " . $details['description'] . "<br/>";
+        echo "Existing Tutors: " . "<br/>";
+
+        foreach ($existingTutors as $tutor) {
+          echo $tutor['name'] . "<br/>";
+
+        }
     }
 
     } catch (PDOException $e) {

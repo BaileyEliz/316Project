@@ -40,7 +40,7 @@ try {
     // $st = $dbh->query("SELECT address FROM Drinker WHERE name='" . $drinker . "'");
     // A much safer method is to use prepared statements:
     $st = $dbh->prepare(
-      "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time 
+      "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.request_id
       FROM Request, TutorAvailable, Teacher, TutorInfo
       WHERE TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
       ORDER BY Request.day, Request.start_time");
@@ -50,10 +50,8 @@ try {
       die('There are no matches for ' . $student . ' in the database.');
     }
 
-    echo "<br/>\n";
-
     $weekdays = $dbh->prepare(
-      "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors 
+      "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
       FROM Request, TutorAvailable, Teacher, TutorInfo
       WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
       ORDER BY Request.start_time");
@@ -80,6 +78,10 @@ try {
 
 ?>
 
+<form method = "post" action = "book-slot.php"> 
+<input type="submit" value="book"/> 
+</form>
+
 <table id="calendar" style="width:100%">
   <tr>
     <th>Monday</th>
@@ -89,8 +91,6 @@ try {
     <th>Friday</th>
   </tr>
 
-<form method = "post" action = "book-slot.php"> 
-
   <?php 
 
     function special_print($array) {
@@ -98,7 +98,7 @@ try {
         return "";
       }
       $request_id = $array['request_id'];
-      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>" . $array['start_time'] . "</br>" . $array['end_time'] . "</br>";
+      $build .= $request_id . "</br>" . $request_id . "</br>" . $array['name'] . "</br>" . $array['site_name'] . "</br>" . $array['start_time'] . "</br>" . $array['end_time'] . "</br>";
       $build .= "<form method=\"post\" action=\"request-details.php\">";
       $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
       $build .= "<input type=\"submit\" value=\"details\" id=\"link_button\">";
@@ -125,8 +125,6 @@ try {
     }
 
   ?>
-<input type="submit" value="book"/> 
-</form>
 </table>
 
 Go <a href='all-students.php'>back</a>.
