@@ -5,7 +5,7 @@
 		echo "<br/>".$_POST['password']."<br/>";
 		if($_POST['password']=='admin'){
 			$_SESSION['username'] = 'admin';
-			header("Location: admin-interface.php");
+			header("Location: admin_home.php");
 			exit;
             
 		}else{
