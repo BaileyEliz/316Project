@@ -11,21 +11,29 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<?php
-  if (!isset($_POST['student'])) {
-    echo "You need to specify a student. Please <a href='all-students.php'>try again</a>.";
-    die();
-  }
-  $student = $_POST['student'];
+    <link rel="stylesheet" type="text/css" href="style.css">
 
-  include 'php-functions.php';
-?>
+    <title>Hey Monday</title>
+  </head>
 
-<link rel="stylesheet" type="text/css" href="style.css">
-<title>Student Information: <?= $student ?></title></head>
 <body>
 
-<h1>Student Information: <?=$student ?></h1>
+<?php
+  //if (!isset($_POST['day'])) {
+    //echo "You need to specify a day. Please <a href='bootstrap-test.php'>try again</a>.";
+    //die();
+  //}
+  //$day = $_POST['day'];
+
+	include 'php-functions.php';
+?>
+
+<?php 
+	$day = 1; 
+	$student = "Bailey Wall";
+?>
+
+<h1>Student Information: <?= $day ?></h1>
 
 <!-- Bootstrap Framework -->
 
@@ -61,7 +69,7 @@
       <div class="row"><div class="col-md-12"><div class="time">9:00</div></div></div>
       <div class="row"><div class="col-md-12"><div class="time">9:30</div></div></div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-10">
       <p>
         <a href="one-day-bs.php">Monday</a>
       </p>
@@ -71,38 +79,8 @@
         </div>
       </div>
     </div>
-    <div class="col-md-2">Tuesday
-      <div class="row">
-        <div class="col-md-12">
-          <div class="tuesday-contents"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2">Wednesday
-      <div class="row">
-        <div class="col-md-12">
-          <div class="wednesday-contents"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2">Thursday
-      <div class="row">
-        <div class="col-md-12">
-          <div class="thursday-contents"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2">Friday
-      <div class="row">
-        <div class="col-md-12">
-          <div class="friday-contents"></div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
-
-<!-- Get values from database -->
 
 <?php
 
@@ -115,42 +93,21 @@
   }
 
   try {
-    $st = $dbh->prepare(
-      "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.request_id
-      FROM Request, TutorAvailable, Teacher, TutorInfo
-      WHERE TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
-      ORDER BY Request.day, Request.start_time");
-    $st->execute(array($student));
-    $values = $st->fetchAll(PDO::FETCH_ASSOC);
-    if ($st->rowCount() == 0) {
-      die('There are no matches for ' . $student . ' in the database.');
-    }
-
     $weekdays = $dbh->prepare(
       "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
       FROM Request, TutorAvailable, Teacher, TutorInfo
       WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
       ORDER BY Request.start_time");
 
-    $weekdays->execute(array(1, $student));
-    $monday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
-
-    $weekdays->execute(array(2, $student));
-    $tuesday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
-
-    $weekdays->execute(array(3, $student));
-    $wednesday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
-
-    $weekdays->execute(array(4, $student));
-    $thursday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
-
-    $weekdays->execute(array(5, $student));
-    $friday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
+    $weekdays->execute(array($day, $student));
+    $day_sessions = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
   } catch (PDOException $e) {
     print "Database error: " . $e->getMessage() . "<br/>";
     die();
   }
+
+  echo count($day_sessions);
 
 ?>
 
@@ -158,37 +115,22 @@
 
 <?php
 
-  $weekdaze = array($monday, $tuesday, $wednesday, $thursday, $friday);
-  $weekdaze_names = array("monday", "tuesday", "wednesday", "thursday", "friday");
+	echo "$daily_times";
 
-  $weekdaze_times = array(all_times($monday), all_times($tuesday), all_times($wednesday), all_times($thursday), all_times($friday));
-  $weekdaze_maximums = array(
-    daily_maximum($weekdaze_times[0], $monday),
-    daily_maximum($weekdaze_times[1], $tuesday),
-    daily_maximum($weekdaze_times[2], $wednesday),
-    daily_maximum($weekdaze_times[3], $thursday),
-    daily_maximum($weekdaze_times[4], $friday));
-  $weekdaze_layouts = array(
-    blank_layout($weekdaze_maximums[0]), 
-    blank_layout($weekdaze_maximums[1]), 
-    blank_layout($weekdaze_maximums[2]), 
-    blank_layout($weekdaze_maximums[3]), 
-    blank_layout($weekdaze_maximums[4]));
+	$daily_times = all_times($day_sessions);
+	$daily_maximum = daily_maximum($daily_times, $day_sessions);
+	$daily_layout = blank_layout($daily_maximum);
 
-  for ($x = 0; $x < count($weekdaze); $x++) {
-    $day_array = $weekdaze[$x];
-    $day_name = $weekdaze_names[$x];
-    $daily_maximum = $weekdaze_maximums[$x];
-    for ($i = 0; $i < count($day_array); $i++){
-      echo html_print((($x * 100) + $i), $day_array[$i]);
-      $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name);
-      echo $returns[0];
-      $weekdaze_layouts[$x] = $returns[1];
-    }
-  }
+	echo $daily_times;
+
+  for ($i = 0; $i < count($day_sessions); $i++){
+    echo html_print((($x * 100) + $i), $day_sessions[$i]);
+    $returns = css_print($daily_maximum, $daily_layout, $daily_times, $i, $day_sessions[$i], "monday");
+    echo $returns[0];
+    $daily_layout = $returns[1];
+   }
 
 ?>
 
-Go <a href='all-students.php'>back</a>.
 </body>
 </html>
