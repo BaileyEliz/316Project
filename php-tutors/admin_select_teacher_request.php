@@ -7,7 +7,7 @@
 <body>
 <h1>Edit a Request</h1>
 
-<div class="topcorner"><a href="admin-interface.php">Back to Admin Homepage</a></div>
+<a href="admin_home.php">Back to Admin Homepage</a>
 
 <!-- <form action="edit-success.php" method="post">
 	Request ID: <input type="text" name="request_id"><br><br>
@@ -30,7 +30,7 @@
     if (($myrow = $st->fetch())) {
 ?>
 
-<form method="post" action="edit-form.php">
+<form method="post" action="admin_edit_teacher_request.php">
 Select a request below to edit:<br/>
 <?php
 	echo "<table border='1'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td></th>";
@@ -68,14 +68,6 @@ Select a request below to edit:<br/>
     die();
   }
 ?> 
-
-<style type="text/css">
- .topcorner{
-   position:absolute;
-   top:5;
-   right:5;
-  }
-</style>
 
 </body>
 </html>

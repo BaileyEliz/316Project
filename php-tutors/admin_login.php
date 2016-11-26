@@ -28,3 +28,8 @@
                name = "login">Login</button>
                
 </form>
+
+<div class="temporary">
+        Go to admin home
+      <a href="admin_home.php">here</a>
+    </div>

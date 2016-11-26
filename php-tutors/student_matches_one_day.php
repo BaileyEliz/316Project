@@ -44,7 +44,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">O'Clock
+    <div class="col-md-1">O'Clock
       <div class="row"><div class="col-md-12"><div class="time">8:00</div></div></div>
       <div class="row"><div class="col-md-12"><div class="time">8:30</div></div></div>
       <div class="row"><div class="col-md-12"><div class="time">9:00</div></div></div>
@@ -74,7 +74,7 @@
       <div class="row"><div class="col-md-12"><div class="time">9:00</div></div></div>
       <div class="row"><div class="col-md-12"><div class="time">9:30</div></div></div>
     </div>
-    <div class="col-md-10">
+    <div class="col-md-11">
     	<?php
     		if ($day == 1) {
     			echo "Monday";
@@ -149,6 +149,8 @@
    }
 
 ?>
+
+Go <a href='student_profile_home.php'>back</a>.
 
 </body>
 </html>

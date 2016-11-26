@@ -3,9 +3,9 @@
 <body>
 <h1>Add a Request</h1>
 
-<div class="topcorner"><a href="admin-interface.php">Back to Admin Homepage</a></div>
+<a href="admin_home.php">Back to Admin Homepage</a>
 
-<form action="request-success.php" method="post" id="requestform">
+<form action="admin_edit_teacher_request_success.php" method="post" id="requestform">
 	Name: <input type="text" name="name" required><br>
 	Email: <input type="email" name="email" required><br>
 	School: <input type="text" name="school" required><br><br>
@@ -33,14 +33,6 @@
 	Description:<br><textarea rows="4" cols="30" name="description" form="requestform"></textarea><br>
 	<input type="submit" value="Submit Request">
 </form>
-
-<style type="text/css">
- .topcorner{
-   position:absolute;
-   top:5;
-   right:5;
-  }
-</style>
 
 </body>
 </html>

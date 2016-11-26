@@ -1,6 +1,6 @@
 <?php
   if (!isset($_POST['teacher'])) {
-    echo "You need to specify a teacher. Please <a href='all-teachers.php'>try again</a>.";
+    echo "You need to specify a teacher. Please <a href='TEMP_all_teachers.php'>try again</a>.";
     die();
   }
   $teacher = $_POST['teacher'];

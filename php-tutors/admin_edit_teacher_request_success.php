@@ -7,7 +7,7 @@
 <body>
 <h1>Edit a Request</h1>
 
-<div class="topcorner"><a href="admin-interface.php">Back to Admin Homepage</a></div>
+<a href="admin_home.php">Back to Admin Homepage</a>
 
 <?php
   try {
@@ -57,14 +57,7 @@
   }
 ?>
 <br><br>
-<a href="edit-request.php">Back to Choose a Request</a> 
-<style type="text/css">
- .topcorner{
-   position:absolute;
-   top:5;
-   right:5;
-  }
-</style>
+<a href="admin_select_teacher_request.php">Back to Choose a Request</a> 
 
 </body>
 </html>

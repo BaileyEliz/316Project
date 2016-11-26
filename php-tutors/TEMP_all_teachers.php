@@ -19,7 +19,7 @@
     if (($myrow = $st->fetch())) {
 ?>
 
-<form method="post" action="pick-a-teacher.php">
+<form method="post" action="TEMP_selected_teacher.php">
 Select a teacher below to view more information:<br/>
 <?php
       do {
@@ -40,11 +40,6 @@ Select a teacher below to view more information:<br/>
     die();
   }
 ?> 
-
-<form enctype="multipart/form-data" action="somepage.php" method="POST">
-  <input type="file" name="userfile" size="100000" maxlength="200000"> <br>
-  <input type = "submit" name="upload" value="Upload">
-</form>
 
 </body>
 

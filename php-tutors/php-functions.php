@@ -63,6 +63,15 @@
       return minutes_different("08:00:00", $time);
     }
 
+    function wordless_html_print($index, $array) {
+      if (count($array) == 0) {
+        return "there's nothing here!";
+      }
+      $request_id = $array['request_id'];
+      $build = "<div id ='option_" . $index . "'/>";
+      return $build;
+    }
+
     function html_print($index, $array) {
       if (count($array) == 0) {
         return "there's nothing here!";
@@ -70,7 +79,7 @@
       $request_id = $array['request_id'];
       $build = "<div id ='option_" . $index . "'>";
       $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>" . time_print($array['start_time']) . "</br>" . time_print($array['end_time']) . "</br>";
-      $build .= "<form method=\"post\" action=\"request-details.php\">";
+      $build .= "<form method=\"post\" action=\"student_matches_request_details.php\">";
       $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
       $build .= "<input type=\"submit\" value=\"details\" id=\"link_button\">";
       $build .= "</form>";
@@ -187,12 +196,14 @@
 
       $build = "<script type='text/javascript'>";
       $build .= "var styles = {
-        'background-color': '" . $colors[$insert_spot] . "', 
+        'border-color': '" . "black" . "', 
         'position': 'absolute', 
         'top':'" . (6 * top_margin($array['start_time'])) . "px', 
         'left':'" . ($percent * $insert_spot) . "%',
         'height':'" . (6 * minutes_different($array['start_time'], $array['end_time'])) ."px',
-        'width':'" . $percent . "%'};";
+        'width':'" . $percent . "%',
+        'border-style':'solid',
+        'border-width':'1px'};";
       $build .= "$('#option_" . $index . "').css(styles);";
       $build .= "$('." . $day . "-contents').append($('#option_" . $index . "'));";
       $build .= "</script>";

@@ -1,14 +1,32 @@
-<?php
-  if (!isset($_POST['request_id'])) {
-    echo "You need to specify a request. Please <a href='all-students.php'>try again</a>.";
-    die();
-  }
-  $request_id = $_POST['request_id'];
-?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<html>
-<link rel="stylesheet" type="text/css" href="style.css">
-<head><title>Request ID: <?= $request_id ?></title></head>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <?php
+      if (!isset($_POST['request_id'])) {
+      echo "You need to specify a request. Please <a href='all-students.php'>try again</a>.";
+      die();
+      }
+      $request_id = $_POST['request_id'];
+    ?>
+
+    <title>Request ID: <?= $request_id ?></title>
+
+  </head>
+
 <body>
 
 <h1>Request Details: <?=$request_id ?></h1>
@@ -93,6 +111,17 @@ try {
   }
 
 ?>
+
+    <div class="edit">
+        From here I can either click a button to 
+        <a href="student_matches_book_request.php">book</a>
+    </div>
+
+    <div class="temporary">
+        Or I can go
+      <a href="student_profile_home.php">back</a>
+        right now to my profile, hopefully later to my calendar.
+    </div>
 
 </body>
 </html>

@@ -31,7 +31,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-2">O'Clock
+    <div class="col-md-1">O'Clock
       <div class="row"><div class="col-md-12"><div class="time">8:00</div></div></div>
       <div class="row"><div class="col-md-12"><div class="time">8:30</div></div></div>
       <div class="row"><div class="col-md-12"><div class="time">9:00</div></div></div>
@@ -62,11 +62,13 @@
       <div class="row"><div class="col-md-12"><div class="time">9:30</div></div></div>
     </div>
     <div class="col-md-2">
-      <form id="monday-form" action="one-day-bs.php" method="post">
-        <input name="day" type="hidden" value=1 />
-        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
-        <a href="#" onclick="document.getElementById('monday-form').submit();">Monday</a>
-      </form>
+      <div class="day-title">
+        <form id="monday-form" action="student_matches_one_day.php" method="post">
+          <input name="day" type="hidden" value=1 />
+          <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+          <a href="#" onclick="document.getElementById('monday-form').submit();">Monday</a>
+        </form>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="monday-contents"></div>
@@ -74,11 +76,13 @@
       </div>
     </div>
     <div class="col-md-2">
-      <form id="tuesday-form" action="one-day-bs.php" method="post">
-        <input name="day" type="hidden" value=2 />
-        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
-        <a href="#" onclick="document.getElementById('tuesday-form').submit();">Tuesday</a>
-      </form>
+      <div class="day-title">
+        <form id="tuesday-form" action="student_matches_one_day.php" method="post">
+          <input name="day" type="hidden" value=2 />
+          <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+          <a href="#" onclick="document.getElementById('tuesday-form').submit();">Tuesday</a>
+        </form>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="tuesday-contents"></div>
@@ -86,11 +90,13 @@
       </div>
     </div>
     <div class="col-md-2">
-      <form id="wednesday-form" action="one-day-bs.php" method="post">
-        <input name="day" type="hidden" value=3 />
-        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
-        <a href="#" onclick="document.getElementById('wednesday-form').submit();">Wednesday</a>
-      </form>
+      <div class="day-title">
+        <form id="wednesday-form" action="student_matches_one_day.php" method="post">
+          <input name="day" type="hidden" value=3 />
+          <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+          <a href="#" onclick="document.getElementById('wednesday-form').submit();">Wednesday</a>
+        </form>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="wednesday-contents"></div>
@@ -98,11 +104,13 @@
       </div>
     </div>
     <div class="col-md-2">
-      <form id="thursday-form" action="one-day-bs.php" method="post">
-        <input name="day" type="hidden" value=4 />
-        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
-        <a href="#" onclick="document.getElementById('thursday-form').submit();">Thursday</a>
-      </form>
+      <div class="day-title">
+        <form id="thursday-form" action="student_matches_one_day.php" method="post">
+          <input name="day" type="hidden" value=4 />
+          <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+          <a href="#" onclick="document.getElementById('thursday-form').submit();">Thursday</a>
+        </form>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="thursday-contents"></div>
@@ -110,11 +118,13 @@
       </div>
     </div>
     <div class="col-md-2">
-      <form id="friday-form" action="one-day-bs.php" method="post">
-        <input name="day" type="hidden" value=5 />
-        <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
-        <a href="#" onclick="document.getElementById('friday-form').submit();">Friday</a>
-      </form>
+      <div class="day-title">
+        <form id="friday-form" action="student_matches_one_day.php" method="post">
+          <input name="day" type="hidden" value=5 />
+          <?php echo "<input name='student' type='hidden' value='" . $student . "' />"; ?>
+          <a href="#" onclick="document.getElementById('friday-form').submit();">Friday</a>
+        </form>
+      </div>
       <div class="row">
         <div class="col-md-12">
           <div class="friday-contents"></div>
@@ -202,7 +212,7 @@
     $day_name = $weekdaze_names[$x];
     $daily_maximum = $weekdaze_maximums[$x];
     for ($i = 0; $i < count($day_array); $i++){
-      echo html_print((($x * 100) + $i), $day_array[$i]);
+      echo wordless_html_print((($x * 100) + $i), $day_array[$i]);
       $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name);
       echo $returns[0];
       $weekdaze_layouts[$x] = $returns[1];
@@ -211,6 +221,6 @@
 
 ?>
 
-Go <a href='all-students.php'>back</a>.
+Go <a href='student_profile_home.php'>back</a>.
 </body>
 </html>

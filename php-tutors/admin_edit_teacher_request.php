@@ -7,7 +7,7 @@
 <body>
 <h1>Edit a Request</h1>
 
-<div class="topcorner"><a href="admin-interface.php">Back to Admin Homepage</a></div>
+<a href="admin_home.php">Back to Admin Homepage</a>
 
 <?php
   try {
@@ -54,7 +54,7 @@
   			$selected = 5;
   		}
   		?>
-  		<form method="post" action="edit-success.php" id="editform">
+  		<form method="post" action="admin_edit_teacher_request_success.php" id="editform">
   			Day of the Week: <select name="day_of_week">
 			<option <?php if($selected == 1){echo ("selected");}?> value="Monday">Monday</option>
 			<option <?php if($selected == 2){echo ("selected");}?> value="Tuesday">Tuesday</option>
@@ -78,14 +78,7 @@
      die();
    }
 ?> 
-<a href="edit-request.php">Back to Choose a Request</a>
-<style type="text/css">
- .topcorner{
-   position:absolute;
-   top:5;
-   right:5;
-  }
-</style>
+<a href="admin_select_teacher_request.php">Back to Choose a Request</a>
 
 <script type="text/javascript">
 function checkvalue(val) {
