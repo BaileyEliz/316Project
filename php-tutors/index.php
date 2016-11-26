@@ -47,7 +47,7 @@ echo "Username: ". $_SESSION['username'] . ".<br>" . " Logged in!";
 
 
 <p>
-The following shows many useful information about your PHP configuration.
+The following shows useful information about your PHP configuration.
 </p>
 <? phpinfo(); ?>
 
