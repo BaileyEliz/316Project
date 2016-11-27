@@ -19,20 +19,23 @@
   </head>
   <body>
 
-    <h1 class="text-center">Student Info Edited Here!</h1>
+    <h1 class="text-center">Edit Student Profile</h1>
 
-    <div class="name">
-      Name
-    </div>
+    <h1>Login Information</h1>
 
-    <div class="car">
-      Do you have a car?
-    </div>
+    <a href="student_login.php">Back to Login</a>
+    <br>
 
-    <div class="save">
+    <form action="student_profile_upload.php" method="post">
+      Name: <input type="text" name="name" required><br>
+      NetID (Username): <input type="text" name="netid" required><br>
+      <div class="car">Do you have a car?</div>
+      <div class="save">
         When I click the save button this info writes to the database and I'm directed
         <a href="student_profile_home.php">here</a>
-    </div>
+      </div>
+    <input type="submit" value="Submit Profile">
+    </form>
 
   </body>
 </html>

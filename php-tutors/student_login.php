@@ -24,10 +24,9 @@
   </head>
   <body>
 
-    <h1 class="text-center">Student Login Info!</h1>
+    <h1 class="text-center">Student Login</h1>
 
     <div class="username">
-      <h2>Enter Username and Password</h2> 
       <div class = "container form-signin">
          
          <?php
@@ -75,7 +74,7 @@
                   
                   $msg =  'In the System';
                }else {
-                  $msg =  'Wrong NetID';
+                  $msg =  'Unrecognized net-id. Create a new profile.';
 				  
                }
             }
@@ -89,7 +88,7 @@
             ?>" method = "post">
             <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
             <input type = "text" class = "form-control" 
-               name = "username" placeholder = "username = open" 
+               name = "username" placeholder = "net-id" 
                required autofocus></br>
             <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
                name = "login">Login</button>
@@ -97,17 +96,7 @@
 			
          
       </div>
-      New to the site? Create a profile <a href = "tutor-info-input.php" tite = "Create_profile"> here! 
-    </div>
-
-    <div class="temporary">
-        Go to student first time page
-      <a href="student_info_edit.php">here</a>
-    </div>
-
-    <div class="temporary">
-        Go to student home page
-      <a href="student_profile_home.php">here</a>
+      <div class="text-center"><br>New to the site? Create a profile <a href = "student_info_edit.php" title = "Create_profile">here!</a></div>
     </div>
 
   </body>

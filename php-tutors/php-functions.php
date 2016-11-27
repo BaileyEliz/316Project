@@ -1,5 +1,23 @@
 <?php
 
+  function print_day($number) {
+      if ($number == 1) {
+        return 'Monday';
+      }
+      else if ($number == 2) {
+        return 'Tuesday';
+      }
+      else if ($number == 3) {
+        return 'Wednesday';
+      }
+      else if ($number == 4) {
+        return 'Thursday';
+      }
+      else if ($number == 5) {
+        return 'Friday';
+      }
+    }
+
   function max_overlap($times_array, $start_time, $end_time) {
     $array_unique = array();
     $start_hour = intval(substr($start_time, 0, 2));
@@ -78,12 +96,21 @@
       }
       $request_id = $array['request_id'];
       $build = "<div id ='option_" . $index . "'>";
-      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>" . time_print($array['start_time']) . "</br>" . time_print($array['end_time']) . "</br>";
+      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>";
       $build .= "<form method=\"post\" action=\"student_matches_request_details.php\">";
       $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
       $build .= "<input type=\"submit\" value=\"details\" id=\"link_button\">";
       $build .= "</form>";
       $build .= "</div>";
+      return $build;
+    }
+
+    function simple_html_print($index, $array) {
+      if (count($array) == 0) {
+        return "there's nothing here!";
+      }
+      $request_id = $array['request_id'];
+      $build = "<div id ='option_" . $index . "'></div>";
       return $build;
     }
 
@@ -127,6 +154,25 @@
         }
       }
       return $times;
+    }
+
+    function simple_css_print($index, $array, $day) {
+      
+      $d = $array['day'];
+
+      $build = "<script type='text/javascript'>";
+      $build .= "var styles = {
+        'border-color': '" . "black" . "', 
+        'position': 'absolute', 
+        'top':'" . (top_margin($array['start_time'])) . "px', 
+        'height':'" . (minutes_different($array['start_time'], $array['end_time'])) ."px',
+        'width':'100%',
+        'border-style':'solid',
+        'border-width':'1px'};";
+      $build .= "$('#option_" . $index . "').css(styles);";
+      $build .= "$('." . $day . "-contents').append($('#option_" . $index . "'));";
+      $build .= "</script>";
+      return $build;
     }
 
     function css_print($number_of_overlaps, $layout_array, $times_array, $index, $array, $day) {

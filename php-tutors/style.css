@@ -31,6 +31,10 @@ div[class="time"] {
 	height: 180px;
 }
 
+div[class="mini_time"] {
+	height: 30px;
+}
+
 input[id="link_button"] { 
      background: none;
      border: none;

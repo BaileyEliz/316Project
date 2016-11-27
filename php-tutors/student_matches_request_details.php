@@ -31,6 +31,19 @@
 
 <h1>Request Details: <?=$request_id ?></h1>
 
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6">Details
+      <div class="row">
+      </div>
+    </div>
+    <div class="col-md-6">Other Tutors
+      <div class="row">
+      </div>
+    </div>
+  </div>
+</div>
+
 <?php
 
 try {
@@ -44,37 +57,21 @@ try {
     die();
   }
 
+  include 'php-functions.php';
+
   try {
     // One could construct a parameterized query manually as follows,
     // but it is prone to SQL injection attack:
     // $st = $dbh->query("SELECT address FROM Drinker WHERE name='" . $drinker . "'");
     // A much safer method is to use prepared statements:
     $st = $dbh->prepare(
-      "SELECT * 
-      FROM Request
-      WHERE Request.request_id = ?");
+      "SELECT Request.day, Request.grade_level, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.language, Request.description, Teacher.name, Teacher.site_name, Site.transportation 
+      FROM Request, Teacher, Site
+      WHERE Request.request_id = ? and Request.teacher_email = Teacher.email and Site.name = Teacher.site_name");
     $st->execute(array($request_id));
     $values = $st->fetchAll(PDO::FETCH_ASSOC);
     if ($st->rowCount() == 0) {
       die('There are no matches for request id' . $request_id . ' in the database.');
-    }
-
-    function print_day($number) {
-      if ($number == 1) {
-        return 'Monday';
-      }
-      else if ($number == 2) {
-        return 'Tuesday';
-      }
-      else if ($number == 3) {
-        return 'Wednesday';
-      }
-      else if ($number == 4) {
-        return 'Thursday';
-      }
-      else if ($number == 5) {
-        return 'Friday';
-      }
     }
 
     foreach ($values as $details){
@@ -82,6 +79,9 @@ try {
         $day = $details['day'];
         $start_time = $details['start_time'];
         $end_time = $details['end_time'];
+        $teacher_name = $details['name'];
+        $site_name = $details['site_name'];
+        $transportation = $details['transportation'];
 
         $existingTutorsStatement = $dbh->prepare(
         "SELECT TutorInfo.tutor_id, TutorInfo.name 
@@ -91,6 +91,9 @@ try {
         $existingTutors = $existingTutorsStatement->fetchAll(PDO::FETCH_ASSOC);
 
         echo "Day: " . print_day($day) . "<br/>";
+        echo "Teacher: " . $teacher_name . "<br/>";
+        echo "Site: " . $site_name . "<br/>";
+        echo "Transportation: " . $transportation . "<br/>";
         echo "Grade Level: " . $details['grade_level'] . "<br/>";
         echo "Start Time: " . $start_time . "<br/>";
         echo "End Time: " . $end_time . "<br/>";
