@@ -19,6 +19,13 @@
 <body>
 
 <?php
+
+  session_start();
+  $user = "generic";
+  if($_SESSION['username']) {
+    $user = $_SESSION['username'];
+  }
+
   if (!isset($_POST['day'])) {
     echo "You need to specify a day. Please <a href='bootstrap-test.php'>try again</a>.";
     die();

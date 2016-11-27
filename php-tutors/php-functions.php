@@ -105,6 +105,15 @@
       return $build;
     }
 
+    function simple_html_print($index, $array) {
+      if (count($array) == 0) {
+        return "there's nothing here!";
+      }
+      $request_id = $array['request_id'];
+      $build = "<div id ='option_" . $index . "'></div>";
+      return $build;
+    }
+
     function daily_maximum($times, $array) {
       $maximum = 0;
       for ($i = 0; $i < count($array); $i++){
@@ -145,6 +154,25 @@
         }
       }
       return $times;
+    }
+
+    function simple_css_print($index, $array, $day) {
+      
+      $d = $array['day'];
+
+      $build = "<script type='text/javascript'>";
+      $build .= "var styles = {
+        'border-color': '" . "black" . "', 
+        'position': 'absolute', 
+        'top':'" . (top_margin($array['start_time'])) . "px', 
+        'height':'" . (minutes_different($array['start_time'], $array['end_time'])) ."px',
+        'width':'100%',
+        'border-style':'solid',
+        'border-width':'1px'};";
+      $build .= "$('#option_" . $index . "').css(styles);";
+      $build .= "$('." . $day . "-contents').append($('#option_" . $index . "'));";
+      $build .= "</script>";
+      return $build;
     }
 
     function css_print($number_of_overlaps, $layout_array, $times_array, $index, $array, $day) {

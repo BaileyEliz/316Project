@@ -12,11 +12,33 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 <?php
-  if (!isset($_POST['student'])) {
-    echo "You need to specify a student. Please <a href='all-students.php'>try again</a>.";
+
+  session_start();
+  $user = "generic";
+  if($_SESSION['username']) {
+    $user = $_SESSION['username'];
+  }
+
+  try {
+    include("pdo-tutors.php");
+    $dbh = dbconnect();
+  } catch (PDOException $e) {
+    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  $student = $_POST['student'];
+
+  $student_selector = $dbh->prepare(
+      "SELECT TutorInfo.name
+      FROM TutorInfo
+      WHERE TutorInfo.tutor_id = ?");
+  $student_selector->execute(array($user));
+  $student_values = $student_selector->fetchAll(PDO::FETCH_ASSOC);
+  $student = $student_values[0]["name"];
+
+  //TEMP keep this so all students still works; take it out when dev is done
+  if (isset($_POST['student'])) {
+    $student = $_POST['student'];
+  }
 
   include 'php-functions.php';
 ?>
@@ -137,14 +159,6 @@
 <!-- Get values from database -->
 
 <?php
-
-  try {
-    include("pdo-tutors.php");
-    $dbh = dbconnect();
-  } catch (PDOException $e) {
-    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
-    die();
-  }
 
   try {
     $st = $dbh->prepare(
