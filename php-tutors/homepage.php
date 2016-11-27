@@ -21,14 +21,22 @@
 
     <h1 class="text-center">Welcome to the Partners For Success Scheduler!</h1>
 
-    <div class="login">
-      Students log in 
-      <a href="student_login.php">here</a>
+    <div class="login text-center">
+      <form action="student_login.php" method="post">
+        <input class = "btn btn-lg btn-primary" type="submit" value="Student Log In">
+      </form>
+      <!--Students log in 
+      <a href="student_login.php">here</a>-->
     </div>
 
-    <div class="login">
-      Administrators log in 
-      <a href="admin_login.php">here</a>
+    <br>
+
+    <div class="login text-center">
+      <form action="admin_login.php" method="post">
+        <input class = "btn btn-lg btn-primary" type="submit" value="Administrator Log In">
+      </form>
+      <!--Administrators log in 
+      <a href="admin_login.php">here</a>-->
     </div>
 
   </body>

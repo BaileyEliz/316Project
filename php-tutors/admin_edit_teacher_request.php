@@ -1,13 +1,29 @@
 <?php
    session_start();
 ?>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Edit</title>
 
-<html>
-<head><title>Edit</title></head>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
 <h1>Edit a Request</h1>
-
-<a href="admin_home.php">Back to Admin Homepage</a>
+<a href="admin_select_teacher_request.php">Back to Choose a Request</a>
+<br>
 
 <?php
   try {
@@ -78,7 +94,6 @@
      die();
    }
 ?> 
-<a href="admin_select_teacher_request.php">Back to Choose a Request</a>
 
 <script type="text/javascript">
 function checkvalue(val) {
