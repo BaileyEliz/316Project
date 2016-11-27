@@ -76,20 +76,7 @@
     </div>
     <div class="col-md-11">
     	<?php
-    		if ($day == 1) {
-    			echo "Monday";
-    		} else if ($day == 2) {
-    			echo "Tuesday";
-    		} else if ($day == 3) {
-    			echo "Wednesday";
-    		} else if ($day == 4) {
-    			echo "Thursday";
-    		} else if ($day == 5) {
-    			echo "Friday";
-    		} else {
-    			echo "Not a valid day. Please try again.";
-    			die();
-    		}
+    		echo print_day($day);
     	?>
       <div class="row">
         <div class="col-md-12">

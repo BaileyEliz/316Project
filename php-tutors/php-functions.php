@@ -1,5 +1,23 @@
 <?php
 
+  function print_day($number) {
+      if ($number == 1) {
+        return 'Monday';
+      }
+      else if ($number == 2) {
+        return 'Tuesday';
+      }
+      else if ($number == 3) {
+        return 'Wednesday';
+      }
+      else if ($number == 4) {
+        return 'Thursday';
+      }
+      else if ($number == 5) {
+        return 'Friday';
+      }
+    }
+
   function max_overlap($times_array, $start_time, $end_time) {
     $array_unique = array();
     $start_hour = intval(substr($start_time, 0, 2));
@@ -78,7 +96,7 @@
       }
       $request_id = $array['request_id'];
       $build = "<div id ='option_" . $index . "'>";
-      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>" . time_print($array['start_time']) . "</br>" . time_print($array['end_time']) . "</br>";
+      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>";
       $build .= "<form method=\"post\" action=\"student_matches_request_details.php\">";
       $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
       $build .= "<input type=\"submit\" value=\"details\" id=\"link_button\">";
