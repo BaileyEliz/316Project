@@ -50,10 +50,10 @@
     //$st = $dbh->query('SELECT * FROM Request, Teacher WHERE ');
     $statement->execute();
     if ($myrow = $statement->fetch()) {
-    	?><div class="text-center"><h4><?php echo "Name: " . $myrow["name"]; ?></h4>
+    	?><h4><?php echo "Name: " . $myrow["name"]; ?></h4>
      	<h4><?php echo "Email: " . $myrow["teacher_email"]; ?></h4>
       <h4><?php echo "School: " . $myrow["site_name"]; ?></h4>
-      <h3>Edit Request</h3></div> <?php
+      <h3>Edit Request</h3> <?php
      	$_SESSION['teacher_email'] = $myrow["teacher_email"];
   		if($myrow["day"] == 1){
   			$day = 'Monday';
@@ -78,7 +78,7 @@
   		?>
   		<form class="form-horizontal" method="post" action="admin_edit_teacher_request_success.php" id="editform">
   			<div class="form-group">
-          <div class="col-md-4 col-md-offset-4">
+          <div class="col-xs-4">
             <label for="day_of_week">Day of the Week:</label>
             <select class="form-control" name="day_of_week">
 			       <option <?php if($selected == 1){echo ("selected");}?> value="Monday">Monday</option>
@@ -90,49 +90,47 @@
           </div>
         </div>
       <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-xs-4">
           <label for="start_time">Start Time:</label>
 		      <input type="time" class="form-control"  name="start_time" value="<?php echo $myrow['start_time']; ?>" required><br>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-xs-4">
           <label for="end_time">End Time:</label>
           <input type="time" class="form-control" name="end_time" value="<?php echo $myrow['end_time']; ?>" required><br>
         </div> 
       </div>
       <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-xs-4">
           <label for="grade_level">Grade Level:</label>
           <input type="text" class="form-control" name="grade_level" value="<?php echo $myrow['grade_level']; ?>"><br>
   		  </div>
       </div>
       <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-xs-4">
           <label for="language">Language:</label>
           <input type="text" class="form-control" name="language" value="<?php echo $myrow['language']; ?>"/><br>
 		    </div>
       </div>
       <div class="form-group">
-        <div class="col-md-4 col-md-offset-4">
+        <div class="col-xs-4">
           <label for="num_tutors">Number of Tutors:</label>
           <input type="number" class="form-control" name="num_tutors" min="1" max="10" step="1" value="<?php echo $myrow['num_tutors']; ?>" required><br>
         </div>
       </div>
       <div class="form-group">
-        <div class="col-xs-8 col-xs-offset-2">
+        <div class="col-xs-12">
           <label for="descripton">Description:</label>
           <textarea class="form-control" rows="4" cols="30" name="description" form="editform"><?php echo $myrow['description']; ?></textarea>
         </div>
       </div>
-      <div class="text-center">
-		    <input class="btn btn-primary" type="submit" value="Update Request">
-      </div>
+		  <input class="btn btn-primary" type="submit" value="Update Request">
+      <br>
       <br>
   		<?php
     }
  } catch (PDOException $e) {
- 	echo "hi";
      print "Database error: " . $e->getMessage() . "<br/>";
      die();
    }
