@@ -35,7 +35,7 @@
   try {
     $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email ORDER BY Teacher.name');
      if (($myrow = $st->fetch())) {
-      echo "<table border='1'><td><b>Teacher Name</b></td><td><b>Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td>";
+      echo "<table class='table table-striped table-bordered'><td><b>Teacher Name</b></td><td><b>Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td>";
        do {
          echo "<tr><td>" . $myrow['name'] . "</td>";
          echo "<td>" . $myrow['teacher_email'] . "</td>";
@@ -76,7 +76,7 @@
 try{
   $st = $dbh->query('SELECT Teacher.name AS teacher_name, Teacher.email AS teacher_email, Teacher.site_name AS site_name FROM Teacher, Site WHERE site_name = Site.name ORDER BY teacher_name');
   if(($myrow = $st->fetch())){
-    echo "<table border='1'><td><b>Name</b></td><td><b>Email</b></td><td><b>Site</b></td>";
+    echo "<table class='table table-striped table-bordered'><td><b>Name</b></td><td><b>Email</b></td><td><b>Site</b></td>";
     do{
       echo "<tr><td>" . $myrow['teacher_name'] . "</td>";
       echo "<td>" . $myrow['teacher_email'] . "</td>";
@@ -94,7 +94,7 @@ catch (PDOException $e){
 try{
   $st = $dbh->query('SELECT * FROM Site ORDER BY name');
   if(($myrow = $st->fetch())){
-    echo "<table border='1'><td><b>Site Name</b></td>";
+    echo "<table class='table table-striped table-bordered'><td><b>Site Name</b></td>";
     do{
       echo "<tr><td>" . $myrow['name'] . "</td></tr>";
     } while ($myrow = $st->fetch());
@@ -110,7 +110,7 @@ catch (PDOException $e){
 try{
   $st = $dbh->query('SELECT * FROM TutorInfo ORDER BY tutor_id');
   if(($myrow = $st->fetch())){
-    echo "<table border='1'><td><b>Tutor ID</b></td><td><b>Name</b></td>";
+    echo "<table class='table table-striped table-bordered'><td><b>Tutor ID</b></td><td><b>Name</b></td>";
     do{
       echo "<tr><td>" . $myrow['tutor_id'] . "</td>";
       echo "<td>" . $myrow['name'] . "</td></tr>";
@@ -128,7 +128,7 @@ catch (PDOException $e){
 try{
   $st = $dbh->query('SELECT * FROM TutorAvailable ORDER BY tutor_id');
   if(($myrow = $st->fetch())){
-    echo "<table border='1'><td><b>Tutor ID</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td>";
+    echo "<table class='table table-striped table-bordered'><td><b>Tutor ID</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td>";
     do{
       if($myrow['day'] == 1){
         $day = "Monday";

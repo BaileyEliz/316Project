@@ -27,7 +27,7 @@
 	<div class="upload text-center">
 		<form enctype="multipart/form-data" action="format-requests.php" method="POST">
   			<input type="file" name="userfile" size="100000" maxlength="200000"> <br>
-  			<input class="btn " type = "submit" name="upload" value="Upload">
+  			<input class="btn btn-primary" type="submit" name="upload" value="Upload">
 		</form>
 	</div>
 
