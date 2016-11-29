@@ -32,7 +32,8 @@
     die();
   }
   try{
-    
+    //$dbh->query("COPY (SELECT * FROM Teacher) TO '/tmp/export.csv' WITH DELIMITER ',' CSV HEADER");
+    //$dbh->execute
   } catch (PDOEXception $e) {
     echo $e->getMessage() . "<br/>";
   }

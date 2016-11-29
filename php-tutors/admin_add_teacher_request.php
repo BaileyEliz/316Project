@@ -18,9 +18,11 @@
     <![endif]-->
   </head>
 <body>
-<h1>Add a Request</h1>
+<div class="text-center">
+	<h1>Add a Request</h1>
 
-<a href="admin_home.php">Back to Admin Homepage</a>
+	<a href="admin_home.php">Back to Admin Homepage</a>
+</div>
 
 <form class='form-horizontal' action="admin_edit_teacher_request_success.php" method="post" id="requestform">
 	<div class="form-group">
@@ -29,31 +31,76 @@
 		 	<input type="text" class="form-control" name="name" required>
 		 </div>
 	</div>
-	Email: <input type="email" name="email" required><br>
-	School: <input type="text" name="school" required><br><br>
-	Request<br><br>
-	Day of the Week: <select name="day_of_week">
-		<option value="Monday">Monday</option>
-		<option value="Tuesday">Tuesday</option>
-		<option value="Wednesday">Wednesday</option>
-		<option value="Thursday">Thursday</option>
-		<option value="Friday">Friday</option>
-	</select><br>
-	Start Time: <input type="time" name="start_time" required><br> <!-- type time doesn't work with Firefox or IE10 and earlier-->
-	End Time: <input type="time" name="end_time" required><br>
-	Grade Level: <input type="text" name="grade_level"><br>
-	Language: <select name="language">
-		<option value="None">None</option>
-		<option value="Arabic">Arabic</option>
-		<option value="Chinese">Chinese</option>
-		<option value="French">French</option>
-		<option value="German">German</option>
-		<option value="Japanese">Japanese</option>
-		<option value="Spanish">Spanish</option>
-	</select><br>
-	Number of Tutors: <input type="number" name="num_tutors" min="1" max="10" step="1" value="1" required><br>
-	Description:<br><textarea rows="4" cols="30" name="description" form="requestform"></textarea><br>
-	<input type="submit" value="Submit Request">
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="email">Email:</label>
+			<input type="email" class="form-control" name="email" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="school">School:</label>
+			<input type="text" class="form-control" name="school" required>
+		</div>
+	</div>
+	<h3>Request</h3>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="day_of_week">Day of the Week:</label>
+				<select class="form-control" name="day_of_week">
+					<option value="Monday">Monday</option>
+					<option value="Tuesday">Tuesday</option>
+					<option value="Wednesday">Wednesday</option>
+					<option value="Thursday">Thursday</option>
+					<option value="Friday">Friday</option>
+				</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="start_time">Start Time:</label>
+			<input class="form-control" type="time" name="start_time" required> <!-- type time doesn't work with Firefox or IE10 and earlier-->
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="end_time">End Time:</label>
+			<input type="time" class="form-control" name="end_time" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="grade_level">Grade Level:</label>
+			<input type="text" class="form-control" name="grade_level">
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="language">Language:</label>
+				<select name="language" class="form-control">
+					<option value="None">None</option>
+					<option value="Arabic">Arabic</option>
+					<option value="Chinese">Chinese</option>
+					<option value="French">French</option>
+					<option value="German">German</option>
+					<option value="Japanese">Japanese</option>
+					<option value="Spanish">Spanish</option>
+				</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="num_tutors">Number of Tutors:</label>
+			<input type="number" class="form-control" name="num_tutors" min="1" max="10" step="1" value="1" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-8">
+			<label for="description">Description:</label>
+			<textarea class="form-control" rows="4" cols="30" name="description" form="requestform"></textarea><br>
+		</div>
+	</div>
+	<input type="submit" class="btn btn-primary" value="Submit Request">
 </form>
 
 </body>
