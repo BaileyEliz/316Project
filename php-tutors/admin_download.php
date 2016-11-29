@@ -31,31 +31,11 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  // try{
-  //   $statement = $dbh->query("SELECT * FROM Teacher");
-  //   $list = array();
-  //   array_push($list, array("## START OF USER TABLE ##"));
-  //   if($row = $statement->fetch()){
-  //     do{
-  //       array_push($list, array_values($row));
-  //       } while($row = $statement->fetch());
-  //     }
-  //   array_push($list, array("## END OF USER TABLE ##"));
-  //   $filename = "TeacherData".'-'.date('d.m.Y').'.csv';
-  //   $fp = fopen($filename, 'w');
-  //   foreach ($list as $ferow) {
-  //     fputcsv($fp, $ferow);
-  //   }
-  //   header('Content-Type: text/csv');
-  //   header('Content-Disposition: attachment; filename="' . $filename . '"');
+  try{
     
-  //   fclose($fp);
-    //header('Content-type: csv');
-    //header('Content-Disposition: attachment;filename="'.$filename.'"');
-    //readfile($filename);
-  // } catch (PDOEXception $e) {
-  //   echo $e->getMessage() . "<br/>";
-  // }
+  } catch (PDOEXception $e) {
+    echo $e->getMessage() . "<br/>";
+  }
   
 
   ?>
