@@ -1,3 +1,8 @@
+<?php
+   session_start();
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -73,8 +78,9 @@ try {
     if ($st->rowCount() == 0) {
       die('There are no matches for request id' . $request_id . ' in the database.');
     }
-
+	$req_array;
     foreach ($values as $details){
+    	$req_array = $details;
         $teacher_email = $details['teacher_email'];
         $day = $details['day'];
         $start_time = $details['start_time'];
@@ -112,10 +118,17 @@ try {
     print "Database error: " . $e->getMessage() . "<br/>";
     die();
   }
+  $ser_req = serialize($req_array);
+  $_SESSION['sreq'] = $ser_req;
 
 ?>
-
-    <div class="edit">
+		
+	<form action = "student_matches_book_request.php" method = "post">
+    		<input type="submit" name="book" value = "book" />
+    </form>  
+	
+	
+    <div class="edit"> 
         From here I can either click a button to 
         <a href="student_matches_book_request.php">book</a>
     </div>
