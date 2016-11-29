@@ -1,5 +1,22 @@
-<html>
-<head><title>All Info</title></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>All Info</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
 <h1>All Requests</h1>
 
@@ -16,34 +33,38 @@
   }
 
   try {
-    $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email');
+    $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email ORDER BY Teacher.name');
      if (($myrow = $st->fetch())) {
+      echo "<table class='table table-striped table-bordered'><td><b>Teacher Name</b></td><td><b>Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td>";
        do {
-         echo $myrow['name'] . " ";
-         echo $myrow['teacher_email'] . " ";
-         echo $myrow['school'] . " ";
-         echo $myrow['grade_level'] . " ";
+         echo "<tr><td>" . $myrow['name'] . "</td>";
+         echo "<td>" . $myrow['teacher_email'] . "</td>";
+         echo "<td>" . $myrow['site_name'] . "</td>";
+         echo "<td>" . $myrow['grade_level'] . "</td>";
          if($myrow['day'] == 1){
-          echo 'Monday' . " ";
+          echo '<td>Monday</td>';
          }
          if($myrow['day'] == 2){
-          echo 'Tuesday' . " ";
+          echo '<td>Tuesday</td>';
          }
          if($myrow['day'] == 3){
-          echo 'Wednesday' . " ";
+          echo '<td>Wednesday</td>';
          }
          if($myrow['day'] == 4){
-          echo 'Thursday' . " ";
+          echo '<td>Thursday</td>';
          }
          if($myrow['day'] == 5){
-          echo 'Friday' . " ";
+          echo '<td>Friday</td>';
          }
-         echo $myrow['start_time'] . " ";
-         echo $myrow['end_time'] . " ";
-         echo $myrow['num_tutors'] . " ";
-         echo $myrow['language'] . " ";
-         echo $myrow['description'] . "<br><br>";
+         $starttime = date("g:i a", strtotime($myrow["start_time"]));
+         $endtime = date("g:i a", strtotime($myrow["end_time"]));
+         echo "<td>" . $starttime . "</td>";
+         echo "<td>" . $endtime . "</td>";
+         echo "<td>" . $myrow['num_tutors'] . "</td>";
+         echo "<td>" . $myrow['language'] . "</td>";
+         echo "<td>" . $myrow['description'] . "</td></tr>";
        } while ($myrow = $st->fetch());
+       echo "</table>";
      }
   }
   catch(PDOException $e){
@@ -53,13 +74,15 @@
 <h1>All Teachers</h1>
 <?php 
 try{
-  $st = $dbh->query('SELECT Teacher.name AS teacher_name, Teacher.email AS teacher_email, Teacher.site_name AS site_name FROM Teacher, Site WHERE site_name = Site.name');
+  $st = $dbh->query('SELECT Teacher.name AS teacher_name, Teacher.email AS teacher_email, Teacher.site_name AS site_name FROM Teacher, Site WHERE site_name = Site.name ORDER BY teacher_name');
   if(($myrow = $st->fetch())){
+    echo "<table class='table table-striped table-bordered'><td><b>Name</b></td><td><b>Email</b></td><td><b>Site</b></td>";
     do{
-      echo $myrow['teacher_name'] . " ";
-      echo $myrow['teacher_email'] . " ";
-      echo $myrow['site_name'] . "<br><br>";
+      echo "<tr><td>" . $myrow['teacher_name'] . "</td>";
+      echo "<td>" . $myrow['teacher_email'] . "</td>";
+      echo "<td>" . $myrow['site_name'] . "</td></tr>";
     } while ($myrow = $st->fetch());
+    echo "</table>";
   }
 }
 catch (PDOException $e){
@@ -69,12 +92,13 @@ catch (PDOException $e){
 <h1>All Sites</h1>
 <?php
 try{
-  $st = $dbh->query('SELECT * FROM Site');
+  $st = $dbh->query('SELECT * FROM Site ORDER BY name');
   if(($myrow = $st->fetch())){
+    echo "<table class='table table-striped table-bordered'><td><b>Site Name</b></td>";
     do{
-      echo $myrow['name'] . " ";
-      echo $myrow['transportation'] . "<br><br>";
+      echo "<tr><td>" . $myrow['name'] . "</td></tr>";
     } while ($myrow = $st->fetch());
+    echo "</table>";
   }
 }
 catch (PDOException $e){
@@ -86,10 +110,12 @@ catch (PDOException $e){
 try{
   $st = $dbh->query('SELECT * FROM TutorInfo ORDER BY tutor_id');
   if(($myrow = $st->fetch())){
+    echo "<table class='table table-striped table-bordered'><td><b>Tutor ID</b></td><td><b>Name</b></td>";
     do{
-      echo $myrow['tutor_id'] . " ";
-      echo $myrow['name'] . "<br><br>";
+      echo "<tr><td>" . $myrow['tutor_id'] . "</td>";
+      echo "<td>" . $myrow['name'] . "</td></tr>";
     } while ($myrow = $st->fetch());
+    echo "</table>";
   }
 }
 catch (PDOException $e){
@@ -102,7 +128,7 @@ catch (PDOException $e){
 try{
   $st = $dbh->query('SELECT * FROM TutorAvailable ORDER BY tutor_id');
   if(($myrow = $st->fetch())){
-    echo "<table border='1'><td><b>Tutor ID</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td>";
+    echo "<table class='table table-striped table-bordered'><td><b>Tutor ID</b></td><td><b>Day</b></td><td><b>Start Time</b></td><td><b>End Time</b></td>";
     do{
       if($myrow['day'] == 1){
         $day = "Monday";

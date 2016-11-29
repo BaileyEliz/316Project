@@ -1,12 +1,34 @@
-<html>
-<head><title>Request</title></head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Admin Upload</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
 <body>
 <h1>Add a Request</h1>
 
 <a href="admin_home.php">Back to Admin Homepage</a>
 
-<form action="admin_edit_teacher_request_success.php" method="post" id="requestform">
-	Name: <input type="text" name="name" required><br>
+<form class='form-horizontal' action="admin_edit_teacher_request_success.php" method="post" id="requestform">
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="name">Name:</label>
+		 	<input type="text" class="form-control" name="name" required>
+		 </div>
+	</div>
 	Email: <input type="email" name="email" required><br>
 	School: <input type="text" name="school" required><br><br>
 	Request<br><br>
