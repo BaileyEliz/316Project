@@ -120,7 +120,7 @@
         </div>
       </div>
       <div class="form-group">
-        <div class="col-xs-12">
+        <div class="col-xs-8">
           <label for="descripton">Description:</label>
           <textarea class="form-control" rows="4" cols="30" name="description" form="editform"><?php echo $myrow['description']; ?></textarea>
         </div>
