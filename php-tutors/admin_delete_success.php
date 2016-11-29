@@ -93,7 +93,10 @@
   //will also need to delete and recreate the Matches/Bookings table once we have those completed
 
   ?>
-<h1>Deletion Successful!</h1>
+<div class="text-center">
+  <h1>Deletion Successful</h1>
+  <a href="admin_home.php">Back to Admin Homepage</a>
+</div>
 
 </body>
 </html>
