@@ -16,13 +16,70 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+<?php
+  session_start();
+  $user = "generic";
+  if($_SESSION['username']) {
+    $user = $_SESSION['username'];
+  }
+  try {
+    include("pdo-tutors.php");
+    $dbh = dbconnect();
+  } catch (PDOException $e) {
+    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+    die();
+  }
+  $student_avails = $dbh->prepare(
+      "SELECT *
+      FROM TutorAvailable
+      WHERE TutorAvailable.tutor_id = ?");
+  
+  $student_avails->execute(array($user));
+  $student_values = $student_avails->fetchAll(PDO::FETCH_ASSOC);
+
+  include 'php-functions.php';
+?>
+
+
+
   </head>
   <body>
 
     <h1 class="text-center">Student Availability Edited Here!</h1>
 
     <h2 class="text-center">Current Availability</h2>
+<table>
+<tr>
+    <th>Day</th>
+    <th>Start Time</th> 
+    <th>End Time</th>
+</tr>
 
+<?php
+    
+  foreach($student_values as $row) {
+    $day = $row['day'];
+    $starttime = $row['start_time'];
+    $endtime = $row['end_time'];
+    $remove_avail = $dbh->prepare(
+      "DELETE
+      FROM TutorAvailable
+      WHERE TutorAvailable.tutor_id = ? and TutorAvailable.day = ? and TutorAvailable.start_time = ?");
+
+    //$remove_avail->execute(array($user, $day, $starttime));
+    //$student_values = $student_avails->fetchAll(PDO::FETCH_ASSOC);
+
+    echo "<tr><td>" . $day . "</td><td>" . $starttime . "</td><td>" . $endtime . "</td><td href='student_availability_edit.php'>Remove</td></tr>";
+
+    //<!--TODO: actually delete the entry! should maybe be with $remove_avail. parameters might be wrong though so check if it is start_time or something else, etc-->
+
+}
+
+
+  ?>
+</table>
+<!--
     <div class="name">
       Day
     </div>
@@ -40,8 +97,28 @@
         <a href="student_availability_edit.php">here</a>
     </div>
 
+-->
+
+
+
     <h2 class="text-center">Add a Time Slot</h2>
 
+<form action="student_availability_add_success.php" method="post">
+  Day of the Week: <select name="day_of_week">
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+  </select><br>
+  Start Time: <input type="time" name="start_time" required><br> <!-- type time doesn't work with Firefox or IE10 and earlier-->
+  End Time: <input type="time" name="end_time" required><br>
+  
+  <input type="submit" value="Submit Availability">
+</form>
+
+
+<!--
     <div class="name">
       Day
     </div>
@@ -58,7 +135,7 @@
         When I click the save button this info writes to the database and the page is refreshed
         <a href="student_availability_edit.php">here</a>
     </div>
-
+-->
     <h2 class="text-center">Go Back to your Profile</h2>
 
     <div class="save">
