@@ -26,9 +26,10 @@
 	<a href="admin_home.php">Back to Admin Homepage</a>
 </div>
 
-<p>Click the link below to delete all data (matches, requests, sites, teachers).</p>
-
-<a href="admin_delete_success.php">Delete All</a>
+<p>Click below to delete all data (matches, requests, sites, teachers).</p>
+<form class="form-horizontal" method="post" action="admin_delete_success.php">
+  <input type="submit" class="btn btn-primary" value="Delete All">
+</form>
 
 </body>
 </html>

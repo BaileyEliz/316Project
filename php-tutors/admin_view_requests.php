@@ -18,6 +18,9 @@
     <![endif]-->
   </head>
 <body>
+<div class="col-xs-2 col-xs-offset-10">
+  <a href="admin_home.php">Back to Admin Homepage</a>
+</div>
 <h1>All Requests</h1>
 
 <?php
@@ -71,6 +74,7 @@
     echo "Error: " . $e;
   }
 ?>
+
 <h1>All Teachers</h1>
 <?php 
 try{
