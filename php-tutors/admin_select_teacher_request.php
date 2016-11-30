@@ -61,13 +61,13 @@
         if($myrow['day'] == 2){
         	$day = 'Tuesday';
         }
-		  if($myrow['day'] == 3){
+		    if($myrow['day'] == 3){
         	$day = 'Wednesday';
         }
-		  if($myrow['day'] == 4){
+		    if($myrow['day'] == 4){
         	$day = 'Thursday';
         }
-		  if($myrow['day'] == 5){
+		    if($myrow['day'] == 5){
         	$day = 'Friday';
         }
         $starttime = date("g:i a", strtotime($myrow["start_time"]));

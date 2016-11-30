@@ -47,14 +47,15 @@
 	$statement = $dbh->prepare('SELECT * FROM Request, Teacher WHERE request_id = ? AND teacher_email = email');
 	$statement->bindParam(1, $request_id);
   try {
-    //$st = $dbh->query('SELECT * FROM Request, Teacher WHERE ');
     $statement->execute();
     if ($myrow = $statement->fetch()) {
     	?><h4><?php echo "Name: " . $myrow["name"]; ?></h4>
      	<h4><?php echo "Email: " . $myrow["teacher_email"]; ?></h4>
       <h4><?php echo "School: " . $myrow["site_name"]; ?></h4>
       <h3>Edit Request</h3> <?php
+      $_SESSION['name'] = $myrow["name"];
      	$_SESSION['teacher_email'] = $myrow["teacher_email"];
+      $_SESSION['site_name'] = $myrow["site_name"];
   		if($myrow["day"] == 1){
   			$day = 'Monday';
   			$selected = 1;
