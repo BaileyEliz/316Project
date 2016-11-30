@@ -39,31 +39,21 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  if("" == trim($_POST['email'])){
-    echo "Please choose a teacher to delete.";
+  if("" == trim($_POST['site_name'])){
+    echo "Please choose a site to delete.";
   }      
-  $teacher_email = $_POST["email"];
-  echo $teacher_email;
-	$statement = $dbh->prepare('DELETE FROM Request WHERE teacher_email = ?');
-	$statement->bindParam(1, $teacher_email);
-  try {
-    $statement->execute();
-    echo "<h4>The teacher's requests have been deleted.</h4>";
-  } catch (PDOException $e) {
-     echo "Database error: " . $e->getMessage() . "<br/>";
-     echo "<h4>The teacher's requests were not deleted properly.</h4>";
-     die();
-   }
-   $statement = $dbh->prepare('DELETE FROM Teacher WHERE email = ?');
-   $statement->bindParam(1, $teacher_email);
-  try {
-    $statement->execute();
-    echo "<h4>The teacher has been deleted.</h4>";
-  } catch (PDOException $e) {
-    echo "Database error: " . $e->getMessage() . "<br/>";
-    echo "<h4>The teacher was not deleted properly.</h4>";
-    die();
-  }
+  $site_name = $_POST["site_name"];
+  echo $site_name;
+	// $statement = $dbh->prepare('DELETE FROM Request WHERE name = ?');
+	// $statement->bindParam(1, $site_name);
+ //  try {
+ //    $statement->execute();                                                            //delete requests of teachers at that site, then teachers at
+ //    echo "<h4>The site's teachers' requests have been deleted.</h4>";                 //that site, then the site itself
+ //  } catch (PDOException $e) {
+ //     echo "Database error: " . $e->getMessage() . "<br/>";
+ //     echo "<h4>The teacher's requests were not deleted properly.</h4>";
+ //     die();
+ //   }
  ?>
 
 </body>
