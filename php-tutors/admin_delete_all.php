@@ -31,7 +31,7 @@
   <input type="submit" class="btn btn-primary" value="DELETE ALL">
 </form>
 
-<h3>Delete a single request</h3>
+
 
 <?php
   try {
@@ -44,6 +44,9 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
+  ?>
+  <h3>Delete a single request</h3>
+  <?php
   try {
     $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email ORDER BY request_id');
     if (($myrow = $st->fetch())) {
@@ -51,8 +54,7 @@
 
 <form method="post" action="admin_delete_teacher_request.php">
 <?php
-  echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td></th>";
-      do {
+echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td></th>";      do {
         echo "<tr><td><input type='radio' name='request_id' value='" . $myrow['request_id'] . "'/></td>";
         if($myrow['day'] == 1){
           $day = 'Monday';
@@ -85,6 +87,34 @@
     print "Database error: " . $e->getMessage() . "<br/>";
     die();
   }
-?> 
+  ?>
+  <h3>Delete a single teacher</h3>
+  <?php
+try {
+    $st = $dbh->query('SELECT * FROM Teacher ORDER BY name');
+    if (($myrow = $st->fetch())) {
+?>
+
+<form method="post" action="admin_delete_teacher.php">
+<?php
+  echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Name</b></td><td><b>Email</b></td><td><b>School</b></td></th>";
+      do {
+        echo "<tr><td><input type='radio' name='email' value='" . $myrow['email'] . "'/></td>";
+        echo "<td>" . $myrow['name'] . "</td><td>" . $myrow['email'] . "</td><td>" . $myrow['site_name'] . "</td></tr>";
+      } while ($myrow = $st->fetch());
+      
+?>
+
+<input class='btn btn-primary' type="submit" value="DELETE"/>
+</form>
+<?php
+    } else {
+      echo "There are no teachers in the database.";
+    }
+  } catch (PDOException $e) {
+    print "Database error: " . $e->getMessage() . "<br/>";
+    die();
+  }
+?>
 </body>
 </html>
