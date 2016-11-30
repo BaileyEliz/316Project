@@ -72,6 +72,23 @@
   }
 ?>
 
+<table class='table table-striped table-bordered'>
+  <th>Request ID</th><th>Teacher Name</th><th>Teacher Email</th><th>Site</th><th>Grade Level</th><th>Day of the Week</th><th>Start Time</th><th>End Time</th><th># of Tutors</th><th>Language</th><th>Description</th>
+  <tr>
+    <td><?php echo $_SESSION["request_id"];?></td>
+    <td><?php echo $_SESSION["name"];?></td>
+    <td><?php echo $_SESSION["teacher_email"];?></td>
+    <td><?php echo $_SESSION["site_name"];?></td>
+    <td><?php echo $_POST["grade_level"];?></td>
+    <td><?php echo $_POST["day_of_week"]?></td>
+    <td><?php echo (date("g:i a", strtotime($_POST["start_time"])));?></td>
+    <td><?php echo (date("g:i a", strtotime($_POST["end_time"])));?></td>
+    <td><?php echo $_POST["num_tutors"]?></td>
+    <td><?php echo $_POST["language"];?></td>
+    <td><?php echo $_POST["description"];?></td>
+  </tr>
+</table>
+
 <a href="admin_home.php">Back to Admin Homepage</a>
 <br>
 <a href="admin_select_teacher_request.php">Back to Choose a Request</a>
