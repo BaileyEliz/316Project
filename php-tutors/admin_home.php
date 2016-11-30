@@ -41,7 +41,7 @@
       per student
     </div>
 
-    <a href="admin_download.php">Download tables</a>
+    <a href="admin_download.php">Download some tables</a>
 
     <br><br>
 

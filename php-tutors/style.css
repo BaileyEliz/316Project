@@ -48,7 +48,7 @@ input[id="link_button"] {
 }
 
 .parent:hover {
-  background-color: mediumseagreen;
+  background-color: mediumseagreen !important;
 }
 
 .parent:hover .popup {
@@ -66,6 +66,7 @@ input[id="link_button"] {
 	position: absolute;
     left: 0;
     white-space: nowrap;
+    box-shadow: 0 10px 5px grey;
     z-index: 1;
 }
 
@@ -75,4 +76,7 @@ input[id="link_button"] {
     position: absolute;
     left: 0;
     top: 0;
+}
+
+.time_row {
 }
