@@ -1,6 +1,7 @@
 <?php
    session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Delete</title>
+    <title>Edit Site</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -20,13 +21,12 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-<body>
-  <div class="text-center">
-    <h1>Delete Teacher</h1>
-    <a href="admin_delete_all.php">Back to Delete Page</a>
-    <br>
-    <br>
-  </div>
+  <body>
+    <div class="text-center">
+      <h1>Edit a Site</h1>
+
+      <a href="admin_home.php">Back to Admin Homepage</a>
+    </div>
 
 <?php
   try {
@@ -39,32 +39,30 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  if("" == trim($_POST['email'])){
-    echo "Please choose a teacher to delete.";
-  }      
-  $teacher_email = $_POST["email"];
-  echo $teacher_email;
-	$statement = $dbh->prepare('DELETE FROM Request WHERE teacher_email = ?');
-	$statement->bindParam(1, $teacher_email);
   try {
-    $statement->execute();
-    echo "<h4>The teacher's requests have been deleted.</h4>";
+    $st = $dbh->query('SELECT * FROM Site ORDER BY name');
+    if (($myrow = $st->fetch())) {
+?>
+<form method="post" action="admin_edit_site.php">
+<h4>Select a site below to edit:</h4>
+<?php
+  echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Name</b></td><td><b>Transportation</b></td><td><b>Travel Time (min)</b></td></th>";
+      do {
+        echo "<tr><td><input type='radio' name='name' value='" . $myrow['name'] . "'/></td>";
+        echo "<td>" . $myrow['name'] . "</td><td>" . $myrow['transportation'] . "</td><td>" . $myrow['travel_time'] . "</td></tr>";
+      } while ($myrow = $st->fetch());
+      
+?>
+<input class='btn btn-primary' type="submit" value="SELECT"/>
+</form>
+<?php
+    } else {
+      echo "There are no requests in the database.";
+    }
   } catch (PDOException $e) {
-     echo "Database error: " . $e->getMessage() . "<br/>";
-     echo "<h4>The teacher's requests were not deleted properly.</h4>";
-     die();
-   }
-   $statement = $dbh->prepare('DELETE FROM Teacher WHERE email = ?');
-   $statement->bindParam(1, $teacher_email);
-  try {
-    $statement->execute();
-    echo "<h4>The teacher has been deleted.</h4>";
-  } catch (PDOException $e) {
-    echo "Database error: " . $e->getMessage() . "<br/>";
-    echo "<h4>The teacher was not deleted properly.</h4>";
+    print "Database error: " . $e->getMessage() . "<br/>";
     die();
   }
- ?>
-
+?> 
 </body>
 </html>

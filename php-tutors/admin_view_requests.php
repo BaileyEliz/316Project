@@ -98,9 +98,9 @@ catch (PDOException $e){
 try{
   $st = $dbh->query('SELECT * FROM Site ORDER BY name');
   if(($myrow = $st->fetch())){
-    echo "<table class='table table-striped table-bordered'><th>Site Name</th>";
+    echo "<table class='table table-striped table-bordered'><th>Site Name</th><th>Transportation</th><th>Travel Time (min)</th>";
     do{
-      echo "<tr><td>" . $myrow['name'] . "</td></tr>";
+      echo "<tr><td>" . $myrow['name'] . "</td><td>" . $myrow["transportation"] . "</td><td>" . $myrow["travel_time"] . "</td></tr>";
     } while ($myrow = $st->fetch());
     echo "</table>";
   }
