@@ -242,6 +242,7 @@
 
       $build = "<script type='text/javascript'>";
       $build .= "var styles = {
+        'background-color': 'aquamarine',
         'border-color': '" . "black" . "', 
         'position': 'absolute', 
         'top':'" . (6 * top_margin($array['start_time'])) . "px', 

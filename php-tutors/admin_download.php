@@ -41,5 +41,54 @@
 
   ?>
 
+<?php
+
+  function create_csv($info, $headers, $filename) {
+
+    //unlink($_SERVER['DOCUMENT_ROOT'] . "/php-tutors/csvs_for_download/" . $filename);
+    $new_file = fopen($_SERVER['DOCUMENT_ROOT'] . "/php-tutors/csvs_for_download/" . $filename, "w");
+
+    foreach ($headers as $column) {
+      fwrite($new_file, $column);
+      fwrite($new_file, ",");
+    }
+    fwrite($new_file, "\n");
+
+    foreach ($info as $one_row) {
+      foreach ($one_row as $one_cell) {
+        fwrite($new_file, $one_cell);
+        fwrite($new_file, ",");
+      }
+      fwrite($new_file, "\n");
+    }
+    fclose($new_file);
+  }
+
+  try{
+    // create the all_teachers txt
+    $teachers = $dbh->prepare("SELECT * FROM Teacher");
+    $teachers->execute();
+    $all_teachers = $teachers->fetchAll(PDO::FETCH_ASSOC);
+    $teachers_headers = array("Site", "Name", "Email");
+    create_csv($all_teachers, $teachers_headers, "all_teachers.txt");
+
+    // create the all_requests txt
+    $requests = $dbh->prepare("SELECT * FROM Request");
+    $requests->execute();
+    $all_requests = $requests->fetchAll(PDO::FETCH_ASSOC);
+    $requests_headers = array("Site", "Name", "Email");
+    create_csv($all_requests, $requests_headers, "all_requests.txt");
+
+  } catch (PDOException $e) {
+    print "Database error: " . $e->getMessage() . "<br/>";
+    die();
+  }
+
+?>
+
+<a href="csvs_for_download/all_teachers.txt" target="_blank">Teachers</a>
+<br>
+<a href="csvs_for_download/all_requests.txt" target="_blank">Requests</a>
+
 </body>
 </html>
