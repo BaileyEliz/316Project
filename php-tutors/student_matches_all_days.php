@@ -226,7 +226,7 @@
     $day_name = $weekdaze_names[$x];
     $daily_maximum = $weekdaze_maximums[$x];
     for ($i = 0; $i < count($day_array); $i++){
-      echo wordless_html_print((($x * 100) + $i), $day_array[$i]);
+      echo html_print((($x * 100) + $i), $day_array[$i]);
       $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name);
       echo $returns[0];
       $weekdaze_layouts[$x] = $returns[1];

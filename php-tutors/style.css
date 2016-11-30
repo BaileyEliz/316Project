@@ -42,3 +42,37 @@ input[id="link_button"] {
      text-decoration: underline;
      cursor: pointer; 
 }
+
+.parent .popup {
+  display: none;
+}
+
+.parent:hover {
+  background-color: mediumseagreen;
+}
+
+.parent:hover .popup {
+  display: block;
+}
+
+.parent {
+    overflow: visible;
+    position: relative;
+    width: 100%;
+}
+
+.popup {
+	background-color: mediumseagreen;
+	position: absolute;
+    left: 0;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.clickme {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
