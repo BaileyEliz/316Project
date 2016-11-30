@@ -62,6 +62,10 @@
 
     <br><br>
 
+    <a href="admin_select_site.php">Edit site information</a>
+
+    <br><br>
+
     <a href="admin_add_teacher_request.php">Add an individual request</a>
 
     <br><br>
