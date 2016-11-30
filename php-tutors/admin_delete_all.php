@@ -50,10 +50,10 @@
   try {
     $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email ORDER BY request_id');
     if (($myrow = $st->fetch())) {
-      echo "<h3>Delete a Request</h3";
 ?>
 
 <form method="post" action="admin_delete_teacher_request.php">
+  <h3>Delete a Request</h3>
 <?php
 echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td></th>";      do {
         echo "<tr><td><input type='radio' name='request_id' value='" . $myrow['request_id'] . "'/></td>";
@@ -99,15 +99,15 @@ try {
 ?>
 
 <form method="post" action="admin_delete_teacher.php">
+
 <?php
   echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Name</b></td><td><b>Email</b></td><td><b>School</b></td></th>";
       do {
         echo "<tr><td><input type='radio' name='email' value='" . $myrow['email'] . "'/></td>";
         echo "<td>" . $myrow['name'] . "</td><td>" . $myrow['email'] . "</td><td>" . $myrow['site_name'] . "</td></tr>";
       } while ($myrow = $st->fetch());
-      echo "<h3>Delete a Teacher</h3>";
 ?>
-
+<h3>Delete a Teacher</h3>
 <input class='btn btn-primary' type="submit" value="DELETE"/>
 </form>
 
