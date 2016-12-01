@@ -135,7 +135,7 @@ catch (PDOException $e){
 <h1>Tutor Availability</h1>
 <?php
 try{
-  $st = $dbh->query('SELECT * FROM TutorAvailable ORDER BY tutor_id');
+  $st = $dbh->query('SELECT * FROM TutorAvailable ORDER BY tutor_id, day');
   if(($myrow = $st->fetch())){
     echo "<table class='table table-striped table-bordered'><th>Tutor ID</th><th>Day</th><th>Start Time</th><th>End Time</th>";
     do{
