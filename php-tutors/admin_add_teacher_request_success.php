@@ -47,7 +47,7 @@
       // if the site does not exist, add a new site
       if(count($foreign_key_check_site->fetchAll(PDO::FETCH_ASSOC)) < 1) {
         $site_insert_statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?)");
-        $site_insert_statement->execute(array($_POST["school"], "Car", 30));
+        $site_insert_statement->execute(array($_POST["school"], $_POST["transportation_type"], $_POST["transportation_time"]));
       }
       // add the teacher
       $teacher_insert_statement = $dbh->prepare("INSERT INTO Teacher VALUES (?, ?, ?)");

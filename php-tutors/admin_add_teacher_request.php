@@ -43,6 +43,18 @@
 			<input type="text" class="form-control" name="school" required>
 		</div>
 	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="transportation_type">Transportation Options:</label>
+			<input type="text" class="form-control" name="transportation_type" value="Car" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<div class="col-xs-4">
+			<label for="transportation_time">Minutes to Budget for Transportation:</label>
+			<input type="number" class="form-control" name="transportation_time" min="5" max="60" step="5" value="30" required>
+		</div>
+	</div>
 	<h3>Request</h3>
 	<div class="form-group">
 		<div class="col-xs-4">
