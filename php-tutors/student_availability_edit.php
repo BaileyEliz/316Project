@@ -71,6 +71,37 @@ try{
     echo "<h4>The availability was not removed properly.</h4>";
   }
 }
+ if (isset($_POST['add']) ) {
+    $addz = $dbh->prepare("INSERT INTO TutorAvailable VALUES (?, ?, ?, ?)");
+  $values = array();
+  $day = 0;
+  if($_POST["day_of_week"] == "Monday"){
+    $day = 1;
+  }
+  if($_POST["day_of_week"] == "Tuesday"){
+    $day = 2;
+  }
+  if($_POST["day_of_week"] == "Wednesday"){
+    $day = 3;
+  }
+  if($_POST["day_of_week"] == "Thursday"){
+    $day = 4;
+  }
+  if($_POST["day_of_week"] == "Friday"){
+    $day = 5;
+  }
+  $values[] = $user;
+  $values[] = $day;
+  $values[] = $_POST["start_time"];
+  $values[] = $_POST["end_time"];
+
+  try{
+    $addz->execute($values);
+  }  catch (PDOException $e){
+    echo $e->getMessage() . "<br/>";
+    echo "<h4>The request was not updated properly.</h4>";
+  }
+}
         // $check = $dbh->query('SELECT tutor_id FROM TUTORINFO WHERE tutor_id = 'jtb43'');
 //        $results = $check->fetch();
 //        echo $results;
@@ -122,8 +153,8 @@ try{
     ?>
     <form action='student_availability_edit.php' method='post'>
  
- <?php echo $day_array[$day]; ?>
- <?php echo $starttime; ?>
+ <?php echo $day_array[$day]; ?> 
+ <?php echo $starttime; ?> -
  <?php echo $endtime; ?>
 	<input type='hidden' name='day' value='<?php echo $day_array[$day]; ?>'>
       
@@ -161,7 +192,7 @@ try{
 
     <h2 class="text-center">Add a Time Slot</h2>
 
-<form action="student_availability_add_success.php" method="post">
+<form action="student_availability_edit.php" method="post">
   Day of the Week: <select name="day_of_week">
     <option value="Monday">Monday</option>
     <option value="Tuesday">Tuesday</option>
@@ -172,7 +203,7 @@ try{
   Start Time: <input type="time" name="start_time" required><br> <!-- type time doesn't work with Firefox or IE10 and earlier-->
   End Time: <input type="time" name="end_time" required><br>
   
-  <input type="submit" value="Submit Availability">
+  <input type="submit" name='add' value="Submit Availability">
 </form>
 
 
