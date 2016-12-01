@@ -33,28 +33,31 @@
         print "Error connecting to the database: " . $e->getMessage() . "<br/>";
         die();
       }
+      
+        $statement = $dbh->prepare("SELECT * FROM TutorInfo WHERE tutor_id = ?");
+        $statement->bindParam(1, $user);
+      try{
+        $statement->execute();
+        if(($myrow = $statement->fetch())){
+          $student_name = $myrow["name"];
+        }
+      }catch (PDOException $e){
+        echo "Error: " . $e;
+      }
+      
     ?>
 
     <h1 class="text-center">Student Profile</h1>
 
     <h2 class="text-center">Student Information</h2>
 
-    <div class="name">
-      Student ID: <?= $user?>
+    <div class="name text-center">
+      <h4>Student Name: <?= $student_name?></h4>
+      <h4>Student ID: <?= $user?></h4>
+      <br>
+      Edit your information <a href="student_info_edit.php">here</a>
     </div>
 
-    <div class="car">
-      Has car?
-    </div>
-
-    <div class="edit">
-        Welcome to your home.
-    </div>
-
-    <div class="temporary">
-        Edit your information
-      <a href="student_info_edit.php">here</a>
-    </div>
     <div class="text-center">
       <h2>Availability</h2> 
       <a href="student_availability_edit.php">Edit Availability</a>
@@ -170,8 +173,10 @@
       }
 
     ?>
-
-    <h2 class="text-center">Current Bookings</h2>
+    <div class="text-center">
+      <h2>Bookings</h2>
+      <p>Click <a href="student_matches_all_days.php">here </a>to view all matches and add bookings.</p>
+    </div>
 
 	<?php
 		try {
@@ -242,19 +247,10 @@
  
 	?>
 
-
+    <br>
     <div class="edit">
         Do we want to add a pending something? Can display here.
     </div>
-
-    <h2 class="text-center">Add Bookings</h2>
-
-    <div class="temporary">
-        View your matches
-      <a href="student_matches_all_days.php">here</a>
-      <br>
-      <br>
-    </div>
-
+    <br>
   </body>
 </html>

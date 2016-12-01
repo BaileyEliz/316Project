@@ -96,7 +96,7 @@
 			
          
       </div>
-      <div class="text-center"><br>New to the site? Create a profile <a href = "student_info_edit.php" title = "Create_profile">here!</a></div>
+      <div class="text-center"><br>New to the site? Create a profile <a href = "student_info_create.php" title = "Create_profile">here!</a></div>
     </div>
 
   </body>
