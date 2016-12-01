@@ -48,6 +48,8 @@
 <body>
 
 <h1>Student Information: <?=$student ?></h1>
+<a href="student_profile_home.php">Back to Profile</a>
+<p></p>
 
 <!-- Bootstrap Framework -->
 
@@ -235,6 +237,5 @@
 
 ?>
 
-Go <a href='student_profile_home.php'>back</a>.
 </body>
 </html>

@@ -124,20 +124,14 @@ try {
 ?>
 		
 	<form action = "student_matches_book_request.php" method = "post">
-    		<input type="submit" name="book" value = "book" />
+    		<input type="submit" class="btn btn-primary"name="book" value = "Book" />
     </form>  
 	
-	
-    <div class="edit"> 
-        From here I can either click a button to 
-        <a href="student_matches_book_request.php">book</a>
-    </div>
+	  <br>
+    <a href="student_profile_home.php">Back to Profile</a>
+    <br>
+    <a href="student_matches_all_days.php">Back to Matches</a>
 
-    <div class="temporary">
-        Or I can go
-      <a href="student_profile_home.php">back</a>
-        right now to my profile, hopefully later to my calendar.
-    </div>
 
 </body>
 </html>
