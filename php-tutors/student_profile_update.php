@@ -14,7 +14,7 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <title>Profile Created</title>
+    <title>Profile Updated</title>
 </head>
 
 <body>
@@ -23,7 +23,7 @@ Do we want to keep this page? Or just connect them directly to their home page?
 
 <br>
 
-Profile created successfully!
+Profile updated successfully!
 
 <a href="student_login.php">Back to Login </a>
 
@@ -38,14 +38,15 @@ Profile created successfully!
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  	$statement = $dbh->prepare("INSERT INTO TutorInfo VALUES (?, ?)");
-  	$name = $_POST["name"];
-	  $netid = $_POST["netid"];
-	 try{		
-		  $statement->execute(array($netid, $name));
-	 } catch (PDOException $e){
-        echo $e->getMessage() . "<br/>";
-     }
+    $statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ? WHERE tutor_id = ?");
+    $name = $_POST["name"];
+    $user = $_SESSION["username"];
+    try{
+      $statement->execute(array($user, $name, $user));
+    } catch (PDOException $e){
+      echo $e->getMessage() . "<br/>";
+    }
+  
 ?>
 
 </body>
