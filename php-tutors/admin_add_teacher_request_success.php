@@ -22,7 +22,7 @@
     <![endif]-->
   </head>
 <body>
-<h1>Edit a Request</h1>
+<h1>Added Request</h1>
 
 <?php
   try {
@@ -35,7 +35,30 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  $st = $dbh->prepare("UPDATE Request SET day = ?, grade_level = ?, start_time = ?, end_time = ?, teacher_email = ?, num_tutors = ?, language = ?, description = ?, is_hidden = ? WHERE request_id = ?");
+
+  try {
+    $foreign_key_check_teacher = $dbh->prepare("SELECT * FROM Teacher WHERE email = ?");
+    $foreign_key_check_teacher->execute(array($_POST["email"]));
+    // if there is no teacher with this email, add a new teacher
+    if(count($foreign_key_check_teacher->fetchAll(PDO::FETCH_ASSOC)) < 1) {
+      // when adding a teacher, we need to make sure that the site exists
+      $foreign_key_check_site = $dbh->prepare("SELECT * FROM Site WHERE name = ?");
+      $foreign_key_check_site->execute(array($_POST["school"]));
+      // if the site does not exist, add a new site
+      if(count($foreign_key_check_site->fetchAll(PDO::FETCH_ASSOC)) < 1) {
+        $site_insert_statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?)");
+        $site_insert_statement->execute(array($_POST["school"], "Car", 30));
+      }
+      // add the teacher
+      $teacher_insert_statement = $dbh->prepare("INSERT INTO Teacher VALUES (?, ?, ?)");
+      $teacher_insert_statement->execute(array($_POST["school"], $_POST["name"], $_POST["email"]));
+    }
+  } catch (PDOException $e) {
+    print "Error in the database: " . $e->getMessage() . "<br/>";
+    die();
+  }
+
+  $st = $dbh->prepare("INSERT INTO Request VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   $values = array();
   if($_POST["day_of_week"] == "Monday"){
@@ -58,7 +81,7 @@
   $values[] = $_POST["grade_level"];
   $values[] = $_POST["start_time"];
   $values[] = $_POST["end_time"];
-  $values[] = $_SESSION["teacher_email"];
+  $values[] = $_POST["email"];
   $values[] = $_POST["num_tutors"];
   $values[] = $_POST["language"];
   $values[] = $_POST["description"];
@@ -68,8 +91,6 @@
   } else {
     $values[] = "FALSE";
   }
-  
-  $values[] = $_SESSION["request_id"];
 
   try{
   	$st->execute($values);
@@ -83,10 +104,10 @@
 <table class='table table-striped table-bordered'>
   <th>Request ID</th><th>Teacher Name</th><th>Teacher Email</th><th>Site</th><th>Grade Level</th><th>Day of the Week</th><th>Start Time</th><th>End Time</th><th># of Tutors</th><th>Language</th><th>Description</th><th>Is Hidden</th>
   <tr>
-    <td><?php echo $_SESSION["request_id"];?></td>
-    <td><?php echo $_SESSION["name"];?></td>
-    <td><?php echo $_SESSION["teacher_email"];?></td>
-    <td><?php echo $_SESSION["site_name"];?></td>
+    <td>calculated</td>
+    <td><?php echo $_POST["name"];?></td>
+    <td><?php echo $_POST["email"];?></td>
+    <td><?php echo $_POST["school"];?></td>
     <td><?php echo $_POST["grade_level"];?></td>
     <td><?php echo $_POST["day_of_week"]?></td>
     <td><?php echo (date("g:i a", strtotime($_POST["start_time"])));?></td>
@@ -100,7 +121,7 @@
 
 <a href="admin_home.php">Back to Admin Homepage</a>
 <br>
-<a href="admin_select_teacher_request.php">Back to Choose a Request</a>
+<a href="admin_add_teacher_request.php">Add Another Request</a>
 <br>
 
 </body>

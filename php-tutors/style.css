@@ -62,9 +62,9 @@ input[id="link_button"] {
 }
 
 .popup {
-	background-color: mediumseagreen;
+	background-color: white;
 	position: absolute;
-    left: 0;
+    left: 100%;
     white-space: nowrap;
     box-shadow: 0 10px 5px grey;
     z-index: 1;

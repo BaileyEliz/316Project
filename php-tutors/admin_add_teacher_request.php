@@ -24,7 +24,7 @@
 	<a href="admin_home.php">Back to Admin Homepage</a>
 </div>
 
-<form class='form-horizontal' action="admin_edit_teacher_request_success.php" method="post" id="requestform">
+<form class='form-horizontal' action="admin_add_teacher_request_success.php" method="post" id="requestform">
 	<div class="form-group">
 		<div class="col-xs-4">
 			<label for="name">Name:</label>
@@ -100,7 +100,17 @@
 			<textarea class="form-control" rows="4" cols="30" name="description" form="requestform"></textarea><br>
 		</div>
 	</div>
-	<input type="submit" class="btn btn-primary" value="Submit Request">
+	<div class="form-group">
+        <div class="col-xs-4">
+          <label for="num_tutors">Is Hidden:</label>
+          <select class="form-control" name="is_hidden">
+             <option <?php if($myrow["is_hidden"]){echo ("selected");}?> value="Yes">Yes</option>
+             <option <?php if(!$myrow["is_hidden"]){echo ("selected");}?> value="No">No</option>
+          </select>
+        </div>
+    </div>
+    <input type="hidden" value="-1" name="request_id"/>
+	<input type="submit" class="btn btn-primary" value="Submit Request"/>
 </form>
 
 </body>

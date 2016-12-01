@@ -100,7 +100,7 @@
 
   $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?)");
   $statement1 = $dbh->prepare("INSERT INTO Teacher VALUES(?, ?, ?)");
-  $statement2 = $dbh->prepare("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
+  $statement2 = $dbh->prepare("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
   while(($csvData = fgetcsv($handle, $length, $separator)) !== false){
 
@@ -180,6 +180,7 @@
           $statement2values[] = intval($num_tutors);
           $statement2values[] = $language;
           $statement2values[] = $description;
+          $statement2values[] = "FALSE";
         try {
           $statement2->execute($statement2values);
         }
