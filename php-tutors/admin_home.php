@@ -89,6 +89,7 @@
     <div class="login">
       Edit bookings/pendings/etc.
     </div>
+     <a href="admin_approval.php">Approve or Delete Bookings</a>
 
 </body>
 </html>
