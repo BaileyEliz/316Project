@@ -53,6 +53,7 @@
 	(
  	name VARCHAR(256) NOT NULL,
  	transportation VARCHAR(256) NOT NULL,
+  travel_time INTEGER,
 	 PRIMARY KEY (name)
 	);');
   }

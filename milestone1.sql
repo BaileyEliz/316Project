@@ -28,6 +28,7 @@ CREATE TABLE Site
 (--site_id INTEGER NOT NULL,
  name VARCHAR(256) NOT NULL,
  transportation VARCHAR(256) NOT NULL,
+ travel_time INTEGER,
  --PRIMARY KEY (site_id)
  PRIMARY KEY (name)
 );

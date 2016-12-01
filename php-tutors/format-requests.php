@@ -98,7 +98,7 @@
 
   //$statement = $dbh->prepare("INSERT INTO Data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
-  $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?)");
+  $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?)");
   $statement1 = $dbh->prepare("INSERT INTO Teacher VALUES(?, ?, ?)");
   $statement2 = $dbh->prepare("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -128,6 +128,7 @@
   	// }
     $values[] = $school;
     $values[] = 'car';
+    $values[] = 30;
     try {
       $statement->execute($values);
     }

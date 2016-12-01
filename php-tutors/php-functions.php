@@ -95,11 +95,11 @@
         return "there's nothing here!";
       }
       $request_id = $array['request_id'];
-      $build = "<div id ='option_" . $index . "'>";
-      $build .= $array['name'] . "</br>" . $array['site_name'] . "</br>";
+      $build = "<div class='parent' id ='option_" . $index . "'>";
       $build .= "<form method=\"post\" action=\"student_matches_request_details.php\">";
       $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
-      $build .= "<input type=\"submit\" value=\"details\" id=\"link_button\">";
+      $build .= "<div class='clickme' onclick='this.parentNode.submit();'></div>";
+      $build .= "<div class='popup' onclick='this.parentNode.submit();'>Teacher: " . $array['name'] . "</br>Site: " . $array['site_name'] . "</br>" . "</div>";
       $build .= "</form>";
       $build .= "</div>";
       return $build;
@@ -242,6 +242,7 @@
 
       $build = "<script type='text/javascript'>";
       $build .= "var styles = {
+        'background-color': 'aquamarine',
         'border-color': '" . "black" . "', 
         'position': 'absolute', 
         'top':'" . (6 * top_margin($array['start_time'])) . "px', 
