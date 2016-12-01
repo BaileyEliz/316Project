@@ -27,11 +27,11 @@
   }
 
   if (!isset($_POST['day'])) {
-    echo "You need to specify a day. Please <a href='bootstrap-test.php'>try again</a>.";
+    echo "You need to specify a day. Please <a href='student_matches_all_days.php'>try again</a>.";
     die();
   }
   if (!isset($_POST['student'])) {
-    echo "You need to specify a student. Please <a href='bootstrap-test.php'>try again</a>.";
+    echo "You need to specify a student. Please <a href='student_login.php'>try again</a>.";
     die();
   }
   $day = $_POST['day'];
@@ -46,6 +46,8 @@
 ?>
 
 <h1>Student Information: <?= $student ?></h1>
+<a href="student_profile_home.php">Back to Profile</a>
+<p></p>
 
 <!-- Bootstrap Framework -->
 
