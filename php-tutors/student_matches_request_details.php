@@ -22,7 +22,7 @@
 
     <?php
       if (!isset($_POST['request_id'])) {
-      echo "You need to specify a request. Please <a href='all-students.php'>try again</a>.";
+      echo "Please specify a request. <a href='student_matches_all_days.php'>Try again</a>";
       die();
       }
       $request_id = $_POST['request_id'];
@@ -36,7 +36,7 @@
 
 <h1>Request Details: <?=$request_id ?></h1>
 
-<div class="container-fluid">
+<!--<div class="container-fluid">
   <div class="row">
     <div class="col-md-6">Details
       <div class="row">
@@ -47,7 +47,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>-->
 
 <?php
 
@@ -101,8 +101,8 @@ try {
         echo "Site: " . $site_name . "<br/>";
         echo "Transportation: " . $transportation . "<br/>";
         echo "Grade Level: " . $details['grade_level'] . "<br/>";
-        echo "Start Time: " . $start_time . "<br/>";
-        echo "End Time: " . $end_time . "<br/>";
+        echo "Start Time: " . date("g:i a", strtotime($start_time)) . "<br/>";
+        echo "End Time: " . date("g:i a", strtotime($end_time)) . "<br/>";
         echo "Number of Tutors: " . $details['num_tutors'] . "<br/>";
         echo "Language: " . $details['language'] . "<br/>";
         echo "Description: " . $details['description'] . "<br/>";

@@ -13,10 +13,6 @@ session_start();
 
 <center><h1>PFS Database Demo</h1></center>
 
-<a href="admin_home.php">Administrators</a>
-
-<br>
-
 <?php
 if($_SESSION['username']){
 echo "Username: ". $_SESSION['username'] . ".<br>" . " Logged in!";

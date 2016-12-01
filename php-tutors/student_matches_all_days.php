@@ -44,7 +44,7 @@
 ?>
 
 <link rel="stylesheet" type="text/css" href="style.css">
-<title>Student Information: <?= $student ?></title></head>
+<title>Matches</title></head>
 <body>
 
 <h1>Student Information: <?=$student ?></h1>

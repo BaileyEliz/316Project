@@ -13,7 +13,7 @@
 
     <link rel="stylesheet" type="text/css" href="style.css">
 
-    <title>Hey Monday</title>
+    <title>Matches</title>
   </head>
 
 <body>

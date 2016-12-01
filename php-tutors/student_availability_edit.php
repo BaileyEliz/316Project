@@ -124,10 +124,11 @@ try{
 
   </head>
   <body>
-
-    <h1 class="text-center">Student Availability Edited Here!</h1>
-
-    <h2 class="text-center">Current Availability</h2>
+    <div class="text-center">
+      <h1 >Student Availability Edited Here!</h1>
+      <a href="student_profile_home.php">Back to Profile</a>
+    </div>
+      <h2 class="text-center">Current Availability</h2>
 <table class="table table-striped table-bordered">
 <tr>
     <th>Day</th>
@@ -221,7 +222,8 @@ try{
   
   <input type="submit" class="btn btn-primary" name='add' value="Submit Availability">
 </form>
-
+<br>
+<br>
 
 <!--
     <div class="name">
@@ -238,12 +240,6 @@ try{
         <a href="student_availability_edit.php">here</a>
     </div>
 -->
-    <h2 class="text-center">Go Back to your Profile</h2>
-
-    <div class="save">
-        When I click this button I go back to my profile
-        <a href="student_profile_home.php">here</a>
-    </div>
 
   </body>
 </html>

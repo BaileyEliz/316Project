@@ -26,15 +26,25 @@
     <a href="student_login.php">Back to Login</a>
     <br>
 
-    <form action="student_profile_upload.php" method="post">
-      Name: <input type="text" name="name" required><br>
-      NetID (Username): <input type="text" name="netid" required><br>
+    <form class="form-horizontal" action="student_profile_upload.php" method="post">
+      <div class="form-group">
+        <div class="col-xs-4">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" name="name" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-xs-4">
+          <label for="netid">NetID (Username):</label>
+          <input type="text" class="form-control" name="netid" required>
+        </div>
+      </div>
       <div class="car">Do you have a car?</div>
       <div class="save">
         When I click the save button this info writes to the database and I'm directed
         <a href="student_profile_home.php">here</a>
       </div>
-    <input type="submit" value="Submit Profile">
+    <input type="submit" class="btn btn-primary" value="Submit Profile">
     </form>
 
   </body>

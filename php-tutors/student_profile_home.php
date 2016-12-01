@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>home</title>
+    <title>Student Home</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -40,7 +40,7 @@
     <h2 class="text-center">Student Information</h2>
 
     <div class="name">
-      Student Name: <?= $user?>
+      Student ID: <?= $user?>
     </div>
 
     <div class="car">
@@ -55,8 +55,11 @@
         Edit your information
       <a href="student_info_edit.php">here</a>
     </div>
-
-    <h2 class="text-center">Availability</h2>
+    <div class="text-center">
+      <h2>Availability</h2> 
+      <a href="student_availability_edit.php">Edit Availability</a>
+    </div>
+    <br>
 
 <div class="container-fluid">
   <div class="row">
@@ -168,30 +171,68 @@
 
     ?>
 
-    <div class="temporary">
-        Edit your availability
-      <a href="student_availability_edit.php">here</a>
-    </div>
-
     <h2 class="text-center">Current Bookings</h2>
-        <div class="edit">
-        	These are your current bookings. 
-    	</div>
+
 	<?php
 		try {
       		$booking_select = $dbh->prepare(
       				"SELECT *
-      				FROM Bookings
-      				 WHERE BOOKINGS.tutor_id = ?");
+      				FROM Bookings, Teacher
+      				 WHERE Bookings.tutor_id = ? AND Teacher.email = Bookings.teacher_email");
 
       		$booking_select->execute(array($user));
       		$all_bookings = $booking_select->fetchAll(PDO::FETCH_ASSOC);
       		foreach ($all_bookings as $books){
-      				echo "<br/>";
-					foreach($books as $key => $value)
-					{
-  						echo $key." : ". $value."<br/>";
-					}
+      		  echo "<br/>";
+					  foreach($books as $key => $value){
+              if($key == "day"){
+                if($value == 1){
+                  $booking_day = "Day: Monday<br/>";
+                }
+                if($value == 2){
+                  $booking_day = "Day: Tuesday<br/>";
+                }
+                if($value == 3){
+                  $booking_day = "Day: Wednesday<br/>";
+                }
+                if($value == 4){
+                  $booking_day = "Day: Thursday<br/>";
+                }
+                if($value == 5){
+                  $booking_day = "Day: Friday<br/>";
+                }
+              }
+              if($key == "teacher_email"){
+                $teacher_email = "Email: " . $value . "<br/>";
+              }
+              if($key == "start_time"){
+                $booking_start = "Start Time: " . date("g:i a", strtotime($value)) . "<br/>";
+              }
+              if($key == "end_time"){
+                $booking_end = "End Time: " . date("g:i a", strtotime($value)) . "<br/>";
+              }
+              if($key == "site_name"){
+                $booking_site = "School: " . $value . "<br/>";
+              }
+              if($key == "name"){
+                $booking_teacher = "Teacher: " . $value . "<br/>";
+              }
+              if($key == "isapproved"){
+                if($value == "false"){
+                  $booking_approved = "Approved?: No<br/>";
+                }
+                else{
+                  $booking_approved = "Approved?: Yes<br/>";
+                }
+              }
+					  }
+            echo $booking_site;
+            echo $booking_teacher;
+            echo $teacher_email;
+            echo $booking_day;
+            echo $booking_start;
+            echo $booking_end;
+            echo $booking_approved;
       		}
 
   		} catch (PDOException $e) {
@@ -211,6 +252,8 @@
     <div class="temporary">
         View your matches
       <a href="student_matches_all_days.php">here</a>
+      <br>
+      <br>
     </div>
 
   </body>
