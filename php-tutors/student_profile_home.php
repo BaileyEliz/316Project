@@ -174,10 +174,33 @@
     </div>
 
     <h2 class="text-center">Current Bookings</h2>
+        <div class="edit">
+        	These are your current bookings. 
+    	</div>
+	<?php
+		try {
+      		$booking_select = $dbh->prepare(
+      				"SELECT *
+      				FROM Bookings
+      				 WHERE BOOKINGS.tutor_id = ?");
 
-    <div class="edit">
-        These are your current bookings.
-    </div>
+      		$booking_select->execute(array($user));
+      		$all_bookings = $booking_select->fetchAll(PDO::FETCH_ASSOC);
+      		foreach ($all_bookings as $books){
+      				echo "<br/>";
+					foreach($books as $key => $value)
+					{
+  						echo $key." : ". $value."<br/>";
+					}
+      		}
+
+  		} catch (PDOException $e) {
+    		print "Database error: " . $e->getMessage() . "<br/>";
+    		die();
+  		}
+ 
+	?>
+
 
     <div class="edit">
         Do we want to add a pending something? Can display here.

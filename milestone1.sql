@@ -99,6 +99,7 @@ teacher_email VARCHAR(256) NOT NULL,
 day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
 start_time TIME(0) NOT NULL,
 end_time TIME(0) NOT NULL,
+isApproved VARCHAR(256), 
 PRIMARY KEY (tutor_id, teacher_email, day, start_time, end_time)
 );
 
@@ -172,7 +173,7 @@ SELECT * FROM Request;
 INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None', '', FALSE);
 SELECT * FROM Request;
 
-INSERT INTO Bookings VALUES('bew21', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM');
+INSERT INTO Bookings VALUES('bew21', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM', 'false');
 
 -- INSERT INTO Matches VALUES('bew21', 2);
 -- INSERT INTO Matches VALUES('cg1', 5);

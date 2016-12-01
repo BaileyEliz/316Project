@@ -66,7 +66,7 @@
 			
 		}else{
 		    echo "<br/>";
-			echo "Nah!";
+			echo "Nah !";
 		}
 		
 	} catch (PDOException $e){
