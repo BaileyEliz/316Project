@@ -30,6 +30,55 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
+
+//post actions if an availability was just removed
+
+ if (isset($_POST['remove']) ) {
+        $input_name = $_POST['username'];
+        //echo $input_name;
+        
+      $remove_avail = $dbh->prepare(
+        "DELETE
+        FROM TutorAvailable
+        WHERE TutorAvailable.tutor_id = ? and TutorAvailable.day = ? and TutorAvailable.start_time = ?");
+
+
+      if($_POST["day"] == "Monday"){
+    $day = 1;
+  }
+  if($_POST["day"] == "Tuesday"){
+    $day = 2;
+  }
+  if($_POST["day"] == "Wednesday"){
+    $day = 3;
+  }
+  if($_POST["day"] == "Thursday"){
+    $day = 4;
+  }
+  if($_POST["day"] == "Friday"){
+    $day = 5;
+  }
+       // $st = $dbh->prepare("INSERT INTO TutorAvailable VALUES tutor_id = ?, day = ?, start_time = ?, end_time = ?");
+        $values = array();
+        $values[] = $user;
+        $values[] = $day;
+        $values[] = $_POST["start_time"];
+
+try{
+    $remove_avail->execute($values);
+  }  catch (PDOException $e){
+    echo $e->getMessage() . "<br/>";
+    echo "<h4>The availability was not removed properly.</h4>";
+  }
+}
+        // $check = $dbh->query('SELECT tutor_id FROM TUTORINFO WHERE tutor_id = 'jtb43'');
+//        $results = $check->fetch();
+//        echo $results;
+
+  //end justin's stuff
+
+
+//start displaying current availability
   $student_avails = $dbh->prepare(
       "SELECT *
       FROM TutorAvailable
@@ -37,7 +86,6 @@
   
   $student_avails->execute(array($user));
   $student_values = $student_avails->fetchAll(PDO::FETCH_ASSOC);
-
   include 'php-functions.php';
 ?>
 
@@ -66,37 +114,47 @@
       "DELETE
       FROM TutorAvailable
       WHERE TutorAvailable.tutor_id = ? and TutorAvailable.day = ? and TutorAvailable.start_time = ?");
-
     //$remove_avail->execute(array($user, $day, $starttime));
     //$student_values = $student_avails->fetchAll(PDO::FETCH_ASSOC);
+   // echo "<tr><td>" . $day . "</td><td>" . $starttime . "</td><td>" . $endtime . "</td><td href='student_availability_edit.php'>Remove</td></tr>";
+    
+    $day_array = ["","Monday","Tuesday", "Wednesday", "Thursday", "Friday"];
+    ?>
+    <form action='student_availability_edit.php' method='post'>
+ 
+ <?php echo $day_array[$day]; ?>
+ <?php echo $starttime; ?>
+ <?php echo $endtime; ?>
+	<input type='hidden' name='day' value='<?php echo $day_array[$day]; ?>'>
+      
 
-    echo "<tr><td>" . $day . "</td><td>" . $starttime . "</td><td>" . $endtime . "</td><td href='student_availability_edit.php'>Remove</td></tr>";
-
+      <input type='hidden' name='start_time' value='<?php echo $starttime; ?>'>
+  
+      <input type='hidden' name='end_time' value=  '<?php $endtime; ?> '>
+    
+      <button name='remove'>Remove</button>
+    </form>
+    <br/>
+    <?php
     //<!--TODO: actually delete the entry! should maybe be with $remove_avail. parameters might be wrong though so check if it is start_time or something else, etc-->
 
 }
-
-
   ?>
 </table>
 <!--
     <div class="name">
       Day
     </div>
-
     <div class="name">
       Time start
     </div>
-
     <div class="name">
       Time end
     </div>
-
     <div class="save">
         When I click the remove button this info is deleted from the database and the page is refreshed
         <a href="student_availability_edit.php">here</a>
     </div>
-
 -->
 
 
@@ -122,15 +180,12 @@
     <div class="name">
       Day
     </div>
-
     <div class="name">
       Time start
     </div>
-
     <div class="name">
       Time end
     </div>
-
     <div class="save">
         When I click the save button this info writes to the database and the page is refreshed
         <a href="student_availability_edit.php">here</a>
