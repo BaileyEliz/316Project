@@ -78,7 +78,11 @@
     }
 
     function top_margin($time) {
-      return minutes_different("08:00:00", $time);
+      $time_hour = intval(substr($time, 0, 2));
+      if ($time_hour >= 8) {
+        return minutes_different("08:00:00", $time);
+      }
+      return minutes_different("08:00:00", "08:00:00");
     }
 
     function wordless_html_print($index, $array) {
@@ -162,8 +166,9 @@
 
       $build = "<script type='text/javascript'>";
       $build .= "var styles = {
-        'border-color': '" . "black" . "', 
-        'position': 'absolute', 
+        'background-color': 'aquamarine',
+        'border-color': '" . "black" . "',
+        'position': 'absolute',
         'top':'" . (top_margin($array['start_time'])) . "px', 
         'height':'" . (minutes_different($array['start_time'], $array['end_time'])) ."px',
         'width':'100%',
@@ -213,32 +218,6 @@
           }
           $temp_minute = 0;
       }
-
-      $colors = array(
-        "red", 
-        "orange", 
-        "yellow", 
-        "green", 
-        "blue", 
-        "violet",
-        "red", 
-        "orange", 
-        "yellow", 
-        "green", 
-        "blue", 
-        "violet",
-        "red", 
-        "orange", 
-        "yellow", 
-        "green", 
-        "blue", 
-        "violet",
-        "red", 
-        "orange", 
-        "yellow", 
-        "green", 
-        "blue", 
-        "violet" );
 
       $build = "<script type='text/javascript'>";
       $build .= "var styles = {

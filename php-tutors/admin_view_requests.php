@@ -38,7 +38,7 @@
   try {
     $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email ORDER BY Teacher.name');
      if (($myrow = $st->fetch())) {
-      echo "<table class='table table-striped table-bordered'><th>Teacher Name</th><th>Email</th><th>Site</th><th>Grade Level</th><th>Day</th><th>Start Time</th><th>End Time</th><th># of Tutors</th><th>Language</th><th>Description</th>";
+      echo "<table class='table table-striped table-bordered'><th>Teacher Name</th><th>Email</th><th>Site</th><th>Grade Level</th><th>Day</th><th>Start Time</th><th>End Time</th><th># of Tutors</th><th>Language</th><th>Description</th><th>Is Hidden</th>";
        do {
          echo "<tr><td>" . $myrow['name'] . "</td>";
          echo "<td>" . $myrow['teacher_email'] . "</td>";
@@ -65,7 +65,12 @@
          echo "<td>" . $endtime . "</td>";
          echo "<td>" . $myrow['num_tutors'] . "</td>";
          echo "<td>" . $myrow['language'] . "</td>";
-         echo "<td>" . $myrow['description'] . "</td></tr>";
+         echo "<td>" . $myrow['description'] . "</td>";
+         if ($myrow['is_hidden']) {
+          echo "<td>Yes</td></tr>";
+         } else {
+          echo "<td>No</td></tr>";
+         }
        } while ($myrow = $st->fetch());
        echo "</table>";
      }

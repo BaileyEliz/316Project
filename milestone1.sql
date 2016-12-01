@@ -75,6 +75,7 @@ CREATE TABLE Request
  num_tutors INTEGER NOT NULL,
  language VARCHAR(256) NOT NULL,
  description VARCHAR(1024),
+ is_hidden BOOLEAN,
  request_id SERIAL,
 
  --PRIMARY KEY (request_id),
@@ -156,20 +157,20 @@ INSERT INTO TutorAvailable VALUES('cg1', 5, '08:00AM', '12:00PM');
 -- INSERT INTO Request VALUES(6, 3, '2:15 PM', '3:15 PM', 126, 'TRUE', 'Math', 'FALSE', 1);
 -- INSERT INTO Request VALUES(7, 3, '12:15 PM', '3:15 PM', 125, 'TRUE', 'Math', 'FALSE', 1);
 
-INSERT INTO Request VALUES(1, '4-6', '02:15 PM', '03:15 PM', 'bergkamp@fakeemail.com', 1, 'Spanish');
-INSERT INTO Request VALUES(1, '4-6', '02:15 AM', '03:15 AM', 'bergkamp@fakeemail.com', 1, 'Spanish');
-INSERT INTO Request VALUES(2, '3rd', '03:00 PM', '04:00 PM', 'wall@fakeemail.com', 1, 'None');
-INSERT INTO Request VALUES(3, 'PreK and K', '03:00 PM', '04:30 PM', 'goldstein@fakeemail.com', 1, 'French');
-INSERT INTO Request VALUES(4, '12', '12:00 AM', '01:00 AM', 'wall@fakeemail.com', 1, 'None');
-INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None');
-INSERT INTO Request VALUES(1, '7th', '02:15 PM', '03:15 PM', 'polson@fakeemail.com', 1, 'Arabic');
-INSERT INTO Request VALUES(2, 'Kindergarten', '12:15 PM', '03:15 PM', 'goldstein@fakeemail.com', 1, 'Japanese');
-INSERT INTO Request VALUES(5, '4', '09:10 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None');
-INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.com', 1, 'None');
+INSERT INTO Request VALUES(1, '4-6', '02:15 PM', '03:15 PM', 'bergkamp@fakeemail.com', 1, 'Spanish', '', FALSE);
+INSERT INTO Request VALUES(1, '4-6', '02:15 AM', '03:15 AM', 'bergkamp@fakeemail.com', 1, 'Spanish', '', FALSE);
+INSERT INTO Request VALUES(2, '3rd', '03:00 PM', '04:00 PM', 'wall@fakeemail.com', 1, 'None', '', FALSE);
+INSERT INTO Request VALUES(3, 'PreK and K', '03:00 PM', '04:30 PM', 'goldstein@fakeemail.com', 1, 'French', '', FALSE);
+INSERT INTO Request VALUES(4, '12', '12:00 AM', '01:00 AM', 'wall@fakeemail.com', 1, 'None', '', FALSE);
+INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
+INSERT INTO Request VALUES(1, '7th', '02:15 PM', '03:15 PM', 'polson@fakeemail.com', 1, 'Arabic', '', FALSE);
+INSERT INTO Request VALUES(2, 'Kindergarten', '12:15 PM', '03:15 PM', 'goldstein@fakeemail.com', 1, 'Japanese', '', FALSE);
+INSERT INTO Request VALUES(5, '4', '09:10 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
+INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
 
 
 SELECT * FROM Request;
-INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None');
+INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None', '', FALSE);
 SELECT * FROM Request;
 
 INSERT INTO Bookings VALUES('bew21', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM', 'false');

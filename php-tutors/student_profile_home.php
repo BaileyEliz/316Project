@@ -90,38 +90,38 @@
       <div class="row"><div class="col-md-12"><div class="mini_time">9:00</div></div></div>
       <div class="row"><div class="col-md-12"><div class="mini_time">9:30</div></div></div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2">Monday
       <div class="row">
         <div class="col-md-12">
-          <div class="monday-contents">Monday</div>
+          <div class="monday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2">Tuesday
       <div class="row">
         <div class="col-md-12">
-          <div class="tuesday-contents">Tuesday</div>
+          <div class="tuesday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2">Wednesday
       <div class="row">
         <div class="col-md-12">
-          <div class="wednesday-contents">Wednesday</div>
+          <div class="wednesday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2">Thursday
       <div class="row">
         <div class="col-md-12">
-          <div class="thursday-contents">Thursday</div>
+          <div class="thursday-contents"></div>
         </div>
       </div>
     </div>
-    <div class="col-md-2">
+    <div class="col-md-2">Friday
       <div class="row">
         <div class="col-md-12">
-          <div class="friday-contents">Friday</div>
+          <div class="friday-contents"></div>
         </div>
       </div>
     </div>
