@@ -126,6 +126,15 @@
           <textarea class="form-control" rows="4" cols="30" name="description" form="editform"><?php echo $myrow['description']; ?></textarea>
         </div>
       </div>
+      <div class="form-group">
+        <div class="col-xs-4">
+          <label for="num_tutors">Is Hidden:</label>
+          <select class="form-control" name="is_hidden">
+             <option <?php if($myrow["is_hidden"]){echo ("selected");}?> value="Yes">Yes</option>
+             <option <?php if(!$myrow["is_hidden"]){echo ("selected");}?> value="No">No</option>
+          </select>
+        </div>
+      </div>
 		  <input class="btn btn-primary" type="submit" value="Update Request">
       <br>
       <br>

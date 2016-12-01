@@ -52,7 +52,7 @@
 <form method="post" action="admin_edit_teacher_request.php">
 <h4>Select a request below to edit:</h4>
 <?php
-	echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td></th>";
+	echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td><td><b>Is Hidden</b></td></th>";
       do {
         echo "<tr><td><input type='radio' name='request_id' value='" . $myrow['request_id'] . "'/></td>";
         if($myrow['day'] == 1){
@@ -72,7 +72,12 @@
         }
         $starttime = date("g:i a", strtotime($myrow["start_time"]));
         $endtime = date("g:i a", strtotime($myrow["end_time"]));
-        echo "<td>" . $myrow['request_id'] . "</td><td>" . $myrow['name'] . "</td><td>" . $myrow['teacher_email'] . "</td><td>" . $myrow['site_name'] . "</td><td>" . $myrow['grade_level'] . "</td><td>" . $day . "</td><td>" . $starttime . "</td><td>" . $endtime . "</td><td>" . $myrow['num_tutors'] . "</td><td>" . $myrow['language'] . "</td><td>" . $myrow['description'] . "</td></tr>";
+        echo "<td>" . $myrow['request_id'] . "</td><td>" . $myrow['name'] . "</td><td>" . $myrow['teacher_email'] . "</td><td>" . $myrow['site_name'] . "</td><td>" . $myrow['grade_level'] . "</td><td>" . $day . "</td><td>" . $starttime . "</td><td>" . $endtime . "</td><td>" . $myrow['num_tutors'] . "</td><td>" . $myrow['language'] . "</td><td>" . $myrow['description'] . "</td>";
+        if ($myrow['is_hidden']) {
+          echo "<td>Yes</td></tr>";
+        } else {
+          echo "<td>No</td></tr>";
+        }
       } while ($myrow = $st->fetch());
       
 ?>
