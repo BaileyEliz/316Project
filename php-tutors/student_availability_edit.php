@@ -44,20 +44,20 @@
 
 
       if($_POST["day"] == "Monday"){
-    $day = 1;
-  }
-  if($_POST["day"] == "Tuesday"){
-    $day = 2;
-  }
-  if($_POST["day"] == "Wednesday"){
-    $day = 3;
-  }
-  if($_POST["day"] == "Thursday"){
-    $day = 4;
-  }
-  if($_POST["day"] == "Friday"){
-    $day = 5;
-  }
+        $day = 1;
+      }
+      if($_POST["day"] == "Tuesday"){
+        $day = 2;
+      }
+      if($_POST["day"] == "Wednesday"){
+        $day = 3;
+      }
+      if($_POST["day"] == "Thursday"){
+        $day = 4;
+      }
+      if($_POST["day"] == "Friday"){
+        $day = 5;
+      }
        // $st = $dbh->prepare("INSERT INTO TutorAvailable VALUES tutor_id = ?, day = ?, start_time = ?, end_time = ?");
         $values = array();
         $values[] = $user;
@@ -99,7 +99,7 @@ try{
     $addz->execute($values);
   }  catch (PDOException $e){
     echo $e->getMessage() . "<br/>";
-    echo "<h4>The request was not updated properly.</h4>";
+    echo "<h4>The availability was not added properly.</h4>";
   }
 }
         // $check = $dbh->query('SELECT tutor_id FROM TUTORINFO WHERE tutor_id = 'jtb43'');
@@ -128,11 +128,12 @@ try{
     <h1 class="text-center">Student Availability Edited Here!</h1>
 
     <h2 class="text-center">Current Availability</h2>
-<table>
+<table class="table table-striped table-bordered">
 <tr>
     <th>Day</th>
     <th>Start Time</th> 
     <th>End Time</th>
+    <th></th>
 </tr>
 
 <?php
@@ -153,9 +154,9 @@ try{
     ?>
     <form action='student_availability_edit.php' method='post'>
  
- <?php echo $day_array[$day]; ?> 
- <?php echo $starttime; ?> -
- <?php echo $endtime; ?>
+ <?php echo "<tr><td>" . $day_array[$day] . "</td>"; ?> 
+ <?php echo "<td>" . date("g:i a", strtotime($starttime)) . "</td>"; ?>
+ <?php echo "<td>" . date("g:i a", strtotime($endtime)) . "</td>"; ?>
 	<input type='hidden' name='day' value='<?php echo $day_array[$day]; ?>'>
       
 
@@ -163,7 +164,7 @@ try{
   
       <input type='hidden' name='end_time' value=  '<?php $endtime; ?> '>
     
-      <button name='remove'>Remove</button>
+      <td><button name='remove'>Remove</button></td></tr>
     </form>
     <br/>
     <?php
@@ -192,18 +193,33 @@ try{
 
     <h2 class="text-center">Add a Time Slot</h2>
 
-<form action="student_availability_edit.php" method="post">
-  Day of the Week: <select name="day_of_week">
-    <option value="Monday">Monday</option>
-    <option value="Tuesday">Tuesday</option>
-    <option value="Wednesday">Wednesday</option>
-    <option value="Thursday">Thursday</option>
-    <option value="Friday">Friday</option>
-  </select><br>
-  Start Time: <input type="time" name="start_time" required><br> <!-- type time doesn't work with Firefox or IE10 and earlier-->
-  End Time: <input type="time" name="end_time" required><br>
+<form class="form-horizontal" action="student_availability_edit.php" method="post">
+  <div class="form-group">
+    <div class="col-xs-4">
+      <label for="day_of_week">Day of the Week:</label>
+        <select class="form-control" name="day_of_week">
+          <option value="Monday">Monday</option>
+          <option value="Tuesday">Tuesday</option>
+          <option value="Wednesday">Wednesday</option>
+          <option value="Thursday">Thursday</option>
+          <option value="Friday">Friday</option>
+        </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-4">
+      <label for="start_time">Start Time:</label>
+        <input type="time" class="form-control"  name="start_time" required>
+      </div>
+    </div>
+  <div class="form-group">
+    <div class="col-xs-4">
+      <label for="end_time">End Time:</label>
+        <input type="time" class="form-control"name="end_time" required>
+    </div>
+  </div>
   
-  <input type="submit" name='add' value="Submit Availability">
+  <input type="submit" class="btn btn-primary" name='add' value="Submit Availability">
 </form>
 
 
