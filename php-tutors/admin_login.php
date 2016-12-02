@@ -41,7 +41,7 @@
             action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
             ?>" method = "post">
             
-            <input type = "text" class = "form-control" 
+            <input type = "password" class = "form-control" 
                name = "password" placeholder = "password" 
                required autofocus></br>
                
