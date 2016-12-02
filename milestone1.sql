@@ -174,6 +174,11 @@ INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.co
 SELECT * FROM Request;
 
 INSERT INTO Bookings VALUES('bew21', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM', 'false');
+INSERT INTO Bookings VALUES('bew21', 'goldstein@fakeemail.com', 2, '03:15 PM', '05:15 PM', 'false');
+INSERT INTO Bookings VALUES('jtb43', 'polson@fakeemail.com', 3, '12:15 PM', '03:15 PM', 'true');
+INSERT INTO Bookings VALUES('jtb43', 'bergkamp@fakeemail.com', 4, '06:15 PM', '07:15 PM', 'false');
+INSERT INTO Bookings VALUES('cg1', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM', 'false');
+INSERT INTO Bookings VALUES('sep45', 'goldstein@fakeemail.com', 5, '11:15 AM', '12:15 PM', 'false');
 
 -- INSERT INTO Matches VALUES('bew21', 2);
 -- INSERT INTO Matches VALUES('cg1', 5);
