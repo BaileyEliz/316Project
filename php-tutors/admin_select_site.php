@@ -20,12 +20,11 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <?php include_once('admin_navbar.php'); ?>
   </head>
   <body>
     <div class="text-center">
       <h1>Edit a Site</h1>
-
-      <a href="admin_home.php">Back to Admin Homepage</a>
     </div>
 
 <?php

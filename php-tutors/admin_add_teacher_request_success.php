@@ -20,6 +20,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
 <h1>Added Request</h1>
@@ -119,8 +120,6 @@
   </tr>
 </table>
 
-<a href="admin_home.php">Back to Admin Homepage</a>
-<br>
 <a href="admin_add_teacher_request.php">Add Another Request</a>
 <br>
 
