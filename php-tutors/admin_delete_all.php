@@ -16,17 +16,14 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
 <div class="text-center">
 	<h1>Delete Teachers, Requests, and Sites</h1>
 </div>
 
-<div class="text-center">
-	<a href="admin_home.php">Back to Admin Homepage</a>
-</div>
-
-<p>Click below to delete all data (matches, requests, sites, teachers).</p>
+<p>Click below to delete all data (matches, requests, sites teachers).</p>
 <form class="form-horizontal" method="post" action="admin_delete_success.php">
   <input type="submit" class="btn btn-primary" value="DELETE ALL">
 </form>

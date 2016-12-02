@@ -16,6 +16,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <?php include_once('admin_navbar.php'); ?>
   </head>
   <body>
 
@@ -24,72 +25,43 @@
       $user = $_SESSION['username'];
       $a = 'admin';
       if($user!=$a){
-        header("Location: loginscreen.php");
+        header("Location: admin_login.php");
       }
     ?>
 
     <h1 class="text-center">It's the Admin Home Page!</h1>
 
-    <a href="index.php">Back to Homepage</a>
+    <a href="admin_download.php" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download"></span> Download Tables</a>
 
-    <div class="login">
-      Download CSVs
-      Teacher Requests
-      All bookings
-      Student Info
-      per teacher
-      per student
-    </div>
-
-    <a href="admin_download.php">Download some tables</a>
 
     <br><br>
 
-    <div class="login">
-      Upload CSV
-      Teacher Requests
-    </div>
+    <a href="admin_upload.php" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-upload"></span> Upload Qualtrics CSV</a>
 
-    <a href="admin_upload.php">Upload a Qualtrics CSV</a>
 
     <br><br>
 
-    <div class="login">
-      Edit
-    </div>
-
-    <a href="admin_select_teacher_request.php">Edit teacher requests</a>
+    <a href="admin_select_teacher_request.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Teacher Requests</a>
 
     <br><br>
 
-    <a href="admin_select_site.php">Edit site information</a>
+    <a href="admin_select_site.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Sites</a>
 
     <br><br>
 
-    <a href="admin_add_teacher_request.php">Add an individual request</a>
+    <a href="admin_add_teacher_request.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span> Add a Request</a>
 
     <br><br>
 
-    <div class="login">
-      View bookings per teacher
-    </div>
-
-    <a href="admin_view_requests.php">View all requests, teachers, and sites</a>
+    <a href="admin_view_requests.php" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View All Data</a>
 
     <br><br>
 
-    <div class="login">
-      Delete requests and bookings and everything but students
-    </div>
-
-    <a href="admin_delete_all.php">Delete data</a>
+    <a href="admin_delete_all.php" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span> Delete Data</a>
 
     <br><br>
 
-    <div class="login">
-      Edit bookings/pendings/etc.
-    </div>
-     <a href="admin_approval.php">Approve or Delete Bookings</a>
-
+     <a href="admin_delete_all.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Approve Bookings</a>
+<br><br><br>
 </body>
 </html>

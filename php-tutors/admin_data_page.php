@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Admin Upload</title>
+    <title>Data</title>
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -19,16 +19,24 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
-<div class="text-center">
-	<h1>Upload a Qualtrics CSV</h1>
-</div>
-<br>
-	<div class="upload">
-		<form enctype="multipart/form-data" action="format-requests.php" method="POST">
-  			<input type="file" name="userfile" size="100000" maxlength="200000"> <br>
-  			<input class="btn btn-primary" type="submit" name="upload" value="Upload">
-		</form>
-	</div>
+  <h1>Data</h1>
+  <a href="admin_add_teacher_request.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span> Add a Request</a>
+
+  <br><br>
+
+  <a href="admin_select_teacher_request.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Teacher Requests</a>
+
+  <br><br>
+
+  <a href="admin_select_site.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Sites</a>
+
+  <br><br>
+
+   <a href="admin_view_requests.php" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View All Data</a>
+
+  <br><br>
+
+  <a href="admin_delete_all.php" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span> Delete Data</a>
 
 </body>
 </html>
