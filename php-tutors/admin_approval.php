@@ -21,7 +21,9 @@
 <div class="col-xs-2 col-xs-offset-10">
   <a href="admin_home.php">Back to Admin Homepage</a>
 </div>
-<h1>All Bookings</h1>
+<div class="text-center">
+  <h1>All Bookings</h1>
+</div>
 
 <?php
   try {
@@ -83,7 +85,7 @@ if (isset($_POST['approve']) ) {
   try {
     $st = $dbh->query("SELECT * FROM Bookings WHERE isapproved = 'false' ORDER BY tutor_id");
      if (($bookings = $st->fetch())) {
-      echo "Bookings Pending Approval";
+      echo "<h3>Bookings Pending Approval</h3>";
 
       echo "<table class='table table-striped table-bordered'><th>Tutor Id</th><th>Teacher Email</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Approve</th><th>Remove</th>";
        do {
@@ -117,11 +119,11 @@ if (isset($_POST['approve']) ) {
         <form action='admin_approval.php' method='post'>
         	<input type='hidden' name='id' value='<?php echo $bookings['tutor_id']; ?>'>
       		<input type='hidden' name='email' value='<?php echo $bookings['teacher_email']; ?>'>
-			<input type='hidden' name='day' value='<?php echo $bookings['day']; ?>'>
+			    <input type='hidden' name='day' value='<?php echo $bookings['day']; ?>'>
       		<input type='hidden' name='start_time' value='<?php echo $bookings['start_time']; ?>'>
       		<input type='hidden' name='end_time' value=  '<?php echo $bookings['end_time']; ?>'>
-      		<td><button name='approve'>Approve</button></td></tr>
-    	</form>
+      		<td><button class='btn btn-primary' name='approve'>Approve</button></td>
+    	  </form>
         
         <form action='admin_approval.php' method='post'>
         	<input type='hidden' name='id' value='<?php echo $bookings['tutor_id']; ?>'>
@@ -129,7 +131,7 @@ if (isset($_POST['approve']) ) {
 			<input type='hidden' name='day' value='<?php echo $bookings['day']; ?>'>
       		<input type='hidden' name='start_time' value='<?php echo $bookings['start_time']; ?>'>
       		<input type='hidden' name='end_time' value=  '<?php echo $bookings['end_time']; ?>'>
-      		<td><button name='remove'>Remove</button></td></tr>
+      		<td><button class='btn btn-primary' name='remove'>Remove</button></td></tr>
     	</form>
 
     	<?php 
@@ -142,7 +144,7 @@ if (isset($_POST['approve']) ) {
      
     $st2 = $dbh->query("SELECT * FROM Bookings WHERE isapproved = 'true' ORDER BY tutor_id");
      if (($bookings2 = $st2->fetch())) {
-      echo "Approved Bookings";
+      echo "<h3>Approved Bookings</h3>";
       echo "<table class='table table-striped table-bordered'><th>Tutor Id</th><th>Teacher Email</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Remove</th>";
        do {
          echo "<tr><td>" . $bookings2['tutor_id'] . "</td>";
@@ -178,7 +180,7 @@ if (isset($_POST['approve']) ) {
 			<input type='hidden' name='day' value='<?php echo $bookings2['day']; ?>'>
       		<input type='hidden' name='start_time' value='<?php echo $bookings2['start_time']; ?>'>
       		<input type='hidden' name='end_time' value=  '<?php echo $bookings2['end_time']; ?>'>
-      		<td><button name='remove'>Remove</button></td></tr>
+      		<td><button class='btn btn-primary' name='remove'>Remove</button></td></tr>
     	</form>
 
     	<?php 

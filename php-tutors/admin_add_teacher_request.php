@@ -40,7 +40,23 @@
 	<div class="form-group">
 		<div class="col-xs-4">
 			<label for="school">School:</label>
-			<input type="text" class="form-control" name="school" required>
+			<select class="form-control" name="school" required>
+				<option value="Crest Street Tutorial Project">Crest Street Tutorial Project</option>
+				<option value="Lyon Park Community Scholars">Lyon Park Community Scholars</option>
+				<option value="Durham Nativity School">Durham Nativity School</option>
+				<option value="YEP at the Durham Literacy Center">YEP at the Durham Literacy Center</option>
+				<option value="Partners for Youth Opportunity">Partners for Youth Opportunity</option>
+				<option value="Student U">Student U</option>
+				<option value="Emily K Center">Emily K Center</option>
+				<option value="Y.E. Smith">Y.E. Smith</option>
+				<option value="Carter Community School">Carter Community School</option>
+				<option value="Lakewood Elementary">Lakewood Elementary</option>
+				<option value="Lakewood Montessori Middle">Lakewood Montessori Middle</option>
+				<option value="Forest View Elementary">Forest View Elementary</option>
+				<option value="E.K. Powe">E.K. Powe</option>
+				<option value="George Watts Montessori">George Watts Montessori</option>
+				<option value="Durham School of the Arts">Durham School of the Arts</option>
+			</select>
 		</div>
 	</div>
 	<div class="form-group">
@@ -124,6 +140,8 @@
     <input type="hidden" value="-1" name="request_id"/>
 	<input type="submit" class="btn btn-primary" value="Submit Request"/>
 </form>
+<br>
+<br>
 
 </body>
 </html>
