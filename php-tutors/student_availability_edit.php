@@ -16,6 +16,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <?php include_once('student_navbar.php'); ?>
 
 <?php
   session_start();
@@ -126,7 +127,6 @@ try{
   <body>
     <div class="text-center">
       <h1 >Student Availability Edited Here!</h1>
-      <a href="student_profile_home.php">Back to Profile</a>
     </div>
       <h2 class="text-center">Current Availability</h2>
 <table class="table table-striped table-bordered">
@@ -165,7 +165,7 @@ try{
   
       <input type='hidden' name='end_time' value=  '<?php $endtime; ?> '>
     
-      <td><button name='remove'>Remove</button></td></tr>
+      <td><button name='remove' class='btn btn-primary'>Remove</button></td></tr>
     </form>
     <br/>
     <?php
@@ -220,7 +220,7 @@ try{
     </div>
   </div>
   
-  <input type="submit" class="btn btn-primary" name='add' value="Submit Availability">
+  <input type="submit" class="btn btn-primary" name='add' value="Add Availability">
 </form>
 <br>
 <br>

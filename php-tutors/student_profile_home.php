@@ -14,6 +14,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="style.css">
+    <?php include_once('student_navbar.php'); ?>
   </head>
   <body>
 
@@ -55,12 +56,11 @@
       <h4>Student Name: <?= $student_name?></h4>
       <h4>Student ID: <?= $user?></h4>
       <br>
-      Edit your information <a href="student_info_edit.php">here</a>
     </div>
 
     <div class="text-center">
       <h2>Availability</h2> 
-      <a href="student_availability_edit.php">Edit Availability</a>
+      <a href="student_availability_edit.php" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Availability</a>
     </div>
     <br>
 
@@ -175,82 +175,57 @@
     ?>
     <div class="text-center">
       <h2>Bookings</h2>
-      <p>Click <a href="student_matches_all_days.php">here </a>to view all matches and add bookings.</p>
+      <a href="student_matches_all_days.php" class="btn btn-warning"><span class="glyphicon glyphicon-eye-open"></span> View Matches</a>
     </div>
+    <br><br>
 
 	<?php
-		try {
-      		$booking_select = $dbh->prepare(
-      				"SELECT *
-      				FROM Bookings, Teacher
-      				 WHERE Bookings.tutor_id = ? AND Teacher.email = Bookings.teacher_email");
+		$statement = $dbh->prepare("SELECT * FROM Bookings, Teacher WHERE Bookings.tutor_id = ? AND Teacher.email = Bookings.teacher_email");
+      try{
+        $statement->bindParam(1, $user);
+        $statement->execute();
+        if($row = $statement->fetch()){
+          echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Approved?</th>";
+          do{
+            if($row["day"] == 1){
+              $day = "Monday";
+            }
+            if($row["day"] == 2){
+              $day = "Tuesday";
+            }
+            if($row["day"] == 3){
+              $day = "Wednesday";
+            }
+            if($row["day"] == 4){
+              $day = "Thursday";
+            }
+            if($row["day"] == 5){
+              $day = "Friday";
+            }
+            $isApproved = "No";
+            if($row["isapproved"] == "true"){
+              $isApproved = "Yes";
+            }
+            $starttime = date("g:i a", strtotime($row["start_time"]));
+            $endtime = date("g:i a", strtotime($row["end_time"]));
+            echo "<tr><td>" . $day . "</td>";
+            echo "<td>" . $starttime . "</td>";
+            echo "<td>" . $endtime . "</td>";
+            echo "<td>" . $row["site_name"] . "</td>";
+            echo "<td>" . $row["name"] . "</td>";
+            echo "<td>" . $row["teacher_email"] . "</td>";
+            echo "<td>" . $isApproved . "</td></tr>";
+          } while($row = $statement->fetch());
+          echo "</table>";
 
-      		$booking_select->execute(array($user));
-      		$all_bookings = $booking_select->fetchAll(PDO::FETCH_ASSOC);
-      		foreach ($all_bookings as $books){
-      		  echo "<br/>";
-					  foreach($books as $key => $value){
-              if($key == "day"){
-                if($value == 1){
-                  $booking_day = "Day: Monday<br/>";
-                }
-                if($value == 2){
-                  $booking_day = "Day: Tuesday<br/>";
-                }
-                if($value == 3){
-                  $booking_day = "Day: Wednesday<br/>";
-                }
-                if($value == 4){
-                  $booking_day = "Day: Thursday<br/>";
-                }
-                if($value == 5){
-                  $booking_day = "Day: Friday<br/>";
-                }
-              }
-              if($key == "teacher_email"){
-                $teacher_email = "Email: " . $value . "<br/>";
-              }
-              if($key == "start_time"){
-                $booking_start = "Start Time: " . date("g:i a", strtotime($value)) . "<br/>";
-              }
-              if($key == "end_time"){
-                $booking_end = "End Time: " . date("g:i a", strtotime($value)) . "<br/>";
-              }
-              if($key == "site_name"){
-                $booking_site = "School: " . $value . "<br/>";
-              }
-              if($key == "name"){
-                $booking_teacher = "Teacher: " . $value . "<br/>";
-              }
-              if($key == "isapproved"){
-                if($value == "false"){
-                  $booking_approved = "Approved?: No<br/>";
-                }
-                else{
-                  $booking_approved = "Approved?: Yes<br/>";
-                }
-              }
-					  }
-            echo $booking_site;
-            echo $booking_teacher;
-            echo $teacher_email;
-            echo $booking_day;
-            echo $booking_start;
-            echo $booking_end;
-            echo $booking_approved;
-      		}
-
-  		} catch (PDOException $e) {
-    		print "Database error: " . $e->getMessage() . "<br/>";
-    		die();
-  		}
+        }
+      } catch (PDOException $e){
+        echo "Error" . $e;
+      }
  
 	?>
 
     <br>
-    <div class="edit">
-        Do we want to add a pending something? Can display here.
-    </div>
     <br>
   </body>
 </html>
