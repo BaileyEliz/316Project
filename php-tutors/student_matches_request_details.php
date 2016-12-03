@@ -19,8 +19,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    <?php
+    <?php include_once('student_navbar.php');
       if (!isset($_POST['request_id'])) {
       echo "Please specify a request. <a href='student_matches_all_days.php'>Try again</a>";
       die();
@@ -29,6 +28,8 @@
     ?>
 
     <title>Request ID: <?= $request_id ?></title>
+
+
 
   </head>
 

@@ -46,7 +46,7 @@ Profile updated successfully!
     } catch (PDOException $e){
       echo $e->getMessage() . "<br/>";
     }
-  
+   header("Location: student_profile_home.php");
 ?>
 
 </body>

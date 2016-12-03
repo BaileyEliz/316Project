@@ -14,6 +14,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 
     <title>Matches</title>
+    <?php include_once('student_navbar.php'); ?>
   </head>
 
 <body>
@@ -46,7 +47,7 @@
 ?>
 
 <h1>Student Information: <?= $student ?></h1>
-<a href="student_profile_home.php">Back to Profile</a>
+<a href="student_matches_all_days.php">Back to All Matches</a>
 <p></p>
 
 <!-- Bootstrap Framework -->
