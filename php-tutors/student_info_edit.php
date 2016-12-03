@@ -16,7 +16,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+    <?php include_once('student_navbar.php'); ?>
   </head>
   <body>
   <?php
@@ -44,8 +44,6 @@
     <h1 class="text-center">Edit Student Profile</h1>
 
     <h1>Login Information</h1>
-
-    <a href="student_login.php">Back to Login</a>
     <br>
     <h4>NetID (Username): <?php echo $myrow['tutor_id']; ?></h4>
     <form class="form-horizontal" action="student_profile_update.php" method="post">
@@ -56,11 +54,7 @@
         </div>
       </div>
 
-      <div class="save">
-        When I click the save button this info writes to the database and I'm directed
-        <a href="student_profile_home.php">here</a>
-      </div>
-    <input type="submit" class="btn btn-primary" value="Submit Profile">
+    <input type="submit" class="btn btn-primary" value="Update Profile">
     </form>
     <?php
     }

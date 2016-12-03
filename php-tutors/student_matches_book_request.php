@@ -1,11 +1,7 @@
 <?php
    session_start();
 
-if (!isset($_POST['book'])) {
-    echo "You need to choose a request";
-    die();
-  }
-  	echo "Welcome to the booking page ". $_SESSION['username'] . "!"."<br/>";
+
 
 ?>
 
@@ -27,6 +23,12 @@ if (!isset($_POST['book'])) {
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <?php include_once('student_navbar.php'); 
+    if (!isset($_POST['book'])) {
+    echo "You need to choose a request";
+    die();
+  }
+    echo "Welcome to the booking page ". $_SESSION['username'] . "!"."<br/>";?>
   </head>
 <body>
 <?php

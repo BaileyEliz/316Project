@@ -99,7 +99,7 @@ teacher_email VARCHAR(256) NOT NULL,
 day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
 start_time TIME(0) NOT NULL,
 end_time TIME(0) NOT NULL,
-isApproved VARCHAR(256), 
+isapproved VARCHAR(256), 
 PRIMARY KEY (tutor_id, teacher_email, day, start_time, end_time)
 );
 

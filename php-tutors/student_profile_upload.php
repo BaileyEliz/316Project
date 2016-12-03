@@ -41,11 +41,13 @@ Profile created successfully!
   	$statement = $dbh->prepare("INSERT INTO TutorInfo VALUES (?, ?)");
   	$name = $_POST["name"];
 	  $netid = $_POST["netid"];
+    $_SESSION['username'] = $netid;
 	 try{		
 		  $statement->execute(array($netid, $name));
 	 } catch (PDOException $e){
         echo $e->getMessage() . "<br/>";
      }
+   header("Location: student_profile_home.php");
 ?>
 
 </body>

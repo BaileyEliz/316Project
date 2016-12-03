@@ -11,44 +11,43 @@
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<?php
+    <?php include_once('student_navbar.php');
 
-  session_start();
-  $user = "generic";
-  if($_SESSION['username']) {
-    $user = $_SESSION['username'];
-  }
+      session_start();
+      $user = "generic";
+      if($_SESSION['username']) {
+        $user = $_SESSION['username'];
+      }
 
-  try {
-    include("pdo-tutors.php");
-    $dbh = dbconnect();
-  } catch (PDOException $e) {
-    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
-    die();
-  }
+      try {
+        include("pdo-tutors.php");
+        $dbh = dbconnect();
+      } catch (PDOException $e) {
+        print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+        die();
+      }
 
-  $student_selector = $dbh->prepare(
-      "SELECT TutorInfo.name
-      FROM TutorInfo
-      WHERE TutorInfo.tutor_id = ?");
-  $student_selector->execute(array($user));
-  $student_values = $student_selector->fetchAll(PDO::FETCH_ASSOC);
-  $student = $student_values[0]["name"];
+      $student_selector = $dbh->prepare(
+          "SELECT TutorInfo.name
+          FROM TutorInfo
+          WHERE TutorInfo.tutor_id = ?");
+      $student_selector->execute(array($user));
+      $student_values = $student_selector->fetchAll(PDO::FETCH_ASSOC);
+      $student = $student_values[0]["name"];
 
-  //TEMP keep this so all students still works; take it out when dev is done
-  if (isset($_POST['student'])) {
-    $student = $_POST['student'];
-  }
+      //TEMP keep this so all students still works; take it out when dev is done
+      if (isset($_POST['student'])) {
+        $student = $_POST['student'];
+      }
 
-  include 'php-functions.php';
-?>
+      include 'php-functions.php';
+    ?>
 
 <link rel="stylesheet" type="text/css" href="style.css">
 <title>Matches</title></head>
 <body>
 
 <h1>Student Information: <?=$student ?></h1>
-<a href="student_profile_home.php">Back to Profile</a>
 <p></p>
 
 <!-- Bootstrap Framework -->
