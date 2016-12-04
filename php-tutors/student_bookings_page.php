@@ -87,5 +87,6 @@
 
         <a href="student_matches_all_days.php" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View Matches</a>
       </div>
+      <br><br>
   </body>
   </html>
