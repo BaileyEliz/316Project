@@ -166,11 +166,11 @@ INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:00 AM', 'goldstein@fakeemail.
 INSERT INTO Request VALUES(1, '7th', '02:15 PM', '03:15 PM', 'polson@fakeemail.com', 1, 'Arabic', '', FALSE);
 INSERT INTO Request VALUES(2, 'Kindergarten', '12:15 PM', '03:15 PM', 'goldstein@fakeemail.com', 1, 'Japanese', '', FALSE);
 INSERT INTO Request VALUES(5, '4', '09:10 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
-INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
+INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.com', 1, 'None', '', TRUE);
 
 
 SELECT * FROM Request;
-INSERT INTO Request VALUES(4, "K", '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None', '', FALSE);
+INSERT INTO Request VALUES(4, 'K', '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None', '', FALSE);
 SELECT * FROM Request;
 
 INSERT INTO Bookings VALUES('bew21', 'bergkamp@fakeemail.com', 1, '02:15 AM', '03:15 AM', 'false');
