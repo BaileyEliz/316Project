@@ -1,5 +1,4 @@
 Site,Name,Email,
-1,4-6,14:15:00,15:15:00,bergkamp@fakeemail.com,1,Spanish,,,1,
 1,4-6,02:15:00,03:15:00,bergkamp@fakeemail.com,1,Spanish,,,2,
 2,3rd,15:00:00,16:00:00,wall@fakeemail.com,1,None,,,3,
 3,PreK and K,15:00:00,16:30:00,goldstein@fakeemail.com,1,French,,,4,
@@ -389,3 +388,4 @@ I have back to back classes. While the 11:45 hour is better, I also have a 2:00 
 5,K-8,09:00:00,10:00:00,gailtaylor@carterschool.org,1,Spanish,Tutors will assist students strength math and reading literacy skills. Tutors will use manipulatives, computer-based programs, and oral coaching to help children develop fluency in math and reading.,,348,
 5,K-8,10:00:00,11:00:00,gailtaylor@carterschool.org,1,Spanish,Tutors will assist students strength math and reading literacy skills. Tutors will use manipulatives, computer-based programs, and oral coaching to help children develop fluency in math and reading.,,349,
 5,K-8,13:30:00,14:30:00,gailtaylor@carterschool.org,1,Spanish,Tutors will assist students strength math and reading literacy skills. Tutors will use manipulatives, computer-based programs, and oral coaching to help children develop fluency in math and reading.,,350,
+1,4-6,14:15:00,15:15:00,bergkamp@fakeemail.com,1,Spanish,,,1,
