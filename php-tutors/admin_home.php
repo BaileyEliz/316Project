@@ -61,7 +61,7 @@
 
     <br><br>
 
-     <a href="admin_delete_all.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Approve Bookings</a>
+     <a href="admin_approval.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Approve Bookings</a>
 <br><br><br>
 </body>
 </html>
