@@ -45,6 +45,15 @@
   }      
   $teacher_email = $_POST["email"];
   echo $teacher_email;
+  $statement1 = $dbh->prepare('DELETE FROM Bookings WHERE teacher_email = ?');
+  $statement1->bindParam(1, $teacher_email);
+  try{
+    $statement1->execute();
+    echo "<h4>The bookings for this teacher have been deleted.</h4>";
+  } catch (PDOException $e){
+    echo "Database error: " . $e->getMessage() . "<br/>";
+    echo "<h4>The bookings for this teacher were not deleted properly.</h4>";
+  }
 	$statement = $dbh->prepare('DELETE FROM Request WHERE teacher_email = ?');
 	$statement->bindParam(1, $teacher_email);
   try {
