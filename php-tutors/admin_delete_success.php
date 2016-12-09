@@ -83,6 +83,7 @@
  	num_tutors INTEGER NOT NULL,
  	language VARCHAR(256) NOT NULL,
  	description VARCHAR(1024),
+  is_hidden BOOLEAN,
  	request_id SERIAL,
  	PRIMARY KEY (teacher_email, day, start_time, end_time),
  	FOREIGN KEY (teacher_email) REFERENCES Teacher(email)

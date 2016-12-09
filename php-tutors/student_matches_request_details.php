@@ -97,8 +97,9 @@ try {
         $existingTutorsStatement->execute(array($teacher_email, $day, $start_time, $end_time));
         $existingTutors = $existingTutorsStatement->fetchAll(PDO::FETCH_ASSOC);
 
-        echo "Day: " . print_day($day) . "<br/>";
-        echo "Teacher: " . $teacher_name . "<br/>";
+        echo "<br>";
+        echo "<h4>Day: " . print_day($day) . "<br/></h4>";
+        echo "<h4>Teacher: " . $teacher_name . "<br/></h4>";
         echo "Site: " . $site_name . "<br/>";
         echo "Transportation: " . $transportation . "<br/>";
         echo "Grade Level: " . $details['grade_level'] . "<br/>";
@@ -123,13 +124,11 @@ try {
   $_SESSION['sreq'] = $ser_req;
 
 ?>
-		
+	<br>
 	<form action = "student_matches_book_request.php" method = "post">
     		<input type="submit" class="btn btn-primary"name="book" value = "Book" />
     </form>  
 	
-	  <br>
-    <a href="student_profile_home.php">Back to Profile</a>
     <br>
     <a href="student_matches_all_days.php">Back to Matches</a>
 

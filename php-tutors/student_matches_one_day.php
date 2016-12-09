@@ -28,11 +28,11 @@
   }
 
   if (!isset($_POST['day'])) {
-    echo "You need to specify a day. Please <a href='student_matches_all_days.php'>try again</a>.";
+    echo "Specify a day. Please <a href='student_matches_all_days.php'>try again</a>.";
     die();
   }
   if (!isset($_POST['student'])) {
-    echo "You need to specify a student. Please <a href='student_login.php'>try again</a>.";
+    echo "Specify a student. Please <a href='student_login.php'>try again</a>.";
     die();
   }
   $day = $_POST['day'];
@@ -122,7 +122,7 @@
     die();
   }
 
-  echo count($day_sessions);
+  //echo count($day_sessions);
 
 ?>
 
@@ -136,7 +136,7 @@
 	$daily_maximum = daily_maximum($daily_times, $day_sessions);
 	$daily_layout = blank_layout($daily_maximum);
 
-	echo $daily_times;
+	//echo $daily_times;
 
   for ($i = 0; $i < count($day_sessions); $i++){
     echo html_print((($x * 100) + $i), $day_sessions[$i]);
@@ -146,8 +146,6 @@
    }
 
 ?>
-
-Go <a href='student_profile_home.php'>back</a>.
 
 </body>
 </html>
