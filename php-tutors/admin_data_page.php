@@ -19,24 +19,32 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
-  <h1>Data</h1>
-  <a href="admin_add_teacher_request.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span> Add a Request</a>
+  
+  <h1 class="text-center">Data</h1>
 
-  <br><br>
+  <div class="container">
 
-  <a href="admin_select_teacher_request.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Teacher Requests</a>
+    
 
-  <br><br>
+    <a href="admin_add_teacher_request.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span> Add a Request</a>
 
-  <a href="admin_select_site.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Sites</a>
+    <br><br>
 
-  <br><br>
+    <a href="admin_select_teacher_request.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Teacher Requests</a>
 
-   <a href="admin_view_requests.php" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View All Data</a>
+    <br><br>
 
-  <br><br>
+    <a href="admin_select_site.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Sites</a>
 
-  <a href="admin_delete_all.php" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span> Delete Data</a>
+    <br><br>
+
+     <a href="admin_view_requests.php" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View All Data</a>
+
+    <br><br>
+
+    <a href="admin_delete_all.php" class="btn btn-danger btn-lg"><span class="glyphicon glyphicon-remove"></span> Delete Data</a>
+
+  </div>
 
 </body>
 </html>

@@ -31,6 +31,8 @@
 
     <h1 class="text-center">It's the Admin Home Page!</h1>
 
+    <div class="container">
+
     <a href="admin_download.php" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-download"></span> Download Tables</a>
 
 
@@ -48,7 +50,7 @@
     <a href="admin_select_site.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-edit"></span> Edit Sites</a>
 
     <br><br>
-
+    
     <a href="admin_add_teacher_request.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-plus"></span> Add a Request</a>
 
     <br><br>
@@ -63,5 +65,6 @@
 
      <a href="admin_approval.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Approve Bookings</a>
 <br><br><br>
+    </div>
 </body>
 </html>

@@ -54,7 +54,9 @@
   if($_POST["day_of_week"] == "Friday"){
     $day = 5;
   }
-
+  $old_day = $_SESSION["day"];
+  $old_start = $_SESSION["start_time"];
+  $old_end = $_SESSION["end_time"];
   $values[] = $day;
   $values[] = $_POST["grade_level"];
   $values[] = $_POST["start_time"];
@@ -101,6 +103,31 @@
 
 <a href="admin_select_teacher_request.php">Back to Choose a Request</a>
 <br>
+
+<?php 
+  
+  $values1 = array();
+  $values1[] = $_SESSION["teacher_email"];
+  echo $_SESSION["teacher_email"];
+  $values1[] = $old_day;
+  echo $old_day;
+  $values1[] = $old_start;
+  echo $old_start;
+  $values1[] = $old_end;
+  echo $old_end;
+  if(($old_day != $day) || ($old_start != $_POST["start_time"]) || ($old_end != $_POST["end_time"])){
+    echo "something changed";
+    try{
+      $st2 = $dbh->prepare("DELETE FROM Bookings WHERE Bookings.teacher_email = ? AND Bookings.day = ? AND Bookings.start_time = ? AND Bookings.end_time = ?");
+      echo "print here";
+      $st2->execute(array($_SESSION["teacher_email"], $old_day, $old_start, $old_end));
+      echo "deleted from bookings";
+    } catch (PDOException $e){
+      echo "error";
+      echo $e-getMessage() . "<br/>";
+    }
+  }
+?>
 
 </body>
 </html>
