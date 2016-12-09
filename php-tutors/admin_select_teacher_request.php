@@ -25,6 +25,7 @@
 <body>
   <div class="text-center">
     <h1>Edit a Request</h1>
+    <h4>Warning: Editing a request will remove it from students' bookings.</h4>
 </div>
 
 <!-- <form action="edit-success.php" method="post">

@@ -57,6 +57,9 @@
       $_SESSION['name'] = $myrow["name"];
      	$_SESSION['teacher_email'] = $myrow["teacher_email"];
       $_SESSION['site_name'] = $myrow["site_name"];
+      $_SESSION['day'] = $myrow["day"];
+      $_SESSION['start_time'] = $myrow["start_time"];
+      $_SESSION['end_time'] = $myrow["end_time"];
   		if($myrow["day"] == 1){
   			$day = 'Monday';
   			$selected = 1;
