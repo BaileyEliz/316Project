@@ -15,22 +15,27 @@
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-      <?php include_once('student_navbar.php'); ?>
+<<<<<<< HEAD
+    <![endif]-->
+<?php include_once('student_navbar.php'); ?>
 
-      <?php
-      session_start();
-      $user = "generic";
-      if($_SESSION['username']) {
-        $user = $_SESSION['username'];
+<?php
+  session_start();
+  $user = "generic";
+  if($_SESSION['username']) {
+    $user = $_SESSION['username'];
+  }else{
+      	 header("Location: student_login.php");
+
       }
-      try {
-        include("pdo-tutors.php");
-        $dbh = dbconnect();
-      } catch (PDOException $e) {
-        print "Error connecting to the database: " . $e->getMessage() . "<br/>";
-        die();
-      }
+  try {
+    include("pdo-tutors.php");
+    $dbh = dbconnect();
+  } catch (PDOException $e) {
+    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+    die();
+  }
+
 
 //post actions if an availability was just removed
 

@@ -1,3 +1,13 @@
+<?php
+      session_start();
+      $user = "generic";
+      if($_SESSION['username']) {
+        $user = $_SESSION['username'];
+      }else{
+      	 header("Location: student_login.php");
+
+      }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

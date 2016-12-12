@@ -21,26 +21,29 @@
     <body>
       <?php
 
-      session_start();
-      $user = "generic";
-      if($_SESSION['username']) {
-        $user = $_SESSION['username'];
-      }
-      try {
-        include("pdo-tutors.php");
-        $dbh = dbconnect();
-      } catch (PDOException $e) {
-        print "Error connecting to the database: " . $e->getMessage() . "<br/>";
-        die();
-      }
-      $statement = $dbh->prepare("SELECT * FROM TutorInfo WHERE tutor_id = ?");
-      $statement->bindParam(1, $user);
-      try{
-        $statement->execute();
-        
-        if ($myrow = $statement->fetch()) {
+  session_start();
+  $user = "generic";
+  if($_SESSION['username']) {
+    $user = $_SESSION['username'];
+  }else{
+      	 header("Location: student_login.php");
+    }
+  try {
+    include("pdo-tutors.php");
+    $dbh = dbconnect();
+  } catch (PDOException $e) {
+    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+    die();
+  }
+  $statement = $dbh->prepare("SELECT * FROM TutorInfo WHERE tutor_id = ?");
+  $statement->bindParam(1, $user);
+  try{
+    $statement->execute();
+    
+    if ($myrow = $statement->fetch()) {
 
-          ?>
+
+?>
           <div class="container">
             <h1 class="text-center">Edit Student Profile</h1>
 

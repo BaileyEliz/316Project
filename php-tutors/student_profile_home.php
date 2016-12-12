@@ -19,20 +19,23 @@
 <body>
   <div class="container">
     <?php
-    session_start();
-    $user = "generic";
-    if($_SESSION['username']) {
-      $user = $_SESSION['username'];
-    }
+      session_start();
+      $user = "generic";
+      if($_SESSION['username']) {
+        $user = $_SESSION['username'];
+      }else{
+      	 header("Location: student_login.php");
+      }
 
-    include 'php-functions.php';
+      include 'php-functions.php';
 
-    try {
-      include("pdo-tutors.php");
-      $dbh = dbconnect();
-    } catch (PDOException $e) {
-      print "Error connecting to the database: " . $e->getMessage() . "<br/>";
-      die();
+      try {
+        include("pdo-tutors.php");
+        $dbh = dbconnect();
+      } catch (PDOException $e) {
+        print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+        die();
+
     }
     
     $statement = $dbh->prepare("SELECT * FROM TutorInfo WHERE tutor_id = ?");

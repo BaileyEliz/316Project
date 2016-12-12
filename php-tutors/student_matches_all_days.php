@@ -13,11 +13,13 @@
 
   <?php include_once('student_navbar.php');
 
-  session_start();
-  $user = "generic";
-  if($_SESSION['username']) {
-    $user = $_SESSION['username'];
-  }
+      session_start();
+      $user = "generic";
+      if($_SESSION['username']) {
+        $user = $_SESSION['username'];
+      }else{
+      	 header("Location: student_login.php");
+      }
 
   try {
     include("pdo-tutors.php");

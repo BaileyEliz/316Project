@@ -41,64 +41,62 @@ session_start();
            die();
          }
          
-         
-         
-         $msg = '';
-         
-         if (isset($_POST['login']) && !empty($_POST['username']) ) {
-          $input_name = $_POST['username'];
-				//echo $input_name;
-          
-				// $check = $dbh->query('SELECT tutor_id FROM TUTORINFO WHERE tutor_id = 'jtb43'');
-// 				$results = $check->fetch();
-// 				echo $results;
+         	
+         	
+            $msg = '';
+            
+            if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password']) ) {
+				$input_name = $_POST['username'];
+				$input_password = $_POST['password'];
 
-          $check = $dbh->prepare('SELECT tutor_id FROM tutorinfo WHERE tutor_id = :id');
-          $check->bindParam(':id', $input_name, PDO::PARAM_STR);
-          $check->execute();
-          $numresults = $check->rowCount();
+
+				$check = $dbh->prepare('SELECT tutor_id FROM tutorinfo WHERE tutor_id = :id and password  = :pw');
+				$check->bindParam(':id', $input_name, PDO::PARAM_STR);
+				$check->bindParam(':pw', $input_password, PDO::PARAM_STR);
+				$check->execute();
+				$numresults = $check->rowCount();
+
+         	 if($input_name == 'admin'){
+            	header("Location: admin_login.php");
+            	exit;
+          	}
           
-				//echo "here is result         ";
-				//echo $numresults;
-          if($input_name == 'admin'){
-            header("Location: admin_login.php");
-            exit;
-          }
-          
-          if ($numresults > 0) {
+          	if ($numresults > 0) {
             
-            $_SESSION['valid'] = true;
-            $_SESSION['timeout'] = time();
-            $_SESSION['username'] = $input_name;
-            header("Location: student_profile_home.php"); 
-            exit;
-            
-            $msg =  'In the System';
-          }else {
-            $msg =  'Unrecognized net-id. Create a new profile.';
-            
-          }
-        }
-        ?>
+                  $_SESSION['valid'] = true;
+                  $_SESSION['timeout'] = time();
+                  $_SESSION['username'] = $input_name;
+                  header("Location: student_profile_home.php"); 
+				  exit;
+                  
+                  $msg =  'In the System';
+               }else {
+                  $msg =  'Incorect NetID and/or Password. Try again.';
+                  
+               }
+            }
+         ?>
       </div> <!-- /container -->
       
       <div class = "container">
-        
-       <form class = "form-signin" role = "form" 
-       action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
-       ?>" method = "post">
-       <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
-       <input type = "text" class = "form-control" 
-       name = "username" placeholder = "net-id" 
-       required autofocus></br>
-       <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
-       name = "login">Login</button>
-     </form>
-     
-     
-   </div>
-   <div class="text-center"><br>New to the site? Create a profile <a href = "student_info_create.php" title = "Create_profile">here!</a></div>
- </div>
-
+      
+         <form class = "form-signin" role = "form" 
+            action = "<?php echo htmlspecialchars($_SERVER['PHP_SELF']); 
+            ?>" method = "post">
+            <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
+            <input type = "text" class = "form-control" 
+               name = "username" placeholder = "NetID" 
+               required autofocus>
+            <input type = "password" class = "form-control" 
+               name = "password" placeholder = "Password" 
+               required autofocus></br>
+            <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
+               name = "login">Login</button>
+         </form>
+			
+         
+      </div>
+      <div class="text-center"><br>New to the site? Create a profile <a href = "student_info_create.php" title = "Create_profile">here!</a></div>
+    </div>
 </body>
 </html>

@@ -25,7 +25,10 @@
   $user = "generic";
   if($_SESSION['username']) {
     $user = $_SESSION['username'];
-  }
+  }else{
+      	 header("Location: student_login.php");
+
+      }
 
   if (!isset($_POST['day'])) {
     echo "Specify a day. Please <a href='student_matches_all_days.php'>try again</a>.";
