@@ -180,7 +180,7 @@ function simple_css_print($index, $array, $day) {
     return $build;
   }
 
-  function css_print($number_of_overlaps, $layout_array, $times_array, $index, $array, $day) {
+  function css_print($number_of_overlaps, $layout_array, $times_array, $index, $array, $day, $bookings) {
     
     $d = $array['day'];
       // this makes all of the sessions in one day the same width
@@ -219,10 +219,22 @@ function simple_css_print($index, $array, $day) {
       $temp_minute = 0;
     }
 
+    $change_color = false;
+    foreach ($bookings as $a_booking) {
+      if ($array['request_id'] == $a_booking['request_id'] and strcmp($array['teacher_email'], $a_booking['teacher_email']) == 0) {
+        $change_color = true;
+      } 
+    }
+    if ($change_color) {
+      $color_line = "'background-color': 'darkgreen', 'pointer-events': 'none',";
+    } 
+    else {
+      $color_line = "'background-color': 'aquamarine',";
+    }
+
     $build = "<script type='text/javascript'>";
-    $build .= "var styles = {
-      'background-color': 'aquamarine',
-      'border-color': '" . "black" . "', 
+    $build .= "var styles = {" . $color_line .
+      "'border-color': '" . "black" . "', 
       'position': 'absolute', 
       'top':'" . (6 * top_margin($array['start_time'])) . "px', 
       'left':'" . ($percent * $insert_spot) . "%',

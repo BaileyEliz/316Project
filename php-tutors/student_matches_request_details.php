@@ -35,20 +35,6 @@ session_start();
 
     <body>
       <div class="container">
-        <h1>Request Details: <?=$request_id ?></h1>
-
-<!--<div class="container-fluid">
-  <div class="row">
-    <div class="col-md-6">Details
-      <div class="row">
-      </div>
-    </div>
-    <div class="col-md-6">Other Tutors
-      <div class="row">
-      </div>
-    </div>
-  </div>
-</div>-->
 
 <?php
 
@@ -97,23 +83,37 @@ try {
    $existingTutorsStatement->execute(array($teacher_email, $day, $start_time, $end_time));
    $existingTutors = $existingTutorsStatement->fetchAll(PDO::FETCH_ASSOC);
 
-   echo "<br>";
+   echo "<div class='container-fluid'>";
+   echo "<div class='row'>";
+   echo "<div class='col-md-6'><h2 class='text-center'>Request Details</h2>";
+   echo "<div class='row'>";
+
    echo "<h4>Day: " . print_day($day) . "<br/></h4>";
    echo "<h4>Teacher: " . $teacher_name . "<br/></h4>";
-   echo "Site: " . $site_name . "<br/>";
-   echo "Transportation: " . $transportation . "<br/>";
-   echo "Grade Level: " . $details['grade_level'] . "<br/>";
-   echo "Start Time: " . date("g:i a", strtotime($start_time)) . "<br/>";
-   echo "End Time: " . date("g:i a", strtotime($end_time)) . "<br/>";
-   echo "Number of Tutors: " . $details['num_tutors'] . "<br/>";
-   echo "Language: " . $details['language'] . "<br/>";
-   echo "Description: " . $details['description'] . "<br/>";
-   echo "Existing Tutors: " . "<br/>";
+   echo "<h4>Site: " . $site_name . "<br/></h4>";
+   echo "<h4>Transportation: " . $transportation . "<br/></h4>";
+   echo "<h4>Grade Level: " . $details['grade_level'] . "<br/></h4>";
+   echo "<h4>Start Time: " . date("g:i a", strtotime($start_time)) . "<br/></h4>";
+   echo "<h4>End Time: " . date("g:i a", strtotime($end_time)) . "<br/></h4>";
+   echo "<h4>Number of Tutors: " . $details['num_tutors'] . "<br/></h4>";
+   echo "<h4>Language: " . $details['language'] . "<br/></h4>";
+   echo "<h4>Description: " . $details['description'] . "<br/></h4>";
+
+   echo "</div>";
+   echo "</div>";
+   echo "<div class='col-md-6'><h2 class='text-center'>Other Tutors</h2>";
+   echo "<div class='row'>";
+
+   echo "<h4>Existing Tutors: " . "<br/></h4>";
 
    foreach ($existingTutors as $tutor) {
-    echo $tutor['name'] . "<br/>";
-
+    echo "<h4>" . $tutor['name'] . "<br/></h4>";
   }
+
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
+  echo "</div>";
 }
 
 } catch (PDOException $e) {
