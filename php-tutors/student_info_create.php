@@ -1,12 +1,5 @@
 <?php
       session_start();
-      $user = "generic";
-      if($_SESSION['username']) {
-        $user = $_SESSION['username'];
-      }else{
-      	 header("Location: student_login.php");
-
-      }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +40,10 @@
             <div class="col-xs-4">
               <label for="netid">NetID (Username):</label>
               <input type="text" class="form-control" name="netid" required>
+            </div>
+            <div class="col-xs-4">
+              <label for="netid">Password:</label>
+              <input type="text" class="form-control" name="password" required>
             </div>
           </div>
           <input type="submit" class="btn btn-primary" value="Submit Profile">

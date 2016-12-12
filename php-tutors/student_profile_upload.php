@@ -4,10 +4,9 @@
   $user = "generic";
   if($_SESSION['username']) {
     $user = $_SESSION['username'];
-  }else{
-      	 header("Location: student_login.php");
+  }
 
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -47,12 +46,13 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  $statement = $dbh->prepare("INSERT INTO TutorInfo VALUES (?, ?)");
+  $statement = $dbh->prepare("INSERT INTO TutorInfo VALUES (?, ?, ?)");
   $name = $_POST["name"];
   $netid = $_POST["netid"];
+  $pass = $_POST["password"];
   $_SESSION['username'] = $netid;
   try{		
-    $statement->execute(array($netid, $name));
+    $statement->execute(array($netid, $name, $pass));
   } catch (PDOException $e){
     echo $e->getMessage() . "<br/>";
   }
