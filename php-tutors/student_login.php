@@ -71,7 +71,7 @@ session_start();
                   
                   $msg =  'In the System';
                }else {
-                  $msg =  'Incorect NetID and/or Password. Try again.';
+                  $msg =  'Incorrect NetID and/or Password. Try again.';
                   
                }
             }
