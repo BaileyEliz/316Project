@@ -14,7 +14,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-  <title>Edit</title>
+  <title>Download</title>
 
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -81,14 +81,14 @@
         $teachers->execute();
         $all_teachers = $teachers->fetchAll(PDO::FETCH_ASSOC);
         $teachers_headers = array("Site", "Name", "Email");
-        create_csv($all_teachers, $teachers_headers, "all_teachers.txt");
+        create_csv($all_teachers, $teachers_headers, "all_teachers.csv");
 
     // create the all_requests txt
         $requests = $dbh->prepare("SELECT * FROM Request");
         $requests->execute();
         $all_requests = $requests->fetchAll(PDO::FETCH_ASSOC);
-        $requests_headers = array("Site", "Name", "Email");
-        create_csv($all_requests, $requests_headers, "all_requests.txt");
+        $requests_headers = array("Day", "Grade Level", "Start Time", "End Time", "Teacher Email", "Number of Tutors", "Language", "Description", "Is Hidden", "Request ID");
+        create_csv($all_requests, $requests_headers, "all_requests.csv");
 
       } catch (PDOException $e) {
         print "Database error: " . $e->getMessage() . "<br/>";
@@ -97,9 +97,9 @@
 
       ?>
 
-      <a href="csvs_for_download/all_teachers.txt" target="_blank">Teachers</a>
+      <a href="csvs_for_download/all_teachers.csv" target="_blank">Teachers</a>
       <br>
-      <a href="csvs_for_download/all_requests.txt" target="_blank">Requests</a>
+      <a href="csvs_for_download/all_requests.csv" target="_blank">Requests</a>
     </div>
   </body>
   </html>
