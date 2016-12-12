@@ -33,7 +33,7 @@
          <h1>Delete Teachers, Requests, and Sites</h1>
        </div>
 
-       <p>Click below to delete all data (matches, requests, sites teachers).</p>
+       <p>Click below to delete all data (requests, teachers, sites, bookings).</p>
        <form class="form-horizontal" method="post" action="admin_delete_success.php">
         <input type="submit" class="btn btn-primary" value="DELETE ALL">
       </form>
