@@ -50,8 +50,6 @@ keycode VARCHAR(256) NOT NULL
 
 INSERT INTO AdminInfo VALUES('admin');
 
--- Not the real Matches table, I just needed to test. 
-
 CREATE TABLE Bookings
 (tutor_id VARCHAR(256) NOT NULL, 
 teacher_email VARCHAR(256) NOT NULL,
@@ -63,19 +61,19 @@ PRIMARY KEY (tutor_id, teacher_email, day, start_time, end_time)
 );
 
 
-INSERT INTO Site VALUES('Crest Street', 'Car');
-INSERT INTO Site VALUES('Address2', 'Bus');
-INSERT INTO Site VALUES('Address3', 'Walk');
-INSERT INTO Site VALUES('Address4', 'Car');
+-- INSERT INTO Site VALUES('Crest Street', 'Car');
+-- INSERT INTO Site VALUES('Address2', 'Bus');
+-- INSERT INTO Site VALUES('Address3', 'Walk');
+-- INSERT INTO Site VALUES('Address4', 'Car');
 
-INSERT INTO Teacher VALUES('Crest Street', 'Mr. Bergkamp', 'bergkamp@fakeemail.com');
-INSERT INTO Teacher VALUES('Address2', 'Ms. Wall', 'wall@fakeemail.com');
-INSERT INTO Teacher VALUES('Crest Street', 'Ms. Goldstein', 'goldstein@fakeemail.com');
-INSERT INTO Teacher VALUES('Address3', 'Ms. Polson', 'polson@fakeemail.com');
-INSERT INTO Teacher VALUES('Address4', 'Ms. Smith', 'smith@fakeemail.com');
+-- INSERT INTO Teacher VALUES('Crest Street', 'Mr. Bergkamp', 'bergkamp@fakeemail.com');
+-- INSERT INTO Teacher VALUES('Address2', 'Ms. Wall', 'wall@fakeemail.com');
+-- INSERT INTO Teacher VALUES('Crest Street', 'Ms. Goldstein', 'goldstein@fakeemail.com');
+-- INSERT INTO Teacher VALUES('Address3', 'Ms. Polson', 'polson@fakeemail.com');
+-- INSERT INTO Teacher VALUES('Address4', 'Ms. Smith', 'smith@fakeemail.com');
 
 INSERT INTO TutorInfo VALUES('bew21', 'Bailey Wall', 'password');
-INSERT INTO TutorInfo VALUES('cg1', 'Cosi Goldstein', 'password');
+INSERT INTO TutorInfo VALUES('cmg64', 'Cosi Goldstein', 'password');
 INSERT INTO TutorInfo VALUES('jtb43', 'Justin Bergkamp', 'password');
 INSERT INTO TutorInfo VALUES('sep45', 'Sophie Polson', 'password');
 
@@ -96,21 +94,13 @@ INSERT INTO TutorAvailable VALUES('sep45', 4, '02:00PM', '04:00PM');
 INSERT INTO TutorAvailable VALUES ('sep45', 5, '10:00AM', '01:00PM');
 INSERT INTO TutorAvailable VALUES('cg1', 5, '08:00AM', '12:00PM');
 
-INSERT INTO Request VALUES(1, '4-6', '02:15 PM', '03:15 PM', 'bergkamp@fakeemail.com', 1, 'Spanish', '', FALSE);
-INSERT INTO Request VALUES(2, '3rd', '03:00 PM', '04:00 PM', 'wall@fakeemail.com', 1, 'None', '', FALSE);
-INSERT INTO Request VALUES(3, 'PreK and K', '03:00 PM', '04:30 PM', 'goldstein@fakeemail.com', 1, 'French', '', FALSE);
-INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
-INSERT INTO Request VALUES(1, '7th', '02:15 PM', '03:15 PM', 'polson@fakeemail.com', 1, 'Arabic', '', FALSE);
-INSERT INTO Request VALUES(2, 'Kindergarten', '12:15 PM', '03:15 PM', 'goldstein@fakeemail.com', 1, 'Japanese', '', FALSE);
-INSERT INTO Request VALUES(5, '4', '09:10 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
-INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.com', 1, 'None', '', TRUE);
+-- INSERT INTO Request VALUES(1, '4-6', '02:15 PM', '03:15 PM', 'bergkamp@fakeemail.com', 1, 'Spanish', '', FALSE);
+-- INSERT INTO Request VALUES(2, '3rd', '03:00 PM', '04:00 PM', 'wall@fakeemail.com', 1, 'None', '', FALSE);
+-- INSERT INTO Request VALUES(3, 'PreK and K', '03:00 PM', '04:30 PM', 'goldstein@fakeemail.com', 1, 'French', '', FALSE);
+-- INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
+-- INSERT INTO Request VALUES(1, '7th', '02:15 PM', '03:15 PM', 'polson@fakeemail.com', 1, 'Arabic', '', FALSE);
+-- INSERT INTO Request VALUES(2, 'Kindergarten', '12:15 PM', '03:15 PM', 'goldstein@fakeemail.com', 1, 'Japanese', '', FALSE);
+-- INSERT INTO Request VALUES(5, '4', '09:10 AM', '10:00 AM', 'goldstein@fakeemail.com', 1, 'None', '', FALSE);
+-- INSERT INTO Request VALUES(5, '4', '09:00 AM', '10:10 AM', 'goldstein@fakeemail.com', 1, 'None', '', TRUE);
 
 
-SELECT * FROM Request;
-INSERT INTO Request VALUES(4, 'K', '12:00PM', '01:00PM', 'goldstein@fakeemail.com', 4, 'None', '', FALSE);
-SELECT * FROM Request;
-
-INSERT INTO Bookings VALUES('bew21', 'goldstein@fakeemail.com', 2, '03:15 PM', '05:15 PM', 'false');
-INSERT INTO Bookings VALUES('jtb43', 'polson@fakeemail.com', 3, '12:15 PM', '03:15 PM', 'true');
-INSERT INTO Bookings VALUES('jtb43', 'bergkamp@fakeemail.com', 4, '06:15 PM', '07:15 PM', 'false');
-INSERT INTO Bookings VALUES('sep45', 'goldstein@fakeemail.com', 5, '11:15 AM', '12:15 PM', 'false');
