@@ -160,7 +160,6 @@ for ($i = 0; $i < count($day_sessions); $i++){
   $number_of_tutors->execute(array($day_sessions[$i]['teacher_email'], $day_sessions[$i]['day'], $day_sessions[$i]['start_time'], $day_sessions[$i]['end_time']));
   $num_tutors = $number_of_tutors->fetchAll(PDO::FETCH_ASSOC);
   $tutors_booked = count($num_tutors);
-  echo "tutors booked: " . $tutors_booked . "<br>";
 
   echo html_print((($x * 100) + $i), $day_sessions[$i]);
   $returns = css_print($daily_maximum, $daily_layout, $daily_times, $i, $day_sessions[$i], "monday", $day_bookings, $tutors_booked);
