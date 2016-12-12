@@ -1,9 +1,9 @@
 <?php
-  if (!isset($_POST['teacher'])) {
-    echo "You need to specify a teacher. Please <a href='all-teachers.php'>try again</a>.";
-    die();
-  }
-  $teacher = $_POST['teacher'];
+if (!isset($_POST['teacher'])) {
+  echo "You need to specify a teacher. Please <a href='all-teachers.php'>try again</a>.";
+  die();
+}
+$teacher = $_POST['teacher'];
   // In production code, you might want to "cleanse" the $drinker string
   // to remove potential hacks before doing something with it (e.g.,
   // passing it to the DBMS).  That said, using prepared statements
@@ -15,8 +15,8 @@
 <head><title>Teacher Information: <?= $teacher ?></title></head>
 <body>
 
-<h1>Teacher Information: <?=$teacher ?></h1>
-<?php
+  <h1>Teacher Information: <?=$teacher ?></h1>
+  <?php
   try {
     // Including connection info (including database password) from outside
     // the public HTML directory means it is not exposed by the web server,
@@ -82,7 +82,7 @@
     print "Database error: " . $e->getMessage() . "<br/>";
     die();
   }
-?>
-Go <a href='all-teachers.php'>back</a>.
+  ?>
+  Go <a href='all-teachers.php'>back</a>.
 </body>
 </html>

@@ -2,22 +2,22 @@
 <head><title>Request</title></head>
 <body>
 
-<a href="admin-interface.php">Back to Admin Homepage</a>
+	<a href="admin-interface.php">Back to Admin Homepage</a>
 
-<?php
-  try {
+	<?php
+	try {
     // Including connection info (including database password) from outside
     // the public HTML directory means it is not exposed by the web server,
     // so it is safer than putting it directly in php code:
-    include("pdo-tutors.php");
-    $dbh = dbconnect();
-  } catch (PDOException $e) {
-    print "Error connecting to the database: " . $e->getMessage() . "<br/>";
-    die();
-  }
+		include("pdo-tutors.php");
+		$dbh = dbconnect();
+	} catch (PDOException $e) {
+		print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+		die();
+	}
 
-  	$statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?)");
-  	$statement1 = $dbh->prepare("INSERT INTO Teacher VALUES (?, ?, ?)");
+	$statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?)");
+	$statement1 = $dbh->prepare("INSERT INTO Teacher VALUES (?, ?, ?)");
 	$statement2 = $dbh->prepare("INSERT INTO Request VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
 	$values = array();
@@ -69,23 +69,23 @@
 	try{
 		$statement->execute($values);
 	} catch (PDOException $e){
-        echo $e->getMessage() . "<br/>";
-     }
+		echo $e->getMessage() . "<br/>";
+	}
 	try{
 		$statement1->execute($values1);
 	} catch (PDOException $e){
-        echo $e->getMessage() . "<br/>";
-     }
+		echo $e->getMessage() . "<br/>";
+	}
 	try{
 		$statement2->execute($values2);
 	} catch (PDOException $e){
-        echo $e->getMessage() . "<br/>";
-     }
-?>
+		echo $e->getMessage() . "<br/>";
+	}
+	?>
 
 
-<!-- can implement later to use history.go when request fails due to some constraint violation or use index.php if the request succeeds -->
-<!-- or will likely use form vaildation to ensure it doesn't fail, but on the off chance it does, the go back link can still be present -->
+	<!-- can implement later to use history.go when request fails due to some constraint violation or use index.php if the request succeeds -->
+	<!-- or will likely use form vaildation to ensure it doesn't fail, but on the off chance it does, the go back link can still be present -->
 
 </body>
 </html>
