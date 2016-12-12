@@ -21,7 +21,7 @@
       <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="homepage.php">PFS Scheduler</a>
+            <a class="navbar-brand" href="index.php">PFS Scheduler</a>
           </div>
         </div>
       </nav>
