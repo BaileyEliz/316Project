@@ -114,20 +114,26 @@ try {
   $weekdays = $dbh->prepare(
     "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
     FROM Request, TutorAvailable, Teacher, TutorInfo
-    WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Request.is_hidden IS FALSE
+    WHERE Request.day = ? and TutorInfo.tutor_id = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Request.is_hidden IS FALSE
     ORDER BY Request.start_time");
 
    $bookings = $dbh->prepare(
         "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
         FROM Request, Bookings, Teacher, TutorInfo
-        WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = Bookings.tutor_id and Bookings.day = Request.day and Bookings.teacher_email = Request.teacher_email and Request.teacher_email = Teacher.email and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
+        WHERE Request.day = ? and TutorInfo.tutor_id = ? and TutorInfo.name = ? and TutorInfo.tutor_id = Bookings.tutor_id and Bookings.day = Request.day and Bookings.teacher_email = Request.teacher_email and Request.teacher_email = Teacher.email and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
         ORDER BY Request.start_time");
 
-  $weekdays->execute(array($day, $student));
+  $weekdays->execute(array($day, $user, $student));
   $day_sessions = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
-  $bookings->execute(array($day, $student));
+  $bookings->execute(array($day, $user, $student));
   $day_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
+
+  $number_of_tutors = $dbh->prepare(
+        "SELECT Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id, Bookings.tutor_id 
+        FROM Request, Bookings
+        WHERE Bookings.teacher_email = ? and Bookings.day = ? and Bookings.start_time = ? and Bookings.end_time = ? and Bookings.teacher_email = Request.teacher_email and Bookings.day = Request.day and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
+        ORDER BY Request.start_time");
 
 } catch (PDOException $e) {
   print "Database error: " . $e->getMessage() . "<br/>";
@@ -151,8 +157,12 @@ $daily_layout = blank_layout($daily_maximum);
 	//echo $daily_times;
 
 for ($i = 0; $i < count($day_sessions); $i++){
+  $number_of_tutors->execute(array($day_sessions[$i]['teacher_email'], $day_sessions[$i]['day'], $day_sessions[$i]['start_time'], $day_sessions[$i]['end_time']));
+  $num_tutors = $number_of_tutors->fetchAll(PDO::FETCH_ASSOC);
+  $tutors_booked = count($num_tutors);
+
   echo html_print((($x * 100) + $i), $day_sessions[$i]);
-  $returns = css_print($daily_maximum, $daily_layout, $daily_times, $i, $day_sessions[$i], "monday", $day_bookings);
+  $returns = css_print($daily_maximum, $daily_layout, $daily_times, $i, $day_sessions[$i], "monday", $day_bookings, $tutors_booked);
   echo $returns[0];
   $daily_layout = $returns[1];
 }
