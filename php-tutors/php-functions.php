@@ -180,7 +180,7 @@ function simple_css_print($index, $array, $day) {
     return $build;
   }
 
-  function css_print($number_of_overlaps, $layout_array, $times_array, $index, $array, $day, $bookings) {
+  function css_print($number_of_overlaps, $layout_array, $times_array, $index, $array, $day, $bookings, $number_of_bookings) {
     
     $d = $array['day'];
       // this makes all of the sessions in one day the same width
@@ -225,7 +225,7 @@ function simple_css_print($index, $array, $day) {
         $change_color = true;
       } 
     }
-    if ($change_color) {
+    if ($change_color or ($number_of_bookings >= $array['num_tutors'])) {
       $color_line = "'background-color': 'darkgreen', 'pointer-events': 'none',";
     } 
     else {

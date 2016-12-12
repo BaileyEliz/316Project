@@ -167,9 +167,9 @@
       $st = $dbh->prepare(
         "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.request_id
         FROM Request, TutorAvailable, Teacher, TutorInfo
-        WHERE TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
+        WHERE TutorInfo.name = ? and TutorInfo.tutor_id = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time
         ORDER BY Request.day, Request.start_time");
-      $st->execute(array($student));
+      $st->execute(array($student, $user));
       $values = $st->fetchAll(PDO::FETCH_ASSOC);
       if ($st->rowCount() == 0) {
         die('There are no matches for ' . $student . ' in the database.');
@@ -178,44 +178,50 @@
       $weekdays = $dbh->prepare(
         "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
         FROM Request, TutorAvailable, Teacher, TutorInfo
-        WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Request.is_hidden IS FALSE
+        WHERE Request.day = ? and TutorInfo.tutor_id = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Request.is_hidden IS FALSE
         ORDER BY Request.start_time");
 
       $bookings = $dbh->prepare(
         "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
         FROM Request, Bookings, Teacher, TutorInfo
-        WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = Bookings.tutor_id and Bookings.day = Request.day and Bookings.teacher_email = Request.teacher_email and Request.teacher_email = Teacher.email and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
+        WHERE Request.day = ? and TutorInfo.tutor_id = ? and TutorInfo.name = ? and TutorInfo.tutor_id = Bookings.tutor_id and Bookings.day = Request.day and Bookings.teacher_email = Request.teacher_email and Request.teacher_email = Teacher.email and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
         ORDER BY Request.start_time");
 
-      $weekdays->execute(array(1, $student));
+      $weekdays->execute(array(1, $user, $student));
       $monday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
-      $bookings->execute(array(1, $student));
+      $bookings->execute(array(1, $user, $student));
       $monday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
-      $weekdays->execute(array(2, $student));
+      $weekdays->execute(array(2, $user, $student));
       $tuesday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
-      $bookings->execute(array(2, $student));
+      $bookings->execute(array(2, $user, $student));
       $tuesday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
-      $weekdays->execute(array(3, $student));
+      $weekdays->execute(array(3, $user, $student));
       $wednesday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
-      $bookings->execute(array(3, $student));
+      $bookings->execute(array(3, $user, $student));
       $wednesday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
-      $weekdays->execute(array(4, $student));
+      $weekdays->execute(array(4, $user, $student));
       $thursday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
-      $bookings->execute(array(4, $student));
+      $bookings->execute(array(4, $user, $student));
       $thursday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
-      $weekdays->execute(array(5, $student));
+      $weekdays->execute(array(5, $user, $student));
       $friday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
-      $bookings->execute(array(5, $student));
+      $bookings->execute(array(5, $user, $student));
       $friday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
+
+      $number_of_tutors = $dbh->prepare(
+        "SELECT Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id, Bookings.tutor_id 
+        FROM Request, Bookings
+        WHERE Bookings.teacher_email = ? and Bookings.day = ? and Bookings.start_time = ? and Bookings.end_time = ? and Bookings.teacher_email = Request.teacher_email and Bookings.day = Request.day and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
+        ORDER BY Request.start_time");
 
     } catch (PDOException $e) {
       print "Database error: " . $e->getMessage() . "<br/>";
@@ -251,8 +257,13 @@
       $day_name = $weekdaze_names[$x];
       $daily_maximum = $weekdaze_maximums[$x];
       for ($i = 0; $i < count($day_array); $i++){
+        $number_of_tutors->execute(array($day_array[$i]['teacher_email'], $day_array[$i]['day'], $day_array[$i]['start_time'], $day_array[$i]['end_time']));
+        $num_tutors = $number_of_tutors->fetchAll(PDO::FETCH_ASSOC);
+        $tutors_booked = count($num_tutors);
+        echo "tutors booked: " . $tutors_booked . "<br>";
+
         echo html_print((($x * 100) + $i), $day_array[$i]);
-        $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name, $day_bookings[$x]);
+        $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name, $day_bookings[$x], $tutors_booked);
         echo $returns[0];
         $weekdaze_layouts[$x] = $returns[1];
       }
