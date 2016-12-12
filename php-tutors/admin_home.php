@@ -64,6 +64,10 @@
         <br><br>
 
         <a href="admin_approval.php" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-ok"></span> Approve Bookings</a>
+        <br><br>        
+
+        <a href="admin_edit_access.php" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-lock"></span> Edit Administrator Access</a>
+
         <br><br><br>
       </div>
     </body>
