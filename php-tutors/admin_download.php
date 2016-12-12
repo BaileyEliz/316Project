@@ -87,7 +87,7 @@
         $requests = $dbh->prepare("SELECT * FROM Request");
         $requests->execute();
         $all_requests = $requests->fetchAll(PDO::FETCH_ASSOC);
-        $requests_headers = array("Site", "Name", "Email");
+        $requests_headers = array("Day", "Grade Level", "Start Time", "End Time", "Teacher Email", "Number of Tutors", "Language", "Description", "Is Hidden", "Request ID");
         create_csv($all_requests, $requests_headers, "all_requests.csv");
 
       } catch (PDOException $e) {
