@@ -41,6 +41,8 @@
               <label for="netid">NetID (Username):</label>
               <input type="text" class="form-control" name="netid" required>
             </div>
+          </div>
+          <div class="form-group">
             <div class="col-xs-4">
               <label for="netid">Password:</label>
               <input type="text" class="form-control" name="password" required>
