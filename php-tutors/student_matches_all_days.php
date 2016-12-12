@@ -179,20 +179,41 @@
         WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Request.is_hidden IS FALSE
         ORDER BY Request.start_time");
 
+      $bookings = $dbh->prepare(
+        "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
+        FROM Request, Bookings, Teacher, TutorInfo
+        WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = Bookings.tutor_id and Bookings.day = Request.day and Bookings.teacher_email = Request.teacher_email and Request.teacher_email = Teacher.email and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
+        ORDER BY Request.start_time");
+
       $weekdays->execute(array(1, $student));
       $monday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
+
+      $bookings->execute(array(1, $student));
+      $monday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
       $weekdays->execute(array(2, $student));
       $tuesday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
+      $bookings->execute(array(2, $student));
+      $tuesday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
+
       $weekdays->execute(array(3, $student));
       $wednesday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
+
+      $bookings->execute(array(3, $student));
+      $wednesday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
       $weekdays->execute(array(4, $student));
       $thursday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
 
+      $bookings->execute(array(4, $student));
+      $thursday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
+
       $weekdays->execute(array(5, $student));
       $friday = $weekdays->fetchAll(PDO::FETCH_ASSOC);
+
+      $bookings->execute(array(5, $student));
+      $friday_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
     } catch (PDOException $e) {
       print "Database error: " . $e->getMessage() . "<br/>";
@@ -206,6 +227,7 @@
     <?php
 
     $weekdaze = array($monday, $tuesday, $wednesday, $thursday, $friday);
+    $day_bookings = array($monday_bookings, $tuesday_bookings, $wednesday_bookings, $thursday_bookings, $friday_bookings);
     $weekdaze_names = array("monday", "tuesday", "wednesday", "thursday", "friday");
 
     $weekdaze_times = array(all_times($monday), all_times($tuesday), all_times($wednesday), all_times($thursday), all_times($friday));
@@ -228,7 +250,7 @@
       $daily_maximum = $weekdaze_maximums[$x];
       for ($i = 0; $i < count($day_array); $i++){
         echo html_print((($x * 100) + $i), $day_array[$i]);
-        $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name);
+        $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name, $day_bookings[$x]);
         echo $returns[0];
         $weekdaze_layouts[$x] = $returns[1];
       }

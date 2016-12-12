@@ -114,8 +114,17 @@ try {
     WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Request.is_hidden IS FALSE
     ORDER BY Request.start_time");
 
+   $bookings = $dbh->prepare(
+        "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id 
+        FROM Request, Bookings, Teacher, TutorInfo
+        WHERE Request.day = ? and TutorInfo.name = ? and TutorInfo.tutor_id = Bookings.tutor_id and Bookings.day = Request.day and Bookings.teacher_email = Request.teacher_email and Request.teacher_email = Teacher.email and Bookings.start_time = Request.start_time and Bookings.end_time = Request.end_time and Request.is_hidden IS FALSE
+        ORDER BY Request.start_time");
+
   $weekdays->execute(array($day, $student));
   $day_sessions = $weekdays->fetchAll(PDO::FETCH_ASSOC);
+
+  $bookings->execute(array($day, $student));
+  $day_bookings = $bookings->fetchAll(PDO::FETCH_ASSOC);
 
 } catch (PDOException $e) {
   print "Database error: " . $e->getMessage() . "<br/>";
@@ -140,7 +149,7 @@ $daily_layout = blank_layout($daily_maximum);
 
 for ($i = 0; $i < count($day_sessions); $i++){
   echo html_print((($x * 100) + $i), $day_sessions[$i]);
-  $returns = css_print($daily_maximum, $daily_layout, $daily_times, $i, $day_sessions[$i], "monday");
+  $returns = css_print($daily_maximum, $daily_layout, $daily_times, $i, $day_sessions[$i], "monday", $day_bookings);
   echo $returns[0];
   $daily_layout = $returns[1];
 }
