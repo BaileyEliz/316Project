@@ -22,6 +22,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
   <div class="text-center">
     <h1>Delete Teacher</h1>
     <a href="admin_delete_all.php">Back to Delete Page</a>
@@ -44,7 +45,6 @@
     echo "Please choose a teacher to delete.";
   }      
   $teacher_email = $_POST["email"];
-  echo $teacher_email;
   $statement1 = $dbh->prepare('DELETE FROM Bookings WHERE teacher_email = ?');
   $statement1->bindParam(1, $teacher_email);
   try{
@@ -75,6 +75,6 @@
     die();
   }
  ?>
-
+</div>
 </body>
 </html>

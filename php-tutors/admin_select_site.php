@@ -23,6 +23,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
   <body>
+    <div class="container">
     <div class="text-center">
       <h1>Edit a Site</h1>
     </div>
@@ -63,5 +64,6 @@
     die();
   }
 ?> 
+</div>
 </body>
 </html>

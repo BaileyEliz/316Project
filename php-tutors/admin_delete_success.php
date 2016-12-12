@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 
 <?php
   try {
@@ -100,6 +101,6 @@
   <h1>Deletion Successful</h1>
   <a href="admin_home.php">Back to Admin Homepage</a>
 </div>
-
+</div>
 </body>
 </html>

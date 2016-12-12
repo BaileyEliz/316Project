@@ -28,9 +28,10 @@
     echo "You need to choose a request";
     die();
   }
-    echo "Welcome to the booking page ". $_SESSION['username'] . "!"."<br/>";?>
+    //echo "Welcome to the booking page ". $_SESSION['username'] . "!"."<br/>";?>
   </head>
 <body>
+  <div class="container">
 <?php
 	$r = $_SESSION['sreq'];
 	$s = unserialize($r);
@@ -79,8 +80,10 @@
 			$statement->execute(array($tutor_id, $teacher_email, $day, $start_time, $end_time, $f));
 			
 		}else{
-		    echo "<br/>";
-			echo "Unable to book";
+		  echo "<br/>";
+			echo "<h1>Unable to book</h1>";
+      echo "<a href='student_bookings_page.php'>Back to Bookings Page</a>";
+      die();
 		}
 		
 	} catch (PDOException $e){
@@ -89,7 +92,7 @@
 	
 
  ?> 
-<h1>Yay you booked something!</h1>
+<h1>Your request has been booked.</h1>
 
   <div class="save">
         Now go
@@ -97,7 +100,7 @@
         Or back to the calendar
         <a href="student_profile_home.php">home</a>
     </div>
-
+  </div>
   </body>
 
 </html>

@@ -34,75 +34,74 @@
 
 //post actions if an availability was just removed
 
- if (isset($_POST['remove']) ) {
-        $input_name = $_POST['username'];
-        //echo $input_name;
+  if (isset($_POST['remove']) ) {
+    $input_name = $_POST['username'];
+    //echo $input_name;
         
-      $remove_avail = $dbh->prepare(
+    $remove_avail = $dbh->prepare(
         "DELETE
         FROM TutorAvailable
         WHERE TutorAvailable.tutor_id = ? and TutorAvailable.day = ? and TutorAvailable.start_time = ?");
 
 
-      if($_POST["day"] == "Monday"){
-        $day = 1;
-      }
-      if($_POST["day"] == "Tuesday"){
-        $day = 2;
-      }
-      if($_POST["day"] == "Wednesday"){
-        $day = 3;
-      }
-      if($_POST["day"] == "Thursday"){
-        $day = 4;
-      }
-      if($_POST["day"] == "Friday"){
-        $day = 5;
-      }
-       // $st = $dbh->prepare("INSERT INTO TutorAvailable VALUES tutor_id = ?, day = ?, start_time = ?, end_time = ?");
-        $values = array();
-        $values[] = $user;
-        $values[] = $day;
-        $values[] = $_POST["start_time"];
-
-try{
-    $remove_avail->execute($values);
-  }  catch (PDOException $e){
-    echo $e->getMessage() . "<br/>";
-    echo "<h4>The availability was not removed properly.</h4>";
-  }
-}
- if (isset($_POST['add']) ) {
-    $addz = $dbh->prepare("INSERT INTO TutorAvailable VALUES (?, ?, ?, ?)");
-  $values = array();
-  $day = 0;
-  if($_POST["day_of_week"] == "Monday"){
-    $day = 1;
-  }
-  if($_POST["day_of_week"] == "Tuesday"){
-    $day = 2;
-  }
-  if($_POST["day_of_week"] == "Wednesday"){
-    $day = 3;
-  }
-  if($_POST["day_of_week"] == "Thursday"){
-    $day = 4;
-  }
-  if($_POST["day_of_week"] == "Friday"){
-    $day = 5;
-  }
-  $values[] = $user;
-  $values[] = $day;
-  $values[] = $_POST["start_time"];
-  $values[] = $_POST["end_time"];
+    if($_POST["day"] == "Monday"){
+      $day = 1;
+    }
+    if($_POST["day"] == "Tuesday"){
+      $day = 2;
+    }
+    if($_POST["day"] == "Wednesday"){
+      $day = 3;
+    }
+    if($_POST["day"] == "Thursday"){
+      $day = 4;
+    }
+    if($_POST["day"] == "Friday"){
+      $day = 5;
+    }
+     // $st = $dbh->prepare("INSERT INTO TutorAvailable VALUES tutor_id = ?, day = ?, start_time = ?, end_time = ?");
+      $values = array();
+      $values[] = $user;
+      $values[] = $day;
+      $values[] = $_POST["start_time"];
 
   try{
-    $addz->execute($values);
-  }  catch (PDOException $e){
+    $remove_avail->execute($values);
+  } catch (PDOException $e){
     echo $e->getMessage() . "<br/>";
-    echo "<h4>The availability was not added properly.</h4>";
+    echo "<h4>The availability was not removed properly.</h4>";
+    }
   }
-}
+  if (isset($_POST['add']) ) {
+    $addz = $dbh->prepare("INSERT INTO TutorAvailable VALUES (?, ?, ?, ?)");
+    $values = array();
+    $day = 0;
+    if($_POST["day_of_week"] == "Monday"){
+      $day = 1;
+    }
+    if($_POST["day_of_week"] == "Tuesday"){
+      $day = 2;
+    }
+    if($_POST["day_of_week"] == "Wednesday"){
+      $day = 3;
+    }
+    if($_POST["day_of_week"] == "Thursday"){
+      $day = 4;
+    }
+    if($_POST["day_of_week"] == "Friday"){
+      $day = 5;
+    }
+    $values[] = $user;
+    $values[] = $day;
+    $values[] = $_POST["start_time"];
+    $values[] = $_POST["end_time"];
+    try{
+      $addz->execute($values);
+    }  catch (PDOException $e){
+      echo $e->getMessage() . "<br/>";
+      echo "<h4>The availability was not added properly.</h4>";
+      }
+    }
         // $check = $dbh->query('SELECT tutor_id FROM TUTORINFO WHERE tutor_id = 'jtb43'');
 //        $results = $check->fetch();
 //        echo $results;
@@ -122,11 +121,11 @@ try{
 ?>
 
 
-
+<div class="container">
   </head>
   <body>
     <div class="text-center">
-      <h1 >Student Availability Edited Here!</h1>
+      <h1 >Student Availability</h1>
     </div>
       <h2 class="text-center">Current Availability</h2>
 <table class="table table-striped table-bordered">
@@ -240,6 +239,7 @@ try{
         <a href="student_availability_edit.php">here</a>
     </div>
 -->
+</div>
 
   </body>
 </html>

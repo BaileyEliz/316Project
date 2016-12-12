@@ -23,6 +23,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <h1>Added Request</h1>
 
 <?php
@@ -122,6 +123,6 @@
 
 <a href="admin_add_teacher_request.php">Add Another Request</a>
 <br>
-
+</div>
 </body>
 </html>

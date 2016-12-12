@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <h1>All Requests</h1>
 
 <?php
@@ -166,6 +167,7 @@ catch (PDOException $e){
 <!--Maybe will also display bookings... However not sure how useful this page is in the scheme of the site. Useful for testing different functoinality
   across the whole site when manipulating data within the database. Look into this more later, but as of now, it will be helpful for observing how the 
   data is being changed.-->
+</div>
 </body>
 </html>
       

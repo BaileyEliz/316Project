@@ -23,6 +23,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <h1>Edit a Request</h1>
 
 <?php
@@ -108,26 +109,19 @@
   
   $values1 = array();
   $values1[] = $_SESSION["teacher_email"];
-  echo $_SESSION["teacher_email"];
   $values1[] = $old_day;
-  echo $old_day;
   $values1[] = $old_start;
-  echo $old_start;
   $values1[] = $old_end;
-  echo $old_end;
   if(($old_day != $day) || ($old_start != $_POST["start_time"]) || ($old_end != $_POST["end_time"])){
-    echo "something changed";
     try{
       $st2 = $dbh->prepare("DELETE FROM Bookings WHERE Bookings.teacher_email = ? AND Bookings.day = ? AND Bookings.start_time = ? AND Bookings.end_time = ?");
-      echo "print here";
       $st2->execute(array($_SESSION["teacher_email"], $old_day, $old_start, $old_end));
-      echo "deleted from bookings";
     } catch (PDOException $e){
       echo "error";
       echo $e-getMessage() . "<br/>";
     }
   }
 ?>
-
+</div>
 </body>
 </html>
