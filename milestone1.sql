@@ -85,13 +85,12 @@ CREATE TABLE Request
  FOREIGN KEY (teacher_email) REFERENCES Teacher(email)
 );
 
-/*CREATE TABLE Matches
-(tutor_id VARCHAR(256) NOT NULL,
- request_id INTEGER NOT NULL,
- PRIMARY KEY (tutor_id, request_id),
- FOREIGN KEY (tutor_id) REFERENCES TutorInfo(tutor_id),
- FOREIGN KEY (request_id) REFERENCES Request(request_id)
-);*/
+CREATE TABLE AdminInfo
+(
+keycode VARCHAR(256) NOT NULL
+);
+
+INSERT INTO AdminInfo VALUES('admin');
 
 -- Not the real Matches table, I just needed to test. 
 CREATE TABLE Bookings

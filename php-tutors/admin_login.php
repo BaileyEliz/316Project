@@ -20,11 +20,26 @@
     </head>
     <body>
       <?php
+      
+      try {
+           include("pdo-tutors.php");
+           $dbh = dbconnect();
+         } catch (PDOException $e) {
+           print "Error connecting to the database: " . $e->getMessage() . "<br/>";
+           die();
+         }
+
 
       session_start();
-      if(isset($_POST['login']) && !empty($_POST['password']) ) {
-        echo "<br/>".$_POST['password']."<br/>";
-        if($_POST['password']=='admin'){
+      if(isset($_POST['login']) && !empty($_POST['keycode']) ) {
+              
+        $keycode = $_POST['keycode'];
+		$check = $dbh->prepare('SELECT keycode FROM admininfo WHERE keycode = :key');
+		$check->bindParam(':key', $keycode, PDO::PARAM_STR);
+		$check->execute();
+		$numresults = $check->rowCount();
+
+        if($numresults > 0){
          $_SESSION['username'] = 'admin';
          header("Location: admin_home.php");
          exit;
@@ -43,7 +58,7 @@
       ?>" method = "post">
       
       <input type = "password" class = "form-control" 
-      name = "password" placeholder = "password" 
+      name = "keycode" placeholder = "password" 
       required autofocus></br>
       
       <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
