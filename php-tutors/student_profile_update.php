@@ -44,15 +44,42 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  $statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ? WHERE tutor_id = ?");
-  $name = $_POST["name"];
+ 
+  
   $user = $_SESSION["username"];
-  try{
-    $statement->execute(array($user, $name, $user));
-  } catch (PDOException $e){
-    echo $e->getMessage() . "<br/>";
+  if($_POST["name"] and $_POST["password"]){
+  		$name = $_POST["name"];
+  		$pass = $_POST["password"];
+  		$statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ?, password = ? WHERE tutor_id = ?");
+  		try{
+    		$statement->execute(array($user, $name, $pass, $user));
+  		} catch (PDOException $e){
+    		echo $e->getMessage() . "<br/>";
+  		}
+  		header("Location: student_profile_home.php");
   }
-  header("Location: student_profile_home.php");
+  if($_POST["name"]){
+  		$name = $_POST["name"];
+  		$statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ? WHERE tutor_id = ?");
+    	try{
+    		$statement->execute(array($user, $name, $user));
+  		} catch (PDOException $e){
+    		echo $e->getMessage() . "<br/>";
+  		}
+  		header("Location: student_profile_home.php");
+  }
+    if($_POST["password"]){
+  		$pass = $_POST["password"];
+  		$statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, password = ? WHERE tutor_id = ?");
+    	try{
+    		$statement->execute(array($user, $pass, $user));
+  		} catch (PDOException $e){
+    		echo $e->getMessage() . "<br/>";
+  		}
+  		header("Location: student_profile_home.php");
+  }
+  
+
   ?>
 
 </body>
