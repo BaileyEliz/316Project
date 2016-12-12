@@ -99,9 +99,7 @@
   <h1>Your request has been booked.</h1>
 
   <div class="save">
-    Now go
-    <a href="student_profile_home.php">home</a>
-    Or back to the calendar
+    Now to your student
     <a href="student_profile_home.php">home</a>
   </div>
 </div>
