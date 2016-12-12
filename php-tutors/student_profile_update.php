@@ -1,40 +1,39 @@
 <?php
-    session_start();
+  session_start();
   $user = "generic";
   if($_SESSION['username']) {
     $user = $_SESSION['username'];
   }else{
       	 header("Location: student_login.php");
-
-      }
+  }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-    <title>Profile Updated</title>
+  <title>Profile Updated</title>
 </head>
 
 <body>
 
-Do we want to keep this page? Or just connect them directly to their home page?
+  Do we want to keep this page? Or just connect them directly to their home page?
 
-<br>
+  <br>
 
-Profile updated successfully!
+  Profile updated successfully!
 
-<a href="student_login.php">Back to Login </a>
+  <a href="student_login.php">Back to Login </a>
 
-<?php
+  <?php
   try {
     // Including connection info (including database password) from outside
     // the public HTML directory means it is not exposed by the web server,
@@ -45,16 +44,16 @@ Profile updated successfully!
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-    $statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ? WHERE tutor_id = ?");
-    $name = $_POST["name"];
-    $user = $_SESSION["username"];
-    try{
-      $statement->execute(array($user, $name, $user));
-    } catch (PDOException $e){
-      echo $e->getMessage() . "<br/>";
-    }
-   header("Location: student_profile_home.php");
-?>
+  $statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ? WHERE tutor_id = ?");
+  $name = $_POST["name"];
+  $user = $_SESSION["username"];
+  try{
+    $statement->execute(array($user, $name, $user));
+  } catch (PDOException $e){
+    echo $e->getMessage() . "<br/>";
+  }
+  header("Location: student_profile_home.php");
+  ?>
 
 </body>
 </html>
