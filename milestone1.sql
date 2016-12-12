@@ -43,6 +43,15 @@ CREATE TABLE Request
  FOREIGN KEY (teacher_email) REFERENCES Teacher(email)
 );
 
+CREATE TABLE AdminInfo
+(
+keycode VARCHAR(256) NOT NULL
+);
+
+INSERT INTO AdminInfo VALUES('admin');
+
+-- Not the real Matches table, I just needed to test. 
+
 CREATE TABLE Bookings
 (tutor_id VARCHAR(256) NOT NULL, 
 teacher_email VARCHAR(256) NOT NULL,
