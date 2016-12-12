@@ -81,14 +81,14 @@
         $teachers->execute();
         $all_teachers = $teachers->fetchAll(PDO::FETCH_ASSOC);
         $teachers_headers = array("Site", "Name", "Email");
-        create_csv($all_teachers, $teachers_headers, "all_teachers.txt");
+        create_csv($all_teachers, $teachers_headers, "all_teachers.csv");
 
     // create the all_requests txt
         $requests = $dbh->prepare("SELECT * FROM Request");
         $requests->execute();
         $all_requests = $requests->fetchAll(PDO::FETCH_ASSOC);
         $requests_headers = array("Site", "Name", "Email");
-        create_csv($all_requests, $requests_headers, "all_requests.txt");
+        create_csv($all_requests, $requests_headers, "all_requests.csv");
 
       } catch (PDOException $e) {
         print "Database error: " . $e->getMessage() . "<br/>";
