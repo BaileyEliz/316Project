@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 	<h1>Download a CSV</h1>
 
 <?php
@@ -90,6 +91,6 @@
 <a href="csvs_for_download/all_teachers.txt" target="_blank">Teachers</a>
 <br>
 <a href="csvs_for_download/all_requests.txt" target="_blank">Requests</a>
-
+</div>
 </body>
 </html>

@@ -34,7 +34,7 @@
   </head>
 
 <body>
-
+<div class="container">
 <h1>Request Details: <?=$request_id ?></h1>
 
 <!--<div class="container-fluid">
@@ -132,6 +132,6 @@ try {
     <br>
     <a href="student_matches_all_days.php">Back to Matches</a>
 
-
+</div>
 </body>
 </html>

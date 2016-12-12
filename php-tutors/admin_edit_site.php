@@ -22,6 +22,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
   <div class="text-center">
     <h1>Edit a Request</h1>
     <a href="admin_select_site.php">Back to Choose a Site</a>
@@ -75,7 +76,7 @@
      die();
    }
 ?> 
-
+</div>
 <script type="text/javascript">
 function checkvalue(val) {
     if(val==="Other")

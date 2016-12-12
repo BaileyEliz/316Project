@@ -17,7 +17,7 @@
     <?php include_once('student_navbar.php'); ?>
   </head>
   <body>
-
+    <div class="container">
     <?php
       session_start();
       $user = "generic";
@@ -227,5 +227,6 @@
 
     <br>
     <br>
+  </div>
   </body>
 </html>

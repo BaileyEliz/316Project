@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <div class="text-center">
 	<h1>Delete Teachers, Requests, and Sites</h1>
 </div>
@@ -117,5 +118,6 @@ try {
     die();
   }
 ?>
+</div>
 </body>
 </html>

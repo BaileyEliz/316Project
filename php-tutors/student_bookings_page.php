@@ -24,6 +24,7 @@
     <?php include_once('student_navbar.php'); ?>
   </head>
   <body>
+    <div class="container">
     <div class="text-center">
       <h1>Bookings</h1>
       <h3>Current Bookings</h3>
@@ -88,5 +89,6 @@
         <a href="student_matches_all_days.php" class="btn btn-warning btn-lg"><span class="glyphicon glyphicon-eye-open"></span> View Matches</a>
       </div>
       <br><br>
+  </div>
   </body>
   </html>

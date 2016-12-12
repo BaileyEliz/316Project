@@ -23,6 +23,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
   <div class="text-center">
     <h1>Edit a Request</h1>
     <h4>Warning: Editing a request will remove it from students' bookings.</h4>
@@ -92,6 +93,6 @@
     die();
   }
 ?> 
-
+</div>
 </body>
 </html>

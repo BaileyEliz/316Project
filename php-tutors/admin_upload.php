@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <div class="text-center">
 	<h1>Upload a Qualtrics CSV</h1>
 </div>
@@ -29,6 +30,6 @@
   			<input class="btn btn-primary" type="submit" name="upload" value="Upload">
 		</form>
 	</div>
-
+</div>
 </body>
 </html>

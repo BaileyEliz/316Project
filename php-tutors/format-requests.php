@@ -19,6 +19,7 @@
         <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <?php
   try {
     // Including connection info (including database password) from outside
@@ -196,6 +197,6 @@ fclose($handle);
 }
 
 ?>
-
+</div>
 </body>
 </html>

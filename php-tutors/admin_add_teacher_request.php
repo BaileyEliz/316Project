@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+<div class="container">
 <div class="text-center">
 	<h1>Add a Request</h1>
 </div>
@@ -141,6 +142,6 @@
 </form>
 <br>
 <br>
-
+</div>
 </body>
 </html>

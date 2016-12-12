@@ -22,6 +22,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
   <div class="text-center">
     <h1>Edit a Request</h1>
     <a href="admin_select_teacher_request.php">Back to Choose a Request</a>
@@ -149,7 +150,7 @@
      die();
    }
 ?> 
-
+</div>
 <script type="text/javascript">
 function checkvalue(val) {
     if(val==="Other")
@@ -158,6 +159,5 @@ function checkvalue(val) {
        document.getElementById('language').style.display='none'; 
 }
 </script>
-
 </body>
 </html>

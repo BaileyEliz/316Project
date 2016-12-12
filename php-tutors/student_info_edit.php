@@ -41,6 +41,7 @@
     if ($myrow = $statement->fetch()) {
 
   ?>
+  <div class="container">
     <h1 class="text-center">Edit Student Profile</h1>
 
     <h1>Login Information</h1>
@@ -64,6 +65,6 @@
    }
 ?> 
 
-
+  </div>
   </body>
 </html>

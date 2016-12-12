@@ -19,6 +19,7 @@
     <?php include_once('start_navbar.php'); ?>
   </head>
   <body>
+    <div class="container">
     <h1 class="text-center">Create Student Profile</h1>
 
     <h1>Login Information</h1>
@@ -40,6 +41,6 @@
       </div>
     <input type="submit" class="btn btn-primary" value="Submit Profile">
     </form>
-
+  </div>
   </body>
 </html>

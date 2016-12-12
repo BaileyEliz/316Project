@@ -19,6 +19,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <div class="text-center">
   <h1>All Bookings</h1>
 </div>
@@ -201,6 +202,7 @@ if (isset($_POST['approve']) ) {
 <!--Maybe will also display bookings... However not sure how useful this page is in the scheme of the site. Useful for testing different functoinality
   across the whole site when manipulating data within the database. Look into this more later, but as of now, it will be helpful for observing how the 
   data is being changed.-->
+</div>
 </body>
 </html>
       

@@ -23,6 +23,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
 <h1>Edit a Site</h1>
 
 <?php
@@ -63,6 +64,6 @@
 <br>
 <a href="admin_select_site.php">Back to Choose a Site</a>
 <br>
-
+</div>
 </body>
 </html>

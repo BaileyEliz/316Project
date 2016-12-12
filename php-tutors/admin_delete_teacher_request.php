@@ -22,6 +22,7 @@
     <?php include_once('admin_navbar.php'); ?>
   </head>
 <body>
+  <div class="container">
   <div class="text-center">
     <h1>Delete Request</h1>
     <a href="admin_delete_all.php">Back to Delete Page</a>
@@ -45,7 +46,6 @@
   }      
   $request_id = $_POST["request_id"];
   $_SESSION["request_id"] = $request_id;
-  echo $request_id;
 	$statement = $dbh->prepare('DELETE FROM Request WHERE request_id = ?');
 	$statement->bindParam(1, $request_id);
   try {
@@ -57,6 +57,6 @@
      die();
    }
  ?>
-
+</div>
 </body>
 </html>
