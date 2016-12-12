@@ -1,55 +1,44 @@
-<?php
-session_start();
-?>
-
-
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>PFS Database Demo</title>
-</head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>home</title>
 
-<body>
+  <!-- Bootstrap -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<center><h1>PFS Database Demo</h1></center>
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+      <?php include_once('start_navbar.php'); ?>
+    </head>
+    <body>
 
-	<?php
-	if($_SESSION['username']){
-		echo "Username: ". $_SESSION['username'] . ".<br>" . " Logged in!";
-	}
-	?>
+      <h1 class="text-center">Welcome to the Partners For Success Scheduler!</h1>
 
-	<p>
-		<a href="homepage.php">Go To Home Page</a>
-	</p>
+      <div class="login text-center">
+        <form action="student_login.php" method="post">
+          <input class = "btn btn-lg btn-primary" type="submit" value="Student Log In">
+        </form>
+      <!--Students log in 
+      <a href="student_login.php">here</a>-->
+    </div>
 
-	<p>
-		<a href="logout.php">Log out</a>
-	</p>
+    <br>
 
+    <div class="login text-center">
+      <form action="admin_login.php" method="post">
+        <input class = "btn btn-lg btn-primary" type="submit" value="Administrator Log In">
+      </form>
+      <!--Administrators log in 
+      <a href="admin_login.php">here</a>-->
+    </div>
 
-	<p>
-		<a href="TEMP_all_teachers.php">List all teachers</a>
-	</p>
-
-	<p>
-		<a href="TEMP_all_students.php">List all students</a>
-	</p>
-
-	<p>
-		<a href="loginscreen.php">Login Page</a>
-	</p>
-
-	<p>
-		<a href="admin_upload.php">Administrator Upload</a>
-	</p>
-
-
-	<p>
-		The following shows useful information about your PHP configuration.
-	</p>
-	<? phpinfo(); ?>
-
-</body>
-
-</html>
+  </body>
+  </html>
