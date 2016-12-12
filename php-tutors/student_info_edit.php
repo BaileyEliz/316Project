@@ -54,7 +54,9 @@
               <div class="form-group">
                 <div class="col-xs-4">
                   <label for="name">Name:</label>
-                  <input type="text" class="form-control" name="name" value="<?php echo $myrow['name']; ?>"required>
+                  <input type="text" class="form-control" name="name" value="<?php echo $myrow['name']; ?>">
+                  <label for="name">Password:</label>
+                  <input type="text" class="form-control" name="password" value="">
                 </div>
               </div>
 
