@@ -46,6 +46,8 @@
           die();
         }
         else {
+          echo "<div class='text-center'><h3>CSV Uploaded</h3>";
+          echo "<a href='admin_home.php'>Back to Home</a>";
           $count = 0;
           $file = $_FILES['userfile']['tmp_name'];
           $separator = ",";
@@ -79,7 +81,7 @@
             $statement->execute($values);
           }
           catch (PDOException $e){
-            echo $e->getMessage() . "<br/>";
+            //echo $e->getMessage() . "<br/>";
           }
 
           $statement1values[] = $school;
@@ -89,7 +91,7 @@
             $statement1->execute($statement1values);
           }
           catch (PDOException $e){
-            echo $e->getMessage() . "<br/>";
+            //echo $e->getMessage() . "<br/>";
           }
 
           foreach ($timeslots as $timeslot){
@@ -127,7 +129,7 @@
                 }
               }
               catch (PDOException $e){
-                echo $e->getMessage() . "<br/>";
+                //echo $e->getMessage() . "<br/>";
               }
             }
           }
