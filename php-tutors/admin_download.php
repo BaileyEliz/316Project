@@ -97,9 +97,9 @@
 
       ?>
 
-      <a href="csvs_for_download/all_teachers.txt" target="_blank">Teachers</a>
+      <a href="csvs_for_download/all_teachers.csv" target="_blank">Teachers</a>
       <br>
-      <a href="csvs_for_download/all_requests.txt" target="_blank">Requests</a>
+      <a href="csvs_for_download/all_requests.csv" target="_blank">Requests</a>
     </div>
   </body>
   </html>
