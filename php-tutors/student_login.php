@@ -45,16 +45,18 @@
          	
             $msg = '';
             
-            if (isset($_POST['login']) && !empty($_POST['username']) ) {
+            if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['password']) ) {
 				$input_name = $_POST['username'];
+				$input_password = $_POST['password'];
 				//echo $input_name;
 				
 				// $check = $dbh->query('SELECT tutor_id FROM TUTORINFO WHERE tutor_id = 'jtb43'');
 // 				$results = $check->fetch();
 // 				echo $results;
 
-				$check = $dbh->prepare('SELECT tutor_id FROM tutorinfo WHERE tutor_id = :id');
+				$check = $dbh->prepare('SELECT tutor_id FROM tutorinfo WHERE tutor_id = :id and password  = :pw');
 				$check->bindParam(':id', $input_name, PDO::PARAM_STR);
+				$check->bindParam(':pw', $input_password, PDO::PARAM_STR);
 				$check->execute();
 				$numresults = $check->rowCount();
 				
@@ -75,8 +77,8 @@
                   
                   $msg =  'In the System';
                }else {
-                  $msg =  'Unrecognized net-id. Create a new profile.';
-				  
+                  $msg =  'Incorect NetID and/or Password. Try again.';
+                  
                }
             }
          ?>
@@ -89,7 +91,10 @@
             ?>" method = "post">
             <h4 class = "form-signin-heading"><?php echo $msg; ?></h4>
             <input type = "text" class = "form-control" 
-               name = "username" placeholder = "net-id" 
+               name = "username" placeholder = "NetID" 
+               required autofocus>
+            <input type = "password" class = "form-control" 
+               name = "password" placeholder = "Password" 
                required autofocus></br>
             <button class = "btn btn-lg btn-primary btn-block" type = "submit" 
                name = "login">Login</button>

@@ -48,6 +48,7 @@ CREATE TABLE Teacher
 CREATE TABLE TutorInfo
 (tutor_id VARCHAR(256) NOT NULL,
  name VARCHAR(256) NOT NULL,
+ password VARCHAR(256) NOT NULL,
  PRIMARY KEY (tutor_id)
 );
 
@@ -127,10 +128,10 @@ INSERT INTO Teacher VALUES('Crest Street', 'Ms. Goldstein', 'goldstein@fakeemail
 INSERT INTO Teacher VALUES('Address3', 'Ms. Polson', 'polson@fakeemail.com');
 INSERT INTO Teacher VALUES('Address4', 'Ms. Smith', 'smith@fakeemail.com');
 
-INSERT INTO TutorInfo VALUES('bew21', 'Bailey Wall');
-INSERT INTO TutorInfo VALUES('cg1', 'Cosi Goldstein');
-INSERT INTO TutorInfo VALUES('jtb43', 'Justin Bergkamp');
-INSERT INTO TutorInfo VALUES('sep45', 'Sophie Polson');
+INSERT INTO TutorInfo VALUES('bew21', 'Bailey Wall', 'password');
+INSERT INTO TutorInfo VALUES('cg1', 'Cosi Goldstein', 'password');
+INSERT INTO TutorInfo VALUES('jtb43', 'Justin Bergkamp', 'password');
+INSERT INTO TutorInfo VALUES('sep45', 'Sophie Polson', 'password');
 
 INSERT INTO TutorAvailable VALUES('bew21', 1, '01:00PM', '09:00PM');
 INSERT INTO TutorAvailable VALUES('bew21', 2, '11:30AM', '01:00PM');

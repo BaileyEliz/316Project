@@ -25,10 +25,14 @@
 <h1>Add an availability</h1>
 
 <?php
-  $user = "generic";
-  if($_SESSION['username']) {
-    $user = $_SESSION['username'];
-  }
+      
+      $user = "generic";
+      if($_SESSION['username']) {
+        $user = $_SESSION['username'];
+      }else{
+      	 header("Location: student_login.php");
+
+      }
 
 
   try {

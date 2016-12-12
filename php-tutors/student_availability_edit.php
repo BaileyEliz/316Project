@@ -23,7 +23,10 @@
   $user = "generic";
   if($_SESSION['username']) {
     $user = $_SESSION['username'];
-  }
+  }else{
+      	 header("Location: student_login.php");
+
+      }
   try {
     include("pdo-tutors.php");
     $dbh = dbconnect();
