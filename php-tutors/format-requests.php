@@ -38,12 +38,15 @@
           <br><br>
           <a href="admin_upload.php">Back to Upload</a>
           <?php
+          die();
         }
         else if (!is_uploaded_file($_FILES['userfile']['tmp_name'])) {
           echo "File did not upload!\n";
           echo $_FILES['userfile']['error'];
+          die();
         }
         else {
+          $count = 0;
           $file = $_FILES['userfile']['tmp_name'];
           $separator = ",";
           $length = 1000; 
@@ -51,53 +54,6 @@
           $timeslots = array('Monday Block 1', 'Monday Block 2', 'Monday Block 3', 'Monday Block 4', 'Monday Block 5', 'Tuesday Block 1', 'Tuesday Block 2', 'Tuesday Block 3', 'Tuesday Block 4', 'Tuesday Block 5', 'Wednesday Block 1', 'Wednesday Block 2', 'Wednesday Block 3', 'Wednesday Block 4', 'Wednesday Block 5', 'Thursday Block 1', 'Thursday Block 2', 'Thursday Block 3', 'Thursday Block 4', 'Thursday Block 5', 'Friday Block 1', 'Friday Block 2', 'Friday Block 3', 'Friday Block 4', 'Friday Block 5');
           $handle = fopen($file, "r");
           $header = array_flip(fgetcsv($handle, $length, $separator));
-
-  // $statement = $dbh->prepare("DELETE FROM Request");
-
-  // try{
-  //   $statement->execute();
-  // }
-  // catch (PDOException $e) {
-  //   echo $e->getMessage() . "<br/>";
-  // }
-
-  // $alterStatement = $dbh->prepare("ALTER SEQUENCE request_request_id_seq RESTART WITH 1");
-
-  // try{
-  //   $alterStatement->execute();
-  // }
-  // catch(PDOException $e){
-  //   echo $e->getMessage() . "<br/>";
-  // }
-
-
-  // $statement = $dbh->prepare("DELETE FROM Data");
-
-  // try{
-  //   $statement->execute();
-  // }
-  // catch (PDOException $e) {
-  //   echo $e->getMessage() . "<br/>";
-  // }
-
-  // $statement = $dbh->prepare("DELETE FROM Teacher");
-  // try{
-  //   $statement->execute();
-  // }
-  // catch (PDOException $e) {
-  //   echo $e->getMessage() . "<br/>";
-  // }
-
-  // $statement = $dbh->prepare("DELETE FROM Site");
-
-  // try{
-  //   $statement->execute();
-  // }
-  // catch (PDOException $e) {
-  //   echo $e->getMessage() . "<br/>";
-  // }
-
-  //$statement = $dbh->prepare("INSERT INTO Data VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
           $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?)");
           $statement1 = $dbh->prepare("INSERT INTO Teacher VALUES(?, ?, ?)");
@@ -115,18 +71,7 @@
            $num_tutors = $csvData[$header['Max Tutors Per Slot']];
            $language = $csvData[$header['Language']];
            $description = $csvData[$header['Description']];
-           echo $name . " " . $email . " " . $school . " " . $grade . "<br/>";
 
-   //    foreach ($fields as $field){
-   //    	$values[] = $csvData[$header[$field]];
-   //    	//echo $csvData[$header[$field]] . "<br/>";
-  	// }
-  	// try {
-  	// 	$statement->execute($values);
-  	// }
-  	// catch (PDOException $e) {
-  	// 	echo $e->getMessage() . "<br/>";
-  	// }
            $values[] = $school;
            $values[] = 'car';
            $values[] = 30;
@@ -151,28 +96,20 @@
             $statement2values = array();
             if($csvData[$header[$timeslot]] != ""){
               $times = explode("-", $csvData[$header[$timeslot]]);
-              echo $times[0] . "<br/>";
-              echo $times[1] . "<br/>";
-              echo $csvData[$header[$timeslot]] . "<br/>";
               if(substr($timeslot, 0, 6) == "Monday"){
-                echo "monday!" . "<br/>";
                 $statement2values[] = 1;
               }
               if(substr($timeslot, 0, 7) == "Tuesday"){
                 $statement2values[] = 2;
-                echo "tuesday!" . "<br/>";;
               }
               if(substr($timeslot, 0, 9) == "Wednesday"){
                 $statement2values[] = 3;
-                echo "wednesday!" . "<br/>";
               }
               if(substr($timeslot, 0, 8) == "Thursday"){
                 $statement2values[] = 4;
-                echo "thursday!" . "<br/>";
               }
               if(substr($timeslot, 0, 6) == "Friday"){
                 $statement2values[] = 5;
-                echo "friday!" . "<br/>";
               }
               $statement2values[] = $grade;
               $statement2values[] = $times[0];
@@ -184,6 +121,10 @@
               $statement2values[] = 0;
               try {
                 $statement2->execute($statement2values);
+                if($count == 0){
+                  echo "<h3>Upload Successful</h3>";
+                  $count++;
+                }
               }
               catch (PDOException $e){
                 echo $e->getMessage() . "<br/>";
