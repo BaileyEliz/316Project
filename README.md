@@ -45,13 +45,13 @@ create user vagrant;
 alter user vagrant password “dbpasswd”;
 
 ### Give vagrant permission to access the tables:
-grant all privileges on site to vagrant;
-grant all privileges on teacher to vagrant;
-grant all privileges on tutorinfo to vagrant;
-grant all privileges on tutoravailable to vagrant;
-grant all privileges on request to vagrant;
-grant all privileges on admininfo to vagrant;
-grant all privileges on bookings to vagrant;
+* grant all privileges on site to vagrant;
+* grant all privileges on teacher to vagrant;
+* grant all privileges on tutorinfo to vagrant;
+* grant all privileges on tutoravailable to vagrant;
+* grant all privileges on request to vagrant;
+* grant all privileges on admininfo to vagrant;
+* grant all privileges on bookings to vagrant;
 
 ### Give vagrant permission to access serial:
 grant usage, select on sequence request_request_id_seq to vagrant;
