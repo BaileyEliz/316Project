@@ -260,7 +260,6 @@
         $number_of_tutors->execute(array($day_array[$i]['teacher_email'], $day_array[$i]['day'], $day_array[$i]['start_time'], $day_array[$i]['end_time']));
         $num_tutors = $number_of_tutors->fetchAll(PDO::FETCH_ASSOC);
         $tutors_booked = count($num_tutors);
-        echo "tutors booked: " . $tutors_booked . "<br>";
 
         echo html_print((($x * 100) + $i), $day_array[$i]);
         $returns = css_print($daily_maximum, $weekdaze_layouts[$x], $weekdaze_times[$x], (($x * 100) + $i), $day_array[$i], $day_name, $day_bookings[$x], $tutors_booked);
