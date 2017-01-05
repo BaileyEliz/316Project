@@ -27,8 +27,6 @@
 
 <body>
 
-  Do we want to keep this page? Or just connect them directly to their home page?
-
   <br>
 
   Profile created successfully!
@@ -46,7 +44,7 @@
     print "Error connecting to the database: " . $e->getMessage() . "<br/>";
     die();
   }
-  $statement = $dbh->prepare("INSERT INTO TutorInfo VALUES (?, ?, ?)");
+  $statement = $dbh->prepare("INSERT INTO TutorInfo (tutor_id, name, password) VALUES (?, ?, ?)");
   $name = $_POST["name"];
   $netid = $_POST["netid"];
   $pass = $_POST["password"];
@@ -56,7 +54,7 @@
   } catch (PDOException $e){
     echo $e->getMessage() . "<br/>";
   }
-  header("Location: student_profile_home.php");
+  header("Location: student_info_edit.php");
   ?>
 
 </body>

@@ -103,7 +103,7 @@ function html_print($index, $array) {
   $build .= "<form method=\"post\" action=\"student_matches_request_details.php\">";
   $build .= "<input type=\"hidden\" name=\"request_id\" value=\"" . $request_id . "\">";
   $build .= "<div class='clickme' onclick='this.parentNode.submit();'></div>";
-  $build .= "<div class='popup' onclick='this.parentNode.submit();'>Teacher: " . $array['name'] . "</br>Site: " . $array['site_name'] . "</br>" . "</div>";
+  $build .= "<div class='popup' onclick='this.parentNode.submit();'>Teacher: " . $array['name'] . "</br>Site: " . $array['site_name'] . "</br>Transportation: " . $array['transportation'] . "</br>" . "</div>";
   $build .= "</form>";
   $build .= "</div>";
   return $build;

@@ -25,8 +25,6 @@
 
 <body>
 
-  Do we want to keep this page? Or just connect them directly to their home page?
-
   <br>
 
   Profile updated successfully!
@@ -47,38 +45,30 @@
  
   
   $user = $_SESSION["username"];
-  if($_POST["name"] and $_POST["password"]){
-  		$name = $_POST["name"];
-  		$pass = $_POST["password"];
-  		$statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ?, password = ? WHERE tutor_id = ?");
-  		try{
-    		$statement->execute(array($user, $name, $pass, $user));
-  		} catch (PDOException $e){
-    		echo $e->getMessage() . "<br/>";
-  		}
-  		header("Location: student_profile_home.php");
+  $name = $_POST["name"];
+  $pass = $_POST["password"];
+  $birth_date = $_POST["birth_date"];
+  $duke_email = $_POST["duke_email"];
+  $graduation_year = $_POST["graduation_year"];
+  $course = $_POST["course"];
+  $major_and_minor = $_POST["major_and_minor"];
+  $has_previous_experience = $_POST["has_previous_experience"];
+  $is_education_minor = $_POST["is_education_minor"];
+  $is_licensure_track = $_POST["is_licensure_track"];
+  $is_america_reads_america_counts_tutor = $_POST["is_america_reads_america_counts_tutor"];
+  $is_varsity_athlete = $_POST["is_varsity_athlete"];
+  $varsity_team = $_POST["varsity_team"];
+  $varsity_academic_advisor = $_POST["varsity_academic_advisor"];
+  $other_languages = $_POST["other_languages"];
+
+  $statement = $dbh->prepare("UPDATE TutorInfo SET name = ?, password = ?, birth_date = ?, duke_email = ?, graduation_year = ?, course = ?, major_and_minor = ?, has_previous_experience = ?, is_education_minor = ?, is_licensure_track = ?, is_america_reads_america_counts_tutor = ?, is_varsity_athlete = ?, varsity_team = ?, varsity_academic_advisor = ?, other_languages = ? WHERE tutor_id = ?");
+
+  try{
+    $statement->execute(array($name, $pass, $birth_date, $duke_email, $graduation_year, $course, $major_and_minor, $has_previous_experience, $is_education_minor, $is_licensure_track, $is_america_reads_america_counts_tutor, $is_varsity_athlete, $varsity_team, $varsity_academic_advisor, $other_languages, $user));
+  } catch (PDOException $e){
+    echo $e->getMessage() . "<br/>";
   }
-  if($_POST["name"]){
-  		$name = $_POST["name"];
-  		$statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, name = ? WHERE tutor_id = ?");
-    	try{
-    		$statement->execute(array($user, $name, $user));
-  		} catch (PDOException $e){
-    		echo $e->getMessage() . "<br/>";
-  		}
-  		header("Location: student_profile_home.php");
-  }
-    if($_POST["password"]){
-  		$pass = $_POST["password"];
-  		$statement = $dbh->prepare("UPDATE TutorInfo SET tutor_id = ?, password = ? WHERE tutor_id = ?");
-    	try{
-    		$statement->execute(array($user, $pass, $user));
-  		} catch (PDOException $e){
-    		echo $e->getMessage() . "<br/>";
-  		}
-  		header("Location: student_profile_home.php");
-  }
-  
+  header("Location: student_profile_home.php");
 
   ?>
 
