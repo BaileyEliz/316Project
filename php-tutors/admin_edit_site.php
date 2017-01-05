@@ -73,6 +73,15 @@
                   <input type="text" class="form-control" name="travel_time" value="<?php echo $myrow['travel_time']; ?>"/><br>
                 </div>
               </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="van_elig">Van Eligible:</label>
+                  <select class="form-control" name="is_van_eligible">
+                    <option <?php if($myrow["is_van_eligible"]){echo ("selected");}?> value="Yes">Yes</option>
+                    <option <?php if(!$myrow["is_van_eligible"]){echo ("selected");}?> value="No">No</option>
+                  </select>
+                </div>
+              </div>
               <input class="btn btn-primary" type="submit" value="Update Site">
               <br>
               <br>

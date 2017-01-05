@@ -52,10 +52,15 @@
             <form method="post" action="admin_edit_site.php">
               <h4>Select a site below to edit:</h4>
               <?php
-              echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Name</b></td><td><b>Transportation</b></td><td><b>Travel Time (min)</b></td></th>";
+              echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Name</b></td><td><b>Transportation</b></td><td><b>Travel Time (min)</b></td><td><b>Is Van Eligible</b></td></th>";
               do {
                 echo "<tr><td><input type='radio' name='name' value='" . $myrow['name'] . "'/></td>";
-                echo "<td>" . $myrow['name'] . "</td><td>" . $myrow['transportation'] . "</td><td>" . $myrow['travel_time'] . "</td></tr>";
+                echo "<td>" . $myrow['name'] . "</td><td>" . $myrow['transportation'] . "</td><td>" . $myrow['travel_time'] . "</td>";
+                if ($myrow['is_van_eligible']) {
+                  echo "<td>Yes</td></tr>";
+                } else {
+                  echo "<td>No</td></tr>";
+                }
               } while ($myrow = $st->fetch());
               
               ?>

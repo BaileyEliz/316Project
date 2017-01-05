@@ -49,7 +49,7 @@
       $statement->bindParam(1, $user);
       $statement->execute();
       if($row = $statement->fetch()){
-        echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Approved?</th>";
+        echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Need Van Transportation?</th><th>Approved?</th>";
         do{
           if($row["day"] == 1){
             $day = "Monday";
@@ -66,6 +66,10 @@
           if($row["day"] == 5){
             $day = "Friday";
           }
+          $needsVan = "No";
+          if($row["needs_van"] == "true"){
+            $needsVan = "Yes";
+          }
           $isApproved = "No";
           if($row["isapproved"] == "true"){
             $isApproved = "Yes";
@@ -78,6 +82,7 @@
           echo "<td>" . $row["site_name"] . "</td>";
           echo "<td>" . $row["name"] . "</td>";
           echo "<td>" . $row["teacher_email"] . "</td>";
+          echo "<td>" . $needsVan . "</td>";
           echo "<td>" . $isApproved . "</td></tr>";
         } while($row = $statement->fetch());
         echo "</table>";

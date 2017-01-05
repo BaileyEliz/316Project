@@ -95,7 +95,7 @@
       if (($bookings = $st->fetch())) {
         echo "<h3>Bookings Pending Approval</h3>";
 
-        echo "<table class='table table-striped table-bordered'><th>Tutor Id</th><th>Teacher Email</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Approve</th><th>Remove</th>";
+        echo "<table class='table table-striped table-bordered'><th>Tutor Id</th><th>Teacher Email</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Needs Van Transportation?</th><th>Approve</th><th>Remove</th>";
         do {
          echo "<tr><td>" . $bookings['tutor_id'] . "</td>";
          echo "<td>" . $bookings['teacher_email'] . "</td>";
@@ -116,10 +116,15 @@
         if($bookings['day'] == 5){
           echo '<td>Friday</td>';
         }
+        $needsVan = "No";
+        if($bookings["needs_van"] == "true"){
+          $needsVan = "Yes";
+        }
         $starttime = date("g:i a", strtotime($bookings["start_time"]));
         $endtime = date("g:i a", strtotime($bookings["end_time"]));
         echo "<td>" . $starttime . "</td>";
         echo "<td>" . $endtime . "</td>";
+        echo "<td>" . $needsVan . "</td>";
          //echo "<td>" . $bookings['isapproved'] . "</td>";
         
         ?>
@@ -153,7 +158,7 @@
     $st2 = $dbh->query("SELECT * FROM Bookings WHERE isapproved = 'true' ORDER BY tutor_id");
     if (($bookings2 = $st2->fetch())) {
       echo "<h3>Approved Bookings</h3>";
-      echo "<table class='table table-striped table-bordered'><th>Tutor Id</th><th>Teacher Email</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Remove</th>";
+      echo "<table class='table table-striped table-bordered'><th>Tutor Id</th><th>Teacher Email</th><th>Day</th><th>Start Time</th><th>End Time</th><th>Needs Van Transportation?</th><th>Remove</th>";
       do {
        echo "<tr><td>" . $bookings2['tutor_id'] . "</td>";
        echo "<td>" . $bookings2['teacher_email'] . "</td>";
@@ -174,10 +179,15 @@
       if($bookings2['day'] == 5){
         echo '<td>Friday</td>';
       }
+      $needsVan = "No";
+      if($bookings2["needs_van"] == "true"){
+        $needsVan = "Yes";
+      }
       $starttime2 = date("g:i a", strtotime($bookings2["start_time"]));
       $endtime2 = date("g:i a", strtotime($bookings2["end_time"]));
       echo "<td>" . $starttime2 . "</td>";
       echo "<td>" . $endtime2 . "</td>";
+      echo "<td>" . $needsVan . "</td>";
          //echo "<td>" . $bookings['isapproved'] . "</td>";
       
       ?>

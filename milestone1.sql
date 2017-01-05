@@ -2,6 +2,7 @@ CREATE TABLE Site
 (name VARCHAR(256) NOT NULL,
  transportation VARCHAR(256) NOT NULL,
  travel_time INTEGER,
+ is_van_eligible BOOLEAN,
  PRIMARY KEY (name)
 );
 
@@ -13,10 +14,28 @@ CREATE TABLE Teacher
  FOREIGN KEY (site_name) REFERENCES Site(name)
 );
 
+CREATE TABLE ClassesOffered
+(class VARCHAR(256) NOT NULL,
+PRIMARY KEY (class)
+);
+
 CREATE TABLE TutorInfo
 (tutor_id VARCHAR(256) NOT NULL,
  name VARCHAR(256) NOT NULL,
  password VARCHAR(256) NOT NULL,
+ birth_date VARCHAR(256),
+ duke_email VARCHAR(256),
+ graduation_year VARCHAR(256),
+ course VARCHAR(256),
+ major_and_minor VARCHAR(256),
+ has_previous_experience VARCHAR(256),
+ is_education_minor VARCHAR(256),
+ is_licensure_track VARCHAR(256),
+ is_america_reads_america_counts_tutor VARCHAR(256),
+ is_varsity_athlete VARCHAR(256),
+ varsity_team VARCHAR(256),
+ varsity_academic_advisor VARCHAR(256),
+ other_languages VARCHAR(256),
  PRIMARY KEY (tutor_id)
 );
 
@@ -56,6 +75,7 @@ teacher_email VARCHAR(256) NOT NULL,
 day INTEGER NOT NULL CHECK (day >= 1 AND day <= 5),
 start_time TIME(0) NOT NULL,
 end_time TIME(0) NOT NULL,
+needs_van BOOLEAN NOT NULL,
 isapproved VARCHAR(256), 
 PRIMARY KEY (tutor_id, teacher_email, day, start_time, end_time)
 );

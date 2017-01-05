@@ -57,7 +57,7 @@
           $handle = fopen($file, "r");
           $header = array_flip(fgetcsv($handle, $length, $separator));
 
-          $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?)");
+          $statement = $dbh->prepare("INSERT INTO Site VALUES (?, ?, ?, ?)");
           $statement1 = $dbh->prepare("INSERT INTO Teacher VALUES(?, ?, ?)");
           $statement2 = $dbh->prepare("INSERT INTO Request VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
@@ -77,6 +77,7 @@
            $values[] = $school;
            $values[] = 'car';
            $values[] = 30;
+           $values[] = 0;
            try {
             $statement->execute($values);
           }
