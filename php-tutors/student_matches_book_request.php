@@ -28,9 +28,18 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
       <![endif]-->
       <?php include_once('student_navbar.php'); 
-      if (!isset($_POST['book'])) {
-        echo "You need to choose a request";
-        die();
+
+      if (!isset($_POST['needs_van'])) {
+        $needs_van = 0;
+      }
+      else {
+        $needs_van = $_POST['needs_van'];
+        if ($needs_van == 1) {
+          $needs_van = 1;
+        }
+        else {
+          $needs_van = 0;
+        }
       }
     //echo "Welcome to the booking page ". $_SESSION['username'] . "!"."<br/>";?>
   </head>
@@ -60,7 +69,7 @@
        die();
      }
      
-     $statement = $dbh->prepare("INSERT INTO BOOKINGS VALUES (?, ?, ?, ?, ?, ?)");
+     $statement = $dbh->prepare("INSERT INTO BOOKINGS VALUES (?, ?, ?, ?, ?, ?, ?)");
      $getNum = $dbh->prepare("SELECT * 
        FROM BOOKINGS 
        WHERE
@@ -81,7 +90,7 @@
     try{
       if($tutor_id != '' and $num<$num_tutors){		
        $f = 'false';
-       $statement->execute(array($tutor_id, $teacher_email, $day, $start_time, $end_time, $f));
+       $statement->execute(array($tutor_id, $teacher_email, $day, $start_time, $end_time, $needs_van, $f));
        
      }else{
       echo "<br/>";

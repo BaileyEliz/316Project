@@ -20,6 +20,14 @@
   <!-- Bootstrap -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
 
+  <!-- jQuery -->
+  <script src="jquery-3.1.1.min.js"></script>
+
+  <!-- jQuery UI-->
+  <link rel="stylesheet" href="jquery-ui.min.css">
+  <script src="external/jquery/jquery.js"></script>
+  <script src="jquery-ui.min.js"></script>
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -64,7 +72,7 @@ try {
     // $st = $dbh->query("SELECT address FROM Drinker WHERE name='" . $drinker . "'");
     // A much safer method is to use prepared statements:
   $st = $dbh->prepare(
-    "SELECT Request.day, Request.grade_level, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.language, Request.description, Teacher.name, Teacher.site_name, Site.transportation 
+    "SELECT Request.day, Request.grade_level, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.language, Request.description, Teacher.name, Teacher.site_name, Site.transportation, Site.is_van_eligible 
     FROM Request, Teacher, Site
     WHERE Request.request_id = ? and Request.teacher_email = Teacher.email and Site.name = Teacher.site_name");
   $st->execute(array($request_id));
@@ -82,6 +90,7 @@ try {
    $teacher_name = $details['name'];
    $site_name = $details['site_name'];
    $transportation = $details['transportation'];
+   $is_van_eligible = $details['is_van_eligible'];
 
    $existingTutorsStatement = $dbh->prepare(
     "SELECT TutorInfo.tutor_id, TutorInfo.name 
@@ -132,13 +141,57 @@ $_SESSION['sreq'] = $ser_req;
 
 ?>
 <br>
-<form action = "student_matches_book_request.php" method = "post">
-  <input type="submit" class="btn btn-primary"name="book" value = "Book" />
+
+<form id="booking_form" action = "student_matches_book_request.php" method = "post">
+  <input type="submit" class="btn btn-primary" name="book" value = "Book" />
+  <input id="pleaseWork" type="hidden" name="needs_van">
 </form>  
 
 <br>
 <a href="student_matches_all_days.php">Back to Matches</a>
-
 </div>
+
+<div id="dialog" title="Eligible For Van Transport">
+  <p>This site is eligible for van transportation.<br>
+  <p>Would you like to take advantage of this?
+</div>
+
+<?php
+  if ($is_van_eligible) {
+    echo "<script> function doDialogue() {";
+    echo "$('#dialog').dialog('open');";
+    echo "}</script>";
+  }
+  else {
+    echo "<script> function doDialogue() {";
+    echo "document.getElementById('booking_form').submit();}</script>";
+  }
+?>
+
+<script>
+  $("form").submit(function(event){
+    event.preventDefault();
+    doDialogue();
+  });
+</script>
+
+<script>
+      $("#dialog").dialog({
+        autoOpen: false,
+        modal: true,
+        resizable: false,
+        buttons: {
+          "Yes": function() {
+            $('#pleaseWork').val(1);
+            document.getElementById("booking_form").submit();
+          },
+          "No": function() {
+            $('#pleaseWork').val(0);
+            document.getElementById("booking_form").submit();
+          }
+        }
+      });
+</script>
+
 </body>
 </html>

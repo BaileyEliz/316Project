@@ -53,7 +53,10 @@
 
     <h1 class="text-center">Student Profile</h1>
 
-    <h2 class="text-center">Student Information</h2>
+    <div class="text-center">
+      <h2>Student Information</h2>
+      <a href="student_info_edit.php" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Edit Information</a>
+    </div>
 
     <div class="name text-center">
       <h4>Student Name: <?= $student_name?></h4>
@@ -63,7 +66,7 @@
 
     <div class="text-center">
       <h2>Availability</h2> 
-      <a href="student_availability_edit.php" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Add Availability</a>
+      <a href="student_availability_edit.php" class="btn btn-success"><span class="glyphicon glyphicon-plus"></span> Edit Availability</a>
     </div>
     <br>
 
@@ -170,7 +173,7 @@
 
     for ($x = 0; $x < count($weekdaze); $x++) {
       for ($i = 0; $i < count($weekdaze[$x]); $i++) {
-        echo simple_html_print((($x * 100) + $i), $weekdaze[$x][$i]) . "<br/>";
+        echo simple_html_print((($x * 100) + $i), $weekdaze[$x][$i]);
         echo simple_css_print((($x * 100) + $i), $weekdaze[$x][$i], $weekdaze_names[$x]);
       }
     }
@@ -188,7 +191,7 @@
       $statement->bindParam(1, $user);
       $statement->execute();
       if($row = $statement->fetch()){
-        echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Approved?</th>";
+        echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Need Van Transportation?</th><th>Approved?</th>";
         do{
           if($row["day"] == 1){
             $day = "Monday";
@@ -205,6 +208,10 @@
           if($row["day"] == 5){
             $day = "Friday";
           }
+          $needsAVan = "No";
+          if($row["needs_van"] == "true"){
+            $needsAVan = "Yes";
+          }
           $isApproved = "No";
           if($row["isapproved"] == "true"){
             $isApproved = "Yes";
@@ -217,6 +224,7 @@
           echo "<td>" . $row["site_name"] . "</td>";
           echo "<td>" . $row["name"] . "</td>";
           echo "<td>" . $row["teacher_email"] . "</td>";
+          echo "<td>" . $needsAVan . "</td>";
           echo "<td>" . $isApproved . "</td></tr>";
         } while($row = $statement->fetch());
         echo "</table>";

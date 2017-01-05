@@ -42,10 +42,15 @@
           print "Error connecting to the database: " . $e->getMessage() . "<br/>";
           die();
         }
-        $st = $dbh->prepare("UPDATE Site SET transportation = ?, travel_time = ? WHERE name = ?");
+        $st = $dbh->prepare("UPDATE Site SET transportation = ?, travel_time = ?, is_van_eligible = ? WHERE name = ?");
         $values = array();
         $values[] = $_POST["transportation"];
         $values[] = $_POST["travel_time"];
+        if($_POST["is_van_eligible"] == "Yes"){
+          $values[] = "TRUE";
+        } else {
+          $values[] = "FALSE";
+        }
         $values[] = $_SESSION["name"];
 
         try{
@@ -58,11 +63,17 @@
       ?>
 
       <table class='table table-striped table-bordered'>
-        <th>Name</th><th>Transportation</th><th>Travel Time (min)</th>
+        <th>Name</th><th>Transportation</th><th>Travel Time (min)</th><th>Is Van Eligible</th>
         <tr>
           <td><?php echo $_SESSION["name"];?></td>
           <td><?php echo $_POST["transportation"];?></td>
           <td><?php echo $_POST["travel_time"];?></td>
+          <td><?php 
+            if ($_POST['is_van_eligible']) {
+              echo "Yes";
+            } else {
+              echo "No";
+            }?></td>
         </tr>
       </table>
       <a href="admin_home.php">Back to Admin Homepage</a>

@@ -1,0 +1,4 @@
+div[class="description_cell"] {
+    height: 100px;
+    overflow: hidden;
+}

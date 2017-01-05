@@ -30,7 +30,7 @@
       <nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <a class="navbar-brand" href="admin_home.php">PFS Scheduler</a>
+            <a class="navbar-brand" href="index.php">PFS Scheduler</a>
           </div>
           <ul class="nav navbar-nav">
             <li><a href="admin_home.php">Admin Home <span class="sr-only">(current)</span></a></li>

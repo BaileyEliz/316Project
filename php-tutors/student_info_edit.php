@@ -59,8 +59,86 @@
               </div>
               <div class="form-group">
                 <div class="col-xs-4">
-                  <label for="name">Password:</label>
-                  <input type="text" class="form-control" name="password" value="">
+                  <label for="password">Password:</label>
+                  <input type="text" class="form-control" name="password" value="<?php echo $myrow['password']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="birth_date">Birth Date:</label>
+                  <input type="text" class="form-control" name="birth_date" value="<?php echo $myrow['birth_date']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="name">Duke Email:</label>
+                  <input type="text" class="form-control" name="duke_email" value="<?php echo $myrow['duke_email']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="graduation_year">Graduation Year (format as '20XX'):</label>
+                  <input type="text" class="form-control" name="graduation_year" value="<?php echo $myrow['graduation_year']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="course">Which PFS service-learning course are you enrolled in this semester?</label>
+                  <input type="text" class="form-control" name="course" value="<?php echo $myrow['course']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="major_and_minor">What is your declared or intended major and/or minor?</label>
+                  <input type="text" class="form-control" name="major_and_minor" value="<?php echo $myrow['major_and_minor']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="has_previous_experience">Have you previously taken a service-learning course that worked with PFS?</label>
+                  <input type="text" class="form-control" name="has_previous_experience" value="<?php echo $myrow['has_previous_experience']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="is_education_minor">Have you declared an Education minor?</label>
+                  <input type="text" class="form-control" name="is_education_minor" value="<?php echo $myrow['is_education_minor']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="is_licensure_track">Are you currently enrolled in a teaching licensure track?</label>
+                  <input type="text" class="form-control" name="is_licensure_track" value="<?php echo $myrow['is_licensure_track']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="is_america_reads_america_counts_tutor">Are you an America Reads/America Counts tutor this semster?</label>
+                  <input type="text" class="form-control" name="is_america_reads_america_counts_tutor" value="<?php echo $myrow['is_america_reads_america_counts_tutor']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="is_varsity_athlete">Are you on a varsity athletic team?</label>
+                  <input type="text" class="form-control" name="is_varsity_athlete" value="<?php echo $myrow['is_varsity_athlete']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="varsity_team">If yes, which team?</label>
+                  <input type="text" class="form-control" name="varsity_team" value="<?php echo $myrow['varsity_team']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="varsity_academic_advisor">If yes, who is your academic advisor?</label>
+                  <input type="text" class="form-control" name="varsity_academic_advisor" value="<?php echo $myrow['varsity_academic_advisor']; ?>">
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="other_languages">If you speak a language(s) other than English, what other language(s) do you speak?</label>
+                  <input type="text" class="form-control" name="other_languages" value="<?php echo $myrow['other_languages']; ?>">
                 </div>
               </div>
               <input type="submit" class="btn btn-primary" value="Update Profile">
