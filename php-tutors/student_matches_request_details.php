@@ -72,7 +72,7 @@ try {
     // $st = $dbh->query("SELECT address FROM Drinker WHERE name='" . $drinker . "'");
     // A much safer method is to use prepared statements:
   $st = $dbh->prepare(
-    "SELECT Request.day, Request.grade_level, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.language, Request.description, Teacher.name, Teacher.site_name, Site.transportation, Site.is_van_eligible 
+    "SELECT Request.day, Request.grade_level, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.language, Request.description, Teacher.name, Teacher.site_name, Site.transportation, Site.travel_time, Site.is_van_eligible 
     FROM Request, Teacher, Site
     WHERE Request.request_id = ? and Request.teacher_email = Teacher.email and Site.name = Teacher.site_name");
   $st->execute(array($request_id));
@@ -90,6 +90,7 @@ try {
    $teacher_name = $details['name'];
    $site_name = $details['site_name'];
    $transportation = $details['transportation'];
+   $travel_time = $details['travel_time'];
    $is_van_eligible = $details['is_van_eligible'];
 
    $existingTutorsStatement = $dbh->prepare(
@@ -108,6 +109,7 @@ try {
    echo "<h4>Teacher: " . $teacher_name . "<br/></h4>";
    echo "<h4>Site: " . $site_name . "<br/></h4>";
    echo "<h4>Transportation: " . $transportation . "<br/></h4>";
+   echo "<h4>Travel Time: " . $travel_time . " minutes<br/></h4>";
    echo "<h4>Grade Level: " . $details['grade_level'] . "<br/></h4>";
    echo "<h4>Start Time: " . date("g:i a", strtotime($start_time)) . "<br/></h4>";
    echo "<h4>End Time: " . date("g:i a", strtotime($end_time)) . "<br/></h4>";
@@ -151,9 +153,9 @@ $_SESSION['sreq'] = $ser_req;
 <a href="student_matches_all_days.php">Back to Matches</a>
 </div>
 
-<div id="dialog" title="Eligible For Van Transport">
-  <p>This site is eligible for van transportation.<br>
-  <p>Would you like to take advantage of this?
+<div id="dialog" title="Van Transportation Notice">
+  <p>This site is not within walking distance. If you don't have access to a car, you must take the provided PFS van transportation.<br>
+  <p>If you ride the van you must allow 30 minutes before and after the session time for transportation.
 </div>
 
 <?php
@@ -185,9 +187,12 @@ $_SESSION['sreq'] = $ser_req;
             $('#pleaseWork').val(1);
             document.getElementById("booking_form").submit();
           },
-          "No": function() {
+          "No (I will drive)": function() {
             $('#pleaseWork').val(0);
             document.getElementById("booking_form").submit();
+          },
+          "Cancel": function() {
+            $(this).dialog( "close" );
           }
         }
       });

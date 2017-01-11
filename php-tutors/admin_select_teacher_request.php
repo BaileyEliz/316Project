@@ -32,6 +32,7 @@
         <div class="text-center">
           <h1>Edit a Request</h1>
           <h4>Warning: Editing a request will remove it from students' bookings.</h4>
+          <br>
         </div>
 
 <!-- <form action="edit-success.php" method="post">
@@ -51,12 +52,41 @@ try {
   die();
 }
 try {
+  $teacher_st = $dbh->query('SELECT * FROM Teacher');
+  if (($myrow = $teacher_st->fetch())) {
+    ?>
+
+    <h4>Select a teacher below to hide all of their requests:</h4>
+    <form method="post" action="admin_hide_teacher_request.php">
+
+      <?php
+      echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Name</b></td><td><b>Site</b></td><td><b>Is Hidden</b></td></th>";
+      do {
+        echo "<tr><td><input type='radio' name='teacher_name' value='" . $myrow['name'] . "'/></td>";
+        echo "<td>" . $myrow['name'] . "</td><td>" . $myrow['site_name'] . "</td>";
+        if ($myrow['is_hidden']) {
+          echo "<td>Yes</td></tr>";
+        } else {
+          echo "<td>No</td></tr>";
+        }
+      } while ($myrow = $teacher_st->fetch());
+      echo "</table>";
+      
+      ?>
+      
+      <input class='btn btn-primary' type="submit" value="SELECT"/>
+    </form>
+
+  <?php
+  }
+
   $st = $dbh->query('SELECT * FROM Request, Teacher WHERE teacher_email = email ORDER BY request_id');
   if (($myrow = $st->fetch())) {
     ?>
 
+    <br>
+    <h4>Select a request below to edit:</h4>
     <form method="post" action="admin_edit_teacher_request.php">
-      <h4>Select a request below to edit:</h4>
       <?php
       echo "<table class='table table-striped table-bordered table-hover'><th><td><b>Request ID</b></td><td><b>Teacher Name</b></td><td><b>Teacher Email</b></td><td><b>Site</b></td><td><b>Grade Level</b></td><td><b>Day of the Week</b></td><td><b>Start Time</b></td><td><b>End Time</b></td><td><b># of Tutors</b></td><td><b>Language</b></td><td><b>Description</b></td><td><b>Is Hidden</b></td></th>";
       do {
@@ -85,6 +115,7 @@ try {
           echo "<td>No</td></tr>";
         }
       } while ($myrow = $st->fetch());
+      echo "</table>";
       
       ?>
       <input class='btn btn-primary' type="submit" value="SELECT"/>

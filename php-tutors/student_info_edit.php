@@ -83,8 +83,15 @@
               </div>
               <div class="form-group">
                 <div class="col-xs-4">
-                  <label for="course">Which PFS service-learning course are you enrolled in this semester?</label>
-                  <input type="text" class="form-control" name="course" value="<?php echo $myrow['course']; ?>">
+                  <label for="course">Which PFS service-learning course(s) are you enrolled in this semester?</label>
+                  <input type="checkbox" name="course[]" value="Education 101" <?php if (strpos($myrow['course'], "Education 101") !== false) { echo 'checked';} ?> /><label for="education_101">Education 101</label><br />
+                  <input type="checkbox" name="course[]" value="Education 240" <?php if (strpos($myrow['course'], "Education 240") !== false) { echo 'checked';} ?> /><label for="education_240">Education 240</label><br />
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="col-xs-4">
+                  <label for="professor">Who is your professor?</label>
+                  <input type="text" class="form-control" name="professor" value="<?php echo $myrow['professor']; ?>">
                 </div>
               </div>
               <div class="form-group">

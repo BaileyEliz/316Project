@@ -37,6 +37,28 @@
         die();
 
     }
+
+    if (isset($_POST['remove']) ) {  
+          $remove_book = $dbh->prepare(
+            "DELETE
+            FROM BOOKINGS
+            WHERE BOOKINGS.tutor_id = ? and BOOKINGS.teacher_email = ? and BOOKINGS.day = ? and BOOKINGS.start_time= ? and BOOKINGS.end_time = ?");
+
+          $id = $_POST["id"];
+          $email = $_POST["email"];
+          $day = $_POST["day"];
+          $st = $_POST["start_time"];
+          $et = $_POST["end_time"];
+          
+          try{
+
+           $remove_book->execute(array($id, $email, $day, $st, $et));
+
+         }  catch (PDOException $e){
+           echo $e->getMessage() . "<br/>";
+           echo "<h4>The booking slot was not removed properly.</h4>";
+         }
+      }
     
     $statement = $dbh->prepare("SELECT * FROM TutorInfo WHERE tutor_id = ?");
     $statement->bindParam(1, $user);
@@ -187,11 +209,12 @@
 
     <?php
     $statement = $dbh->prepare("SELECT * FROM Bookings, Teacher WHERE Bookings.tutor_id = ? AND Teacher.email = Bookings.teacher_email");
+
     try{
       $statement->bindParam(1, $user);
       $statement->execute();
       if($row = $statement->fetch()){
-        echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Need Van Transportation?</th><th>Approved?</th>";
+        echo "<table class='table table-striped table-bordered'><th>Day</th><th>Start Time</th><th>End Time</th><th>School</th><th>Teacher</th><th>Teacher Email</th><th>Need Van Transportation?</th><th>Approved?</th><th>Remove</th>";
         do{
           if($row["day"] == 1){
             $day = "Monday";
@@ -225,7 +248,23 @@
           echo "<td>" . $row["name"] . "</td>";
           echo "<td>" . $row["teacher_email"] . "</td>";
           echo "<td>" . $needsAVan . "</td>";
-          echo "<td>" . $isApproved . "</td></tr>";
+          echo "<td>" . $isApproved . "</td>";
+
+          if ($isApproved == "No") {
+            echo "<form action='student_profile_home.php' method='post'>";
+            echo "<input type='hidden' name='id' value='" . $row['tutor_id'] . "'>";
+            echo "<input type='hidden' name='email' value='" . $row['teacher_email'] . "'>";
+            echo "<input type='hidden' name='day' value='" . $row['day'] . "'>";
+            echo "<input type='hidden' name='start_time' value='" . $row['start_time'] . "'>";
+            echo "<input type='hidden' name='end_time' value='" . $row['end_time'] . "'>";
+            echo "<td><button class='btn btn-primary' name='remove'>Remove</button></td></tr>";
+            echo "</form>";
+          }
+          else {
+            echo "<td></td>";
+          }
+          echo "</tr>";
+
         } while($row = $statement->fetch());
         echo "</table>";
 
