@@ -96,14 +96,14 @@
       <h1>All Teachers</h1>
       <?php 
       try{
-        $st = $dbh->query('SELECT Teacher.name AS teacher_name, Teacher.email AS teacher_email, Teacher.site_name AS site_name FROM Teacher, Site WHERE site_name = Site.name ORDER BY teacher_name');
+        $st = $dbh->query('SELECT Teacher.name AS teacher_name, Teacher.email AS teacher_email, Teacher.phone_number AS phone_number, Teacher.site_name AS site_name FROM Teacher, Site WHERE site_name = Site.name ORDER BY teacher_name');
         $num_requests = $dbh->prepare('SELECT * FROM Request WHERE Request.teacher_email = ?');
         $num_tutors_requested = $dbh->prepare('SELECT SUM(num_tutors) FROM Request WHERE Request.teacher_email = ?');
         $num_tutors = $dbh->prepare('SELECT * FROM Bookings WHERE Bookings.teacher_email = ?');
 
         if(($myrow = $st->fetch())){
 
-          echo "<table id='teacher_table' class='table table-striped table-bordered' class='tablesorter'><thead><th>Name</th><th>Email</th><th>Site</th><th># of Requests Made</th><th># of Tutors Requested</th><th># of Tutors Matched</th></thead><tbody>";
+          echo "<table id='teacher_table' class='table table-striped table-bordered' class='tablesorter'><thead><th>Name</th><th>Email</th><th>Phone Number</th><th>Site</th><th># of Requests Made</th><th># of Tutors Requested</th><th># of Tutors Matched</th></thead><tbody>";
           do{
             $teacher_requests = $num_requests->execute(array($myrow['teacher_email']));
             $all_teacher_requests = $num_requests->fetchAll(PDO::FETCH_ASSOC);
@@ -116,6 +116,7 @@
 
             echo "<tr><td>" . $myrow['teacher_name'] . "</td>";
             echo "<td>" . $myrow['teacher_email'] . "</td>";
+            echo "<td>" . $myrow['phone_number'] . "</td>";
             echo "<td>" . $myrow['site_name'] . "</td>";
             echo "<td>" . count($all_teacher_requests) . "</td>";
             echo "<td>" . $teacher_number_of_tutors['sum'] . "</td>";
@@ -155,10 +156,15 @@
       try{
         $st = $dbh->query('SELECT * FROM TutorInfo ORDER BY tutor_id');
         if(($myrow = $st->fetch())){
-          echo "<table id ='tutors_table' class='table table-striped table-bordered' class='tablesorter'><thead><th>Tutor ID</th><th>Name</th></thead><tbody>";
+          echo "<table id ='tutors_table' class='table table-striped table-bordered' class='tablesorter'><thead><th>Tutor ID</th><th>Name</th><th>Birth Date</th><th>Email</th><th>Graduation Year</th><th>Course</th><th>Professor</th></thead><tbody>";
           do{
             echo "<tr><td>" . $myrow['tutor_id'] . "</td>";
-            echo "<td>" . $myrow['name'] . "</td></tr>";
+            echo "<td>" . $myrow['name'] . "</td>";
+            echo "<td>" . $myrow['birth_date'] . "</td>";
+            echo "<td>" . $myrow['duke_email'] . "</td>";
+            echo "<td>" . $myrow['graduation_year'] . "</td>";
+            echo "<td>" . $myrow['course'] . "</td>";
+            echo "<td>" . $myrow['professor'] . "</td></tr>";
           } while ($myrow = $st->fetch());
           echo "</tbody></table>";
         }

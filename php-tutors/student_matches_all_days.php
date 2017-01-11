@@ -178,7 +178,7 @@
       $weekdays = $dbh->prepare(
         "SELECT TutorInfo.name, Teacher.name, Teacher.site_name, Request.day, Request.start_time, Request.end_time, Request.teacher_email, Request.num_tutors, Request.request_id, Site.transportation 
         FROM Request, TutorAvailable, Teacher, TutorInfo, Site
-        WHERE Request.day = ? and TutorInfo.tutor_id = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Site.name = Teacher.site_name and Request.is_hidden IS FALSE
+        WHERE Request.day = ? and TutorInfo.tutor_id = ? and TutorInfo.name = ? and TutorInfo.tutor_id = TutorAvailable.tutor_id and TutorAvailable.day = Request.day and Request.teacher_email = Teacher.email and TutorAvailable.start_time <= Request.start_time and TutorAvailable.end_time >= Request.end_time and Site.name = Teacher.site_name and Request.is_hidden IS FALSE and Teacher.is_hidden IS FALSE
         ORDER BY Request.start_time");
 
       $bookings = $dbh->prepare(

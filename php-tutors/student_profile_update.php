@@ -50,7 +50,17 @@
   $birth_date = $_POST["birth_date"];
   $duke_email = $_POST["duke_email"];
   $graduation_year = $_POST["graduation_year"];
-  $course = $_POST["course"];
+
+  if ($_POST["course"]){
+    if (count($_POST["course"]) == 2) {
+      $course = $_POST["course"][0] . ", " . $_POST["course"][1];
+    }
+    else {
+      $course = $_POST["course"][0];
+    }
+  }
+
+  $professor = $_POST["professor"];
   $major_and_minor = $_POST["major_and_minor"];
   $has_previous_experience = $_POST["has_previous_experience"];
   $is_education_minor = $_POST["is_education_minor"];
@@ -61,10 +71,10 @@
   $varsity_academic_advisor = $_POST["varsity_academic_advisor"];
   $other_languages = $_POST["other_languages"];
 
-  $statement = $dbh->prepare("UPDATE TutorInfo SET name = ?, password = ?, birth_date = ?, duke_email = ?, graduation_year = ?, course = ?, major_and_minor = ?, has_previous_experience = ?, is_education_minor = ?, is_licensure_track = ?, is_america_reads_america_counts_tutor = ?, is_varsity_athlete = ?, varsity_team = ?, varsity_academic_advisor = ?, other_languages = ? WHERE tutor_id = ?");
+  $statement = $dbh->prepare("UPDATE TutorInfo SET name = ?, password = ?, birth_date = ?, duke_email = ?, graduation_year = ?, course = ?, professor = ?, major_and_minor = ?, has_previous_experience = ?, is_education_minor = ?, is_licensure_track = ?, is_america_reads_america_counts_tutor = ?, is_varsity_athlete = ?, varsity_team = ?, varsity_academic_advisor = ?, other_languages = ? WHERE tutor_id = ?");
 
   try{
-    $statement->execute(array($name, $pass, $birth_date, $duke_email, $graduation_year, $course, $major_and_minor, $has_previous_experience, $is_education_minor, $is_licensure_track, $is_america_reads_america_counts_tutor, $is_varsity_athlete, $varsity_team, $varsity_academic_advisor, $other_languages, $user));
+    $statement->execute(array($name, $pass, $birth_date, $duke_email, $graduation_year, $course, $professor, $major_and_minor, $has_previous_experience, $is_education_minor, $is_licensure_track, $is_america_reads_america_counts_tutor, $is_varsity_athlete, $varsity_team, $varsity_academic_advisor, $other_languages, $user));
   } catch (PDOException $e){
     echo $e->getMessage() . "<br/>";
   }

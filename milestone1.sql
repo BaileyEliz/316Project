@@ -10,6 +10,8 @@ CREATE TABLE Teacher
 (site_name VARCHAR(256) NOT NULL,
  name VARCHAR(256) NOT NULL,
  email VARCHAR(256) NOT NULL,
+ phone_number VARCHAR(256),
+ is_hidden BOOLEAN,
  PRIMARY KEY (email),
  FOREIGN KEY (site_name) REFERENCES Site(name)
 );
@@ -27,6 +29,7 @@ CREATE TABLE TutorInfo
  duke_email VARCHAR(256),
  graduation_year VARCHAR(256),
  course VARCHAR(256),
+ professor VARCHAR(256),
  major_and_minor VARCHAR(256),
  has_previous_experience VARCHAR(256),
  is_education_minor VARCHAR(256),
